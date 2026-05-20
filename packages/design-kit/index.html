@@ -15,6 +15,13 @@
         --mh-color-teapot: red;
       }
     </style>
+
+    <script type="module">
+      document.addEventListener('mh-error', (event) => {
+        console.warn(event.message);
+        if (event.error) throw event.error;
+      });
+    </script>
   </head>
 
   <body>
@@ -31,6 +38,13 @@
       <mh-divider></mh-divider>
       <mh-divider loudness="quiet"></mh-divider>
       <mh-divider loudness="quieter"></mh-divider>
+    </article>
+
+    <article>
+      <h2>Icon</h2>
+      normal: <mh-icon name="search"></mh-icon><br />
+      rotate: <mh-icon name="search" rotate="45"></mh-icon><br />
+      custom: <mh-icon id="customIcon" src="./src/icon/svg/add.svg"></mh-icon>
     </article>
   </body>
 </html>

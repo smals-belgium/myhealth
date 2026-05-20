@@ -33,7 +33,7 @@ export class Divider extends LitElement {
     this.setAttribute('role', 'separator');
   }
 
-  override update(props: PropertyValues<typeof this>) {
+  override update(props: PropertyValues<this>) {
     super.update(props);
 
     if (props.has('orientation'))

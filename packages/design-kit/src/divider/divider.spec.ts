@@ -1,5 +1,7 @@
-import { elementUpdated, expect, fixture } from '@open-wc/testing';
+import { elementUpdated, fixture } from '@open-wc/testing';
 import { html } from 'lit';
+
+import { assertAccessibility } from '../core/testing/index.js';
 
 import './divider';
 import type { Divider } from './divider.js';
@@ -10,17 +12,15 @@ describe('divider', () => {
 
   describe('accessibility', () => {
     it(`passes accessibility tests`, async () => {
-      const el = await setup();
-      document.body.appendChild(el);
-      expect(el).to.be.accessible();
+      assertAccessibility(await setup());
     });
 
     it(`has role="separator"`, async () => {
-      expect((await setup()).getAttribute('role')).to.equal('separator');
+      expect((await setup()).getAttribute('role')).toBe('separator');
     });
 
     it('sets aria-orientation to match orientation', async () => {
-      expect((await setup()).getAttribute('aria-orientation')).to.equal(
+      expect((await setup()).getAttribute('aria-orientation')).toBe(
         'horizontal',
       );
     });
@@ -31,7 +31,7 @@ describe('divider', () => {
       const el = await setup();
 
       expect(el.orientation).to.equal('horizontal');
-      expect(el.getAttribute('orientation')).to.equal('horizontal');
+      expect(el.getAttribute('orientation')).toBe('horizontal');
     });
 
     it(`reflects orientation to an attribute`, async () => {
@@ -39,8 +39,8 @@ describe('divider', () => {
         html`<mh-divider orientation="vertical"></mh-divider>`,
       );
 
-      expect(el.orientation).to.equal('vertical');
-      expect(el.getAttribute('orientation')).to.equal('vertical');
+      expect(el.orientation).toBe('vertical');
+      expect(el.getAttribute('orientation')).toBe('vertical');
     });
 
     it(`updates aria-orientation when orientation changes`, async () => {
@@ -48,7 +48,7 @@ describe('divider', () => {
       el.orientation = 'vertical';
       await elementUpdated(el);
 
-      expect(el.getAttribute('aria-orientation')).to.equal('vertical');
+      expect(el.getAttribute('aria-orientation')).toBe('vertical');
     });
   });
 
@@ -56,15 +56,15 @@ describe('divider', () => {
     it(`has default loudness "normal"`, async () => {
       const el = await setup();
 
-      expect(el.loudness).to.equal('normal');
-      expect(el.getAttribute('loudness')).to.equal('normal');
+      expect(el.loudness).toBe('normal');
+      expect(el.getAttribute('loudness')).toBe('normal');
     });
 
     it(`reflects loudness to an attribute`, async () => {
       const el = await setup(html`<mh-divider loudness="quiet"></mh-divider>`);
 
-      expect(el.loudness).to.equal('quiet');
-      expect(el.getAttribute('loudness')).to.equal('quiet');
+      expect(el.loudness).toBe('quiet');
+      expect(el.getAttribute('loudness')).toBe('quiet');
     });
   });
 });
