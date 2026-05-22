@@ -19,3 +19,9 @@ export const adoptedStylesheet = (el: Element) =>
 
 export const part = (name: string, el: Element) =>
   el.shadowRoot?.querySelector(`[part="${name}"]`) ?? null;
+
+export const defaultSlot = (el: Element) =>
+  el.shadowRoot?.querySelector<HTMLSlotElement>(`slot:not([name])`) ?? null;
+
+export const slot = (name: string, el: Element) =>
+  el.shadowRoot?.querySelector<HTMLSlotElement>(`slot[name=${name}]`) ?? null;

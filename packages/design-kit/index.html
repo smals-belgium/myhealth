@@ -197,5 +197,51 @@
         >Click me</mh-a
       >
     </article>
+
+    <article>
+      <h2>Card</h2>
+      <mh-card>
+        <h2 slot="header-title">Title</h2>
+        <span slot="header-end">badge tbd</span>
+        <input type="checkbox" checked slot="header-extras-start" />
+        <span slot="header-extras-end">tag tbd</span>
+        <mh-icon name="menu" slot="header-extras-end"></mh-icon>
+        card content
+        <mh-button appearance="link" size="s" slot="footer">
+          Details
+          <mh-icon name="chevron_right" slot="end"></mh-icon>
+        </mh-button>
+      </mh-card>
+      <br style="margin: 1rem" />
+      <mh-card appearance="outlined">
+        <h2 slot="header-title">Title</h2>
+        <span slot="header-badge">badge tbd</span>
+        <input type="checkbox" checked slot="header-extras" />
+        <span slot="header-extras">tag tbd</span>
+        <mh-icon name="menu" slot="header-extras"></mh-icon>
+        card content
+        <mh-button appearance="link" slot="footer-end">
+          Details
+          <mh-icon name="chevron_right" slot="end"></mh-icon>
+        </mh-button>
+      </mh-card>
+      <br style="margin: 1rem" />
+      <mh-card>
+        <h2 slot="header">Custom header</h2>
+        card content
+        <mh-button appearance="link" size="m" slot="footer">
+          Details
+          <mh-icon name="chevron_right" slot="end"></mh-icon>
+        </mh-button>
+      </mh-card>
+      <br style="margin: 1rem" />
+      <mh-card>
+        <label slot="header-title">
+          <input type="radio" />
+          radio header
+        </label>
+        card content
+      </mh-card>
+    </article>
   </body>
 </html>

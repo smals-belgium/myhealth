@@ -30,7 +30,7 @@ describe('divider', () => {
     it(`has default orientation "horizontal"`, async () => {
       const el = await setup();
 
-      expect(el.orientation).to.equal('horizontal');
+      expect(el.orientation).toBe('horizontal');
       expect(el.getAttribute('orientation')).toBe('horizontal');
     });
 

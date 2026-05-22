@@ -19,6 +19,8 @@ const icons = import.meta.glob('./svg/*.svg', {
  *
  * @event mh-load - Emitted when the icon has loaded.
  * @event mh-error - Emitted when the icon fails to load due to an error.
+ *
+ * @cssproperty --rotate-angle - The rotation angle of the icon.
  */
 @customElement('mh-icon')
 export class Icon extends LitElement {

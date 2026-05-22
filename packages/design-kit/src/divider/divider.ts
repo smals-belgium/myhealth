@@ -1,10 +1,8 @@
 import { LitElement, PropertyValues, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import { Loudness } from '../core';
+import { Loudness, Orientation } from '../core';
 import styles from './divider.css?inline';
-
-export type DividerOrientation = 'horizontal' | 'vertical';
 
 /**
  * @summary Dividers visually separate or group adjacent elements with a horizontal or vertical line. Use them to
@@ -26,7 +24,7 @@ export class Divider extends LitElement {
 
   /** Sets the divider's orientation. */
   @property({ reflect: true })
-  orientation: DividerOrientation = 'horizontal';
+  orientation: Orientation = 'horizontal';
 
   override connectedCallback() {
     super.connectedCallback();

@@ -13,12 +13,9 @@ export type ButtonSize = Extract<Size, 's' | 'm'>;
 export type ButtonVariant = Exclude<Variant, 'neutral'>;
 
 export abstract class ButtonBase extends LitElement {
-  static override readonly styles = [
-    unsafeCSS(styles),
-    unsafeCSS(appearance),
-    unsafeCSS(size),
-    unsafeCSS(variant),
-  ];
+  static override readonly styles = [styles, appearance, size, variant].map(
+    unsafeCSS,
+  );
 
   @query('[part="base"]') el!: HTMLElement;
   @query('slot:not([name])') mainSlot!: HTMLSlotElement;

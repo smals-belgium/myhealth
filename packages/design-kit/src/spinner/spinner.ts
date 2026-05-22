@@ -16,6 +16,7 @@ import styles from './spinner.css?inline';
  * @cssproperty --track-width - The width of the track.
  * @cssproperty --track-color - The color of the track.
  * @cssproperty --indicator-color - The color of the spinner's indicator.
+ * @cssproperty --size - The size of the visual.
  * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
  */
 @customElement('mh-spinner')
