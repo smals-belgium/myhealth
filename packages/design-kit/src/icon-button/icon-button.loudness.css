@@ -1,0 +1,36 @@
+:host([loudness='normal']) [part='button'] {
+  color: var(--mh-color-brand-type);
+  background-color: var(--mh-color-brand-fill-quieter);
+
+  &:hover {
+    color: var(--mh-color-brand-type-quieter);
+    background-color: var(--mh-color-brand-fill);
+  }
+
+  &:active {
+    color: var(--mh-color-brand-type-quieter);
+    background-color: var(--mh-color-brand-fill-loud);
+  }
+
+  &:disabled {
+    color: var(--mh-color-neutral-type);
+    background-color: var(--mh-color-neutral-fill-quiet);
+  }
+}
+
+:host([loudness='loud']) [part='button'] {
+  color: var(--mh-color-brand-type-quieter);
+  background-color: var(--mh-color-brand-fill);
+
+  &:hover {
+    background-color: var(--mh-color-brand-fill-loud);
+  }
+
+  &:active {
+    background-color: var(--mh-color-brand-fill-louder);
+  }
+
+  &:disabled {
+    background-color: var(--mh-color-neutral-fill);
+  }
+}

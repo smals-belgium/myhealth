@@ -51,9 +51,6 @@ export class Button extends ButtonBase {
         ?disabled=${this.disabled}
         type=${this.type}
         title=${this.title}
-        role="button"
-        aria-disabled=${this.disabled}
-        tabindex=${this.disabled ? '-1' : '0'}
       >
         <slot name="start" part="start"></slot>
         <slot part="main"></slot>

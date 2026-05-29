@@ -1,0 +1,24 @@
+:host {
+  --button-size: 2.5rem;
+
+  display: inline-block;
+}
+
+[part='button'] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--button-size);
+  height: var(--button-size);
+  cursor: pointer;
+  border: none;
+  transition-property:
+    background, border, box-shadow, color, opacity, transform;
+  transition-duration: var(--mh-transition-normal);
+  transition-timing-function: var(--mh-transition-easing);
+  transform-origin: center;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

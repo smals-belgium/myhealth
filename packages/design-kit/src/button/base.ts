@@ -18,7 +18,6 @@ export abstract class ButtonBase extends LitElement {
   );
 
   @query('[part="base"]') el!: HTMLElement;
-  @query('slot:not([name])') mainSlot!: HTMLSlotElement;
 
   @property() override title = ''; // make reactive to pass through
 

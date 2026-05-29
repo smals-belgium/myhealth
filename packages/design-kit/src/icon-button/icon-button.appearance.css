@@ -1,0 +1,8 @@
+:host([appearance='round']) [part='button'] {
+  border-radius: var(--button-size);
+}
+
+:host([appearance='square']) [part='button'] {
+  border-radius: var(--mh-border-radius);
+  box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.15);
+}
