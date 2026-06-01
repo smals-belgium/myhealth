@@ -69,6 +69,22 @@ describe('icon', () => {
     });
   });
 
+  describe('size', () => {
+    it(`has default 'm'`, async () => {
+      const el = await fixture<Icon>(html`<mh-icon></mh-icon>`);
+
+      expect(el.size).toBe('m');
+      expect(el.getAttribute('size')).toBe('m');
+    });
+
+    it(`reflects size to an attribute`, async () => {
+      const el = await fixture<Icon>(html`<mh-icon size="l"></mh-icon>`);
+
+      expect(el.size).toBe('l');
+      expect(el.getAttribute('size')).toBe('l');
+    });
+  });
+
   describe('rotating', () => {
     it(`rotates the icon when 'rotate' is defined`, async () => {
       const el = await fixture<Icon>(

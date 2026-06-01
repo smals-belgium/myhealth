@@ -2,8 +2,12 @@ import { html, LitElement, PropertyValues, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
+import { Size } from '../core';
 import { ErrorEvent, LoadEvent } from '../core/event';
 import styles from './icon.css?inline';
+import size from './icon.size.css?inline';
+
+export type IconSize = Size;
 
 const icons = import.meta.glob('./svg/*.svg', {
   query: '?raw',
@@ -24,7 +28,7 @@ const icons = import.meta.glob('./svg/*.svg', {
  */
 @customElement('mh-icon')
 export class Icon extends LitElement {
-  static override readonly styles = unsafeCSS(styles);
+  static override readonly styles = [styles, size].map(unsafeCSS);
 
   @state() private svg = '';
 
@@ -42,6 +46,9 @@ export class Icon extends LitElement {
    * ignored by assistive devices.
    */
   @property() label = '';
+
+  /** The icon's size. */
+  @property({ reflect: true }) size: IconSize = 'm';
 
   /** Sets the rotation degree of the icon */
   @property({ type: Number, reflect: true }) rotate = 0;
