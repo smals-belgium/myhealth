@@ -12,6 +12,11 @@
 - sanitize or other strategy for XSS protection
 - unit test that ensures all svgs have `fill="currentColor"`
 
+## Radio group
+
+- group identifier should be form reference + group name (not just name); see
+  https://github.com/smals-belgium/myhealth/pull/8/changes/7e091fb7c96d11fbb0c5734622b3eca084195df6#r3342719879
+
 ## Components roadmap
 
 ### Phase 1 — Shared MAGS/Portal Components
@@ -25,11 +30,11 @@ Core primitives required in both shared MAGS contexts and Portal feature flows.
 - [ ] [@angular/material/input](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=52855-836)
 - [ ] [@angular/material/select](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54213-264)
 - [ ] [@angular/material/checkbox](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53478-1006)
-- [ ] [@angular/material/radio](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53086-1299)
+- [x] [@angular/material/radio](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53086-1299)
 - [ ] [@angular/material/dialog](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53172-220)
 - [x] [@angular/material/progress-spinner](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54114-1172)
 - [ ] [@angular/material/snack-bar](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54932-380)
-- [ ] [@angular/material/card](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53126-1280)
+- [x] [@angular/material/card](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53126-1280)
 - [x] [@angular/material/divider](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=52837-541)
 - [ ] [Skeleton](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54711-816)
 - [ ] [Alert](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53395-807)

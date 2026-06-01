@@ -17,8 +17,10 @@ export const textContent = (el: Element) =>
 export const adoptedStylesheet = (el: Element) =>
   el.shadowRoot?.querySelector('style')?.textContent ?? '';
 
-export const part = (name: string, el: Element) =>
-  el.shadowRoot?.querySelector(`[part="${name}"]`) ?? null;
+export const part = <T extends Element = HTMLElement>(
+  name: string,
+  el: Element,
+) => el.shadowRoot?.querySelector<T>(`[part="${name}"]`) ?? null;
 
 export const defaultSlot = (el: Element) =>
   el.shadowRoot?.querySelector<HTMLSlotElement>(`slot:not([name])`) ?? null;

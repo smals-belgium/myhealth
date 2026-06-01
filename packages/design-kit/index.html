@@ -293,5 +293,24 @@
         card content
       </mh-card>
     </article>
+
+    <form id="radioForm">
+      <h2>Radio</h2>
+      gender: <mh-radio name="gender" value="f">I'm a lady</mh-radio>
+      <mh-radio name="gender" value="m" checked>I'm a gentleman</mh-radio>
+      <mh-radio name="gender" value="x" disabled>I don't know</mh-radio>
+      <mh-button type="submit">submit</mh-button>
+    </form>
+
+    <script type="module">
+      document
+        .querySelector('#radioForm')
+        .addEventListener('submit', (event) => {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+
+          console.log([...new FormData(event.target).entries()]);
+        });
+    </script>
   </body>
 </html>

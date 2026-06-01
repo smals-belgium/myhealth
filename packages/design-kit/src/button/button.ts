@@ -32,6 +32,9 @@ import { ButtonBase } from './base';
  */
 @customElement('mh-button')
 export class Button extends ButtonBase {
+  static formAssociated = true;
+  readonly internals = this.attachInternals();
+
   /**
    * The type of button. Note that the default value is `button` instead of `submit`, which is opposite of how native
    * `<button>` elements behave. When the type is `submit`, the button will submit the surrounding form.
@@ -44,6 +47,14 @@ export class Button extends ButtonBase {
   /** Disables the button. */
   @property({ type: Boolean }) disabled = false;
 
+  #onClick = () => {
+    const { form } = this.internals;
+    if (!form) return;
+
+    if (this.type === 'reset') form.reset();
+    if (this.type === 'submit') form.requestSubmit();
+  };
+
   override render() {
     return html`
       <button
@@ -51,6 +62,7 @@ export class Button extends ButtonBase {
         ?disabled=${this.disabled}
         type=${this.type}
         title=${this.title}
+        @click=${this.#onClick}
       >
         <slot name="start" part="start"></slot>
         <slot part="main"></slot>
