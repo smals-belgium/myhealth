@@ -1,0 +1,91 @@
+:host {
+  display: inline-block;
+}
+
+label {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+input {
+  --outer-size: 1.375rem;
+  --inner-size: 1rem;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: var(--outer-size);
+  height: var(--outer-size);
+  border-radius: var(--mh-border-radius);
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--mh-color-brand-border);
+  background-color: #ffffff;
+
+  &::before {
+    content: '';
+    width: var(--inner-size);
+    height: var(--inner-size);
+    /* converted from checkmark svg */
+    clip-path: polygon(
+      39.79% 75%,
+      16.04% 51.25%,
+      21.98% 45.31%,
+      39.79% 63.13%,
+      78.02% 24.9%,
+      83.96% 30.83%
+    );
+  }
+
+  &:indeterminate::before {
+    clip-path: polygon(25% 54.17%, 25% 45.83%, 75% 45.83%, 75% 54.17%);
+  }
+
+  &:checked,
+  &:indeterminate {
+    border: none;
+    background-color: var(--mh-color-brand-fill);
+  }
+
+  &:checked::before,
+  &:indeterminate:before {
+    background-color: var(--mh-color-brand-type-quieter);
+  }
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 0 0 0.5rem var(--mh-color-brand-border-quieter);
+  }
+
+  &:invalid {
+    border-color: var(--mh-color-danger-border);
+  }
+
+  &:checked:invalid {
+    border: none;
+    background-color: var(--mh-color-danger-fill);
+  }
+
+  &:invalid:hover:not(:disabled) {
+    box-shadow: 0 0 0 0.5rem var(--mh-color-danger-border-quieter);
+  }
+
+  &:disabled {
+    border-color: var(--mh-color-neutral-border-quiet);
+    background-color: var(--mh-color-neutral-fill-quieter);
+  }
+
+  &:checked:disabled {
+    background-color: var(--mh-color-neutral-fill-quiet);
+  }
+
+  &:checked:disabled:before {
+    background-color: var(--mh-color-neutral-type);
+  }
+}

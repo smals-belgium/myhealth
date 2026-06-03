@@ -2,18 +2,16 @@ import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import styles from './radio.css?inline';
-
-import { radioGroups } from './radio-groups';
+import styles from './checkbox.css?inline';
 
 /**
- * @summary Radios represent a single option within a mutually exclusive set. Use them inside a radio group when users
- *  must pick exactly one choice from a small list.
- * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/radio
+ * @summary Checkboxes let users toggle an option on or off, or select multiple items from a list. They also support an
+ * indeterminate state for partial selections in groups.
+ * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/checkbox
  * @status stable
  * @since 1.0
  *
- * @slot - The radio's label.
+ * @slot - The checklbox' label.
  *
  * @event blur - Emitted when the control loses focus.
  * @event focus - Emitted when the control gains focus.
@@ -26,8 +24,8 @@ import { radioGroups } from './radio-groups';
  * @cssstate disabled - Applied when the control is disabled.
  * @cssstate invalid - Applied when the control is invalid.
  */
-@customElement('mh-radio')
-export class Radio extends LitElement {
+@customElement('mh-checkbox')
+export class Checkbox extends LitElement {
   static override readonly styles = unsafeCSS(styles);
   static formAssociated = true;
   readonly internals = this.attachInternals();
@@ -43,8 +41,15 @@ export class Radio extends LitElement {
   @property({ type: Boolean, reflect: true }) disabled = false;
   @property({ type: Boolean, reflect: true }) required = false;
 
-  // Captures the HTML-declared default once; used to restore state on form reset.
+  /**
+   * Draws the checkbox in an indeterminate state. This is usually applied to checkboxes that represents a "select
+   * all/none" behavior when associated checkboxes have a mix of checked and unchecked states.
+   */
+  @property({ type: Boolean, reflect: true }) indeterminate = false;
+
+  // Captures the HTML-declared defaults once; used to restore state on form reset.
   #defaultChecked: boolean | undefined = undefined;
+  #defaultIndeterminate: boolean | undefined = undefined;
 
   override readonly click = () => this.el.click();
   override readonly focus = () => this.el.focus();
@@ -53,25 +58,24 @@ export class Radio extends LitElement {
   override connectedCallback() {
     super.connectedCallback();
     this.#defaultChecked ??= this.checked;
-    this.internals.role = 'radio';
-    radioGroups.connect(this);
+    this.#defaultIndeterminate ??= this.indeterminate;
+    this.internals.role = 'checkbox';
   }
 
-  protected formResetCallback() {
-    radioGroups.reset(this, this.#defaultChecked ?? false);
-  }
-
-  override disconnectedCallback() {
-    radioGroups.disconnect(this);
-    super.disconnectedCallback();
+  formResetCallback() {
+    this.checked = this.#defaultChecked ?? false;
+    this.indeterminate = this.#defaultIndeterminate ?? false;
+    this.internals.setFormValue(this.checked ? this.value : null);
   }
 
   override updated(changed: PropertyValueMap<this>) {
-    if (changed.has('checked') && this.checked) radioGroups.updateValue(this);
+    if (changed.has('checked') && this.checked)
+      this.internals.setFormValue(this.value);
   }
 
   #onChange() {
-    if (this.el.checked) radioGroups.updateValue(this);
+    this.checked = this.el.checked;
+    this.internals.setFormValue(this.checked ? this.value : null);
   }
 
   override render() {
@@ -79,13 +83,14 @@ export class Radio extends LitElement {
       <label part="base">
         <input
           part="input"
-          type="radio"
+          type="checkbox"
           title=${this.title}
           name=${ifDefined(this.name)}
           value=${ifDefined(this.value)}
           .checked=${this.checked}
           .disabled=${this.disabled}
           .required=${this.required}
+          .indeterminate=${this.indeterminate}
           aria-checked=${this.checked ? 'true' : 'false'}
           @change=${this.#onChange}
         />

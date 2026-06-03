@@ -49,4 +49,15 @@ export const radioGroups = {
       radio.internals.setFormValue(isSelected ? value : null);
     });
   },
+
+  /**
+   * Reset the form value for the entire radio group.
+   * Note: every radio in the group calls this function since they all implement `formResetCallback`.
+   */
+  reset(el: Radio, checked: boolean) {
+    el.checked = checked;
+
+    if (checked) this.updateValue(el);
+    else el.internals.setFormValue(null);
+  },
 };

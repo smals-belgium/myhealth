@@ -253,9 +253,13 @@
       <mh-card>
         <h2 slot="header-title">Title</h2>
         <span slot="header-end">badge tbd</span>
-        <input type="checkbox" checked slot="header-extras-start" />
+        <mh-checkbox checked slot="header-extras-start"></mh-checkbox>
         <span slot="header-extras-end">tag tbd</span>
-        <mh-icon-button name="menu" slot="header-extras-end"></mh-icon-button>
+        <mh-icon-button
+          name="menu"
+          label="card menu"
+          slot="header-extras-end"
+        ></mh-icon-button>
         card content
         <mh-button appearance="link" size="s" slot="footer">
           Details
@@ -266,9 +270,13 @@
       <mh-card appearance="outlined">
         <h2 slot="header-title">Title</h2>
         <span slot="header-badge">badge tbd</span>
-        <input type="checkbox" checked slot="header-extras" />
+        <mh-checkbox slot="header-extras"></mh-checkbox>
         <span slot="header-extras">tag tbd</span>
-        <mh-icon-button name="menu" slot="header-extras-end"></mh-icon-button>
+        <mh-icon-button
+          name="menu"
+          label="card menu"
+          slot="header-extras-end"
+        ></mh-icon-button>
         card content
         <mh-button appearance="link" slot="footer-end">
           Details
@@ -295,11 +303,32 @@
     </article>
 
     <form id="radioForm">
-      <h2>Radio</h2>
-      gender: <mh-radio name="gender" value="f">I'm a lady</mh-radio>
-      <mh-radio name="gender" value="m" checked>I'm a gentleman</mh-radio>
-      <mh-radio name="gender" value="x" disabled>I don't know</mh-radio>
-      <mh-button type="submit">submit</mh-button>
+      <article>
+        <h2>Radio</h2>
+        gender: <mh-radio name="gender" value="f">I'm a lady</mh-radio>
+        <mh-radio name="gender" value="m" checked>I'm a gentleman</mh-radio>
+        <mh-radio name="gender" value="x" disabled>I don't know</mh-radio>
+      </article>
+
+      <article>
+        <h2>Checkbox</h2>
+        preferences:
+        <mh-checkbox name="prefs" value="all" indeterminate
+          >I like everything</mh-checkbox
+        >
+        <mh-checkbox name="prefs" value="f">I like ladies</mh-checkbox>
+        <mh-checkbox name="prefs" value="m" checked
+          >I like gentlemen</mh-checkbox
+        >
+        <mh-checkbox name="prefs" value="x" checked disabled
+          >I like people who don't know</mh-checkbox
+        >
+      </article>
+
+      <footer>
+        <mh-button type="submit">submit</mh-button>
+        <mh-button type="reset" appearance="outlined">reset</mh-button>
+      </footer>
     </form>
 
     <script type="module">
@@ -309,6 +338,12 @@
           event.preventDefault();
           event.stopImmediatePropagation();
 
+          console.log([...new FormData(event.target).entries()]);
+        });
+
+      document
+        .querySelector('#radioForm')
+        .addEventListener('reset', (event) => {
           console.log([...new FormData(event.target).entries()]);
         });
     </script>

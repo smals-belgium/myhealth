@@ -160,4 +160,71 @@ describe('radioGroups', () => {
       expect(radio.internals.setFormValue).toHaveBeenCalledWith('a');
     });
   });
+
+  describe('reset', () => {
+    it('sets checked to false when called with checked=false', () => {
+      const radio = makeRadio('g13', 'a', true);
+      radioGroups.connect(radio);
+
+      radioGroups.reset(radio, false);
+
+      expect(radio.checked).toBe(false);
+    });
+
+    it('calls setFormValue(null) when resetting to unchecked', () => {
+      const radio = makeRadio('g14', 'a', true);
+      radioGroups.connect(radio);
+
+      radioGroups.reset(radio, false);
+
+      expect(radio.internals.setFormValue).toHaveBeenCalledWith(null);
+    });
+
+    it('sets checked to true when called with checked=true', () => {
+      const radio = makeRadio('g15', 'a');
+      radioGroups.connect(radio);
+
+      radioGroups.reset(radio, true);
+
+      expect(radio.checked).toBe(true);
+    });
+
+    it('calls setFormValue(value) on the reset radio when resetting to checked', () => {
+      const radio = makeRadio('g16', 'a');
+      radioGroups.connect(radio);
+
+      radioGroups.reset(radio, true);
+
+      expect(radio.internals.setFormValue).toHaveBeenCalledWith('a');
+    });
+
+    it('deselects other radios in the group when resetting to checked', () => {
+      const r1 = makeRadio('g17', 'a');
+      const r2 = makeRadio('g17', 'b', true);
+      const r3 = makeRadio('g17', 'c', true);
+      radioGroups.connect(r1);
+      radioGroups.connect(r2);
+      radioGroups.connect(r3);
+
+      radioGroups.reset(r1, true);
+
+      expect(r1.checked).toBe(true);
+      expect(r2.checked).toBe(false);
+      expect(r3.checked).toBe(false);
+      expect(r2.internals.setFormValue).toHaveBeenCalledWith(null);
+      expect(r3.internals.setFormValue).toHaveBeenCalledWith(null);
+    });
+
+    it('does not affect other groups when resetting to checked', () => {
+      const r1 = makeRadio('g18a', 'a');
+      const r2 = makeRadio('g18b', 'b', true);
+      radioGroups.connect(r1);
+      radioGroups.connect(r2);
+
+      radioGroups.reset(r1, true);
+
+      expect(r2.checked).toBe(true);
+      expect(r2.internals.setFormValue).not.toHaveBeenCalled();
+    });
+  });
 });
