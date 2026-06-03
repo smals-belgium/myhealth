@@ -9,5 +9,10 @@
     "moduleResolution": "bundler",
     "useDefineForClassFields": false
   },
-  "include": ["src/**/*.spec.ts", "src/**/*.test.ts"]
+  "include": ["src/**/*.spec.ts", "src/**/*.test.ts"],
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    }
+  ]
 }
