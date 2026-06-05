@@ -84,8 +84,7 @@ export default function () {
   const manifestPath = path.join(
     rootDir,
     'packages',
-    'vitals',
-    'components',
+    'design-kit',
     'custom-elements.json',
   );
 
@@ -126,7 +125,7 @@ export default function () {
       slug: dir,
       summary,
       elements,
-      sourceDir: `packages/vitals/components/src/${dir}`,
+      sourceDir: `packages/design-kit/src/${dir}`,
     });
   }
 

@@ -1,9 +1,9 @@
-import '@vitals/tokens/vitals.css';
-import '@myhealth-belgium/vitals';
+import '@myhealth/design-kit';
 
-document.addEventListener('vitals-error', (event) => {
-  if (event.error) {
-    console.warn(event.message);
-    throw event.error;
-  } else console.error(event.message);
+document.addEventListener('mh-error', (event) => {
+  const e = event as Event & { message: string; error?: Error };
+  if (e.error) {
+    console.warn(e.message);
+    throw e.error;
+  } else console.error(e.message);
 });

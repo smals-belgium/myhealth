@@ -101,9 +101,11 @@ document.addEventListener('input', (e) => {
 
 // Build initial snippets for all previews on page load
 document.querySelectorAll('.element-section').forEach((section) => {
-  const previewId = section.querySelector('.property-input')?.dataset?.target;
-  if (previewId) {
-    const target = document.getElementById(previewId);
-    if (target) buildSnippet(target);
-  }
+  const target =
+    section.querySelector('.canvas-inner > [id^="preview-"]') ||
+    (() => {
+      const id = section.querySelector('.property-input')?.dataset?.target;
+      return id ? document.getElementById(id) : null;
+    })();
+  if (target) buildSnippet(target);
 });

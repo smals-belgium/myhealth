@@ -1,0 +1,10 @@
+@import url('./theme/color.css');
+@import url('./theme/size.css');
+@import url('./theme/transition.css');
+
+:root {
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--mh-color-neutral-type-darker);
+}

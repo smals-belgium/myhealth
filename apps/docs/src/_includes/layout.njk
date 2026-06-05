@@ -6,31 +6,25 @@
     <title>
       {% if title %}
         {{ title }} –
-      {% endif %}Vitals Design System Docs</title>
+      {% endif %}Design Kit Docs</title>
     <link rel="stylesheet" href="/styles/docs.css"/>
-    <link rel="stylesheet" href="/assets/vitals/vitals.css"/>
-    <script type="module" src="/assets/vitals/index.js"></script>
-    <script type="module" src="/scripts/docs-controls.js"></script>
+    <link rel="stylesheet" href="/assets/design-kit/my-health.css"/>
+    <script type="module" src="/assets/design-kit/index.js"></script>
+    <script defer src="/scripts/docs-controls.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="app-shell">
       <aside class="sidebar">
         <div class="sidebar-brand">
-          <a href="/" aria-label="Vitals Design System Docs home">
-            <span class="sidebar-brand-name">Vitals Design System</span>
-            <span class="sidebar-brand-version">v{{ vitals.version }}</span>
+          <a href="/" aria-label="Design Kit Docs home">
+            <span class="sidebar-brand-name">Design Kit</span>
+            <span class="sidebar-brand-version">design-kit.version</span>
           </a>
         </div>
         <nav aria-label="Documentation">
           <div class="nav-group">
             <a href="/" class="nav-item{% if page.url === '/' %} is-active{% endif %}">Introduction</a>
-          </div>
-          <div class="nav-group">
-            <span class="nav-group-label">Tokens</span>
-            <a href="/tokens/color/" class="nav-item{% if page.url === '/tokens/color/' %} is-active{% endif %}">
-              Color
-            </a>
           </div>
           <div class="nav-group">
             <span class="nav-group-label">Components</span>
@@ -41,6 +35,12 @@
                 {{ component.name }}
               </a>
             {% endfor %}
+          </div>
+          <div class="nav-group">
+            <span class="nav-group-label">Tokens</span>
+            <a href="/tokens/color/" class="nav-item{% if page.url === '/tokens/color/' %} is-active{% endif %}">
+              Color
+            </a>
           </div>
         </nav>
       </aside>

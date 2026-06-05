@@ -7,26 +7,26 @@
 .element-section > h2 {
   font-size: 1rem;
   margin: 0 0 0.625rem;
-  color: var(--vitals-color-neutral-type-loud);
+  color: var(--mh-color-neutral-type-loud);
 }
 
 .element-description {
   font-size: 0.9375rem;
-  color: var(--vitals-color-neutral-type-loud);
+  color: var(--mh-color-neutral-type-loud);
   margin: 0 0 0.75rem;
 }
 
 .prop-description {
   font-size: 0.75rem;
-  color: var(--vitals-color-neutral-type);
+  color: var(--mh-color-neutral-type);
   margin: 0.2rem 0 0;
 }
 
 /* ── Canvas (live preview) ────────────────────────────────────────── */
 
 .canvas {
-  background: var(--vitals-color-neutral-type-quieter);
-  border: 1px solid var(--vitals-color-neutral-border-quieter);
+  background: var(--mh-color-neutral-type-quieter);
+  border: 1px solid var(--mh-color-neutral-border-quieter);
   border-bottom: none;
   border-radius: 8px 8px 0 0;
   min-height: 180px;
@@ -45,23 +45,23 @@
   background-image:
     linear-gradient(
       45deg,
-      var(--vitals-color-neutral-fill-quieter) 25%,
+      var(--mh-color-neutral-fill-quieter) 25%,
       transparent 25%
     ),
     linear-gradient(
       -45deg,
-      var(--vitals-color-neutral-fill-quieter) 25%,
+      var(--mh-color-neutral-fill-quieter) 25%,
       transparent 25%
     ),
     linear-gradient(
       45deg,
       transparent 75%,
-      var(--vitals-color-neutral-fill-quieter) 75%
+      var(--mh-color-neutral-fill-quieter) 75%
     ),
     linear-gradient(
       -45deg,
       transparent 75%,
-      var(--vitals-color-neutral-fill-quieter) 75%
+      var(--mh-color-neutral-fill-quieter) 75%
     );
   background-size: 20px 20px;
   background-position:
@@ -88,17 +88,17 @@
 /* ── Code snippet panel ───────────────────────────────────────────── */
 
 .snippet-panel {
-  background: var(--vitals-color-neutral-type-louder);
-  border-left: 1px solid var(--vitals-color-neutral-border-quieter);
-  border-right: 1px solid var(--vitals-color-neutral-border-quieter);
+  background: var(--mh-color-neutral-type-louder);
+  border-left: 1px solid var(--mh-color-neutral-border-quieter);
+  border-right: 1px solid var(--mh-color-neutral-border-quieter);
 }
 
 .snippet-header {
   display: flex;
   align-items: center;
   padding: 0.4rem 1rem;
-  background: var(--vitals-color-neutral-type-loud);
-  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+  background: var(--mh-color-neutral-type-loud);
+  border-bottom: 1px solid var(--mh-color-neutral-border-quieter);
 }
 
 .snippet-header span {
@@ -106,7 +106,7 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--vitals-color-neutral-fill-quieter);
+  color: var(--mh-color-neutral-fill-quieter);
 }
 
 .snippet-pre {
@@ -118,7 +118,7 @@
 .snippet-code {
   font-size: 0.8125rem;
   font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-  color: var(--vitals-color-neutral-fill-quieter);
+  color: var(--mh-color-neutral-fill-quieter);
   background: transparent;
   border: none;
   padding: 0;
@@ -129,8 +129,8 @@
 /* ── Controls panel ───────────────────────────────────────────────── */
 
 .controls-panel {
-  background: var(--vitals-color-neutral-type-quieter);
-  border: 1px solid var(--vitals-color-neutral-border-quieter);
+  background: var(--mh-color-neutral-type-quieter);
+  border: 1px solid var(--mh-color-neutral-border-quieter);
   border-radius: 0 0 8px 8px;
 }
 
@@ -138,8 +138,8 @@
   display: flex;
   align-items: center;
   padding: 0.4rem 1rem;
-  background: var(--vitals-color-neutral-fill-quieter);
-  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+  background: var(--mh-color-neutral-fill-quieter);
+  border-bottom: 1px solid var(--mh-color-neutral-border-quieter);
 }
 
 .controls-header span {
@@ -147,13 +147,13 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--vitals-color-neutral-type);
+  color: var(--mh-color-neutral-type);
 }
 
 .controls-empty {
   padding: 0.875rem 1rem;
   font-size: 0.875rem;
-  color: var(--vitals-color-neutral-type);
+  color: var(--mh-color-neutral-type);
   margin: 0;
 }
 
@@ -170,14 +170,14 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--vitals-color-neutral-type);
-  background: var(--vitals-color-neutral-fill-quieter);
-  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+  color: var(--mh-color-neutral-type);
+  background: var(--mh-color-neutral-fill-quieter);
+  border-bottom: 1px solid var(--mh-color-neutral-border-quieter);
 }
 
 .controls-table td {
   padding: 0.5rem 1rem;
-  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+  border-bottom: 1px solid var(--mh-color-neutral-border-quieter);
   vertical-align: middle;
 }
 
@@ -186,16 +186,16 @@
 }
 
 .controls-table tbody tr:hover td {
-  background: var(--vitals-color-brand-fill-quieter);
+  background: var(--mh-color-brand-fill-quieter);
 }
 
 .type-label {
-  color: var(--vitals-color-brand-fill);
+  color: var(--mh-color-brand-fill);
   font-size: 0.8125rem;
 }
 
 .default-label {
-  color: var(--vitals-color-neutral-type);
+  color: var(--mh-color-neutral-type);
   font-size: 0.8125rem;
 }
 
@@ -203,19 +203,19 @@
 .controls-table input[type='number'],
 .controls-table select {
   width: 100%;
-  border: 1px solid var(--vitals-color-neutral-border-quiet);
+  border: 1px solid var(--mh-color-neutral-border-quiet);
   border-radius: 4px;
   padding: 0.3rem 0.5rem;
   font-size: 0.875rem;
-  background: var(--vitals-color-neutral-type-quieter);
-  color: var(--vitals-color-neutral-type-louder);
+  background: var(--mh-color-neutral-type-quieter);
+  color: var(--mh-color-neutral-type-louder);
 }
 
 .controls-table input:focus-visible,
 .controls-table select:focus-visible {
-  outline: 2px solid var(--vitals-color-brand-fill);
+  outline: 2px solid var(--mh-color-brand-fill);
   outline-offset: 2px;
-  border-color: var(--vitals-color-brand-fill);
+  border-color: var(--mh-color-brand-fill);
 }
 
 /* ── API Reference tables ─────────────────────────────────────────── */
@@ -229,7 +229,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--vitals-color-neutral-type);
+  color: var(--mh-color-neutral-type);
   margin: 0 0 0.5rem;
 }
 
@@ -237,7 +237,7 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 0.875rem;
-  border: 1px solid var(--vitals-color-neutral-border-quieter);
+  border: 1px solid var(--mh-color-neutral-border-quieter);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -249,14 +249,14 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--vitals-color-neutral-type);
-  background: var(--vitals-color-neutral-fill-quieter);
-  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+  color: var(--mh-color-neutral-type);
+  background: var(--mh-color-neutral-fill-quieter);
+  border-bottom: 1px solid var(--mh-color-neutral-border-quieter);
 }
 
 .api-table td {
   padding: 0.5rem 1rem;
-  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+  border-bottom: 1px solid var(--mh-color-neutral-border-quieter);
   vertical-align: top;
 }
 

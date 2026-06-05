@@ -1,0 +1,66 @@
+:host([appearance='filled']) [part='base'] {
+  color: var(--mh-color-type-quieter);
+  background-color: var(--mh-color-fill);
+  border-color: transparent;
+
+  &:hover {
+    background-color: var(--mh-color-fill-loud);
+  }
+
+  &:active {
+    background-color: var(--mh-color-fill-louder);
+  }
+
+  &:disabled,
+  :host([disabled]) & {
+    color: var(--mh-color-neutral-type);
+    background-color: var(--mh-color-neutral-fill-quiet);
+  }
+}
+
+:host([appearance='outlined']) [part='base'] {
+  color: var(--mh-color-type);
+  background-color: #ffffff; /* not an existing fill color */
+  border-color: var(--mh-color-border);
+
+  &:hover {
+    color: var(--mh-color-type-loud);
+    background-color: var(--mh-color-border-quieter);
+    border-color: var(--mh-color-border-loud);
+  }
+
+  &:active {
+    color: var(--mh-color-type-louder);
+    background-color: var(--mh-color-fill-quiet);
+    border-color: var(--mh-color-fill-louder);
+  }
+
+  &:disabled,
+  :host([disabled]) & {
+    color: var(--mh-color-neutral-type);
+    background-color: inherit;
+    border-color: var(--mh-color-neutral-fill);
+  }
+}
+
+:host([appearance='link']) [part='base'] {
+  font-weight: 500;
+  text-decoration: underline;
+  color: var(--mh-color-type);
+  background-color: transparent;
+  border-color: transparent;
+
+  &:hover {
+    color: var(--mh-color-type-loud);
+  }
+
+  &:active {
+    color: var(--mh-color-type-louder);
+  }
+
+  &:disabled,
+  :host([disabled]) & {
+    color: var(--mh-color-neutral-type);
+    border-color: transparent;
+  }
+}

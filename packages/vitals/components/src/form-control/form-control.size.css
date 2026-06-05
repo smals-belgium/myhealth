@@ -1,7 +1,0 @@
-:host([size='m']) {
-  --height: var(--vitals-form-control-height-m);
-}
-
-:host([size='s']) {
-  --height: var(--vitals-form-control-height-s);
-}

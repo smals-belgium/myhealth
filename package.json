@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx run playground:serve",
-    "build": "nx run @myhealth-belgium/vitals:build:production",
+    "build": "nx run design-kit:build:production",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "lint": "nx run-many -t lint --all",
@@ -46,7 +46,7 @@
     "vitest": "~4.1.0"
   },
   "workspaces": [
-    "packages/vitals/*",
+    "packages/*",
     "apps/docs",
     "apps/playground"
   ],

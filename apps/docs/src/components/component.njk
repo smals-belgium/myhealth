@@ -35,28 +35,28 @@ permalink: "components/{{ component.slug }}/index.html"
       {# ── Canvas ── #}
       <div class="canvas" aria-label="{{ element.tag }} live preview">
         <div class="canvas-inner">
-          {% if element.tag === 'vitals-button' %}
-            <vitals-button id="{{ previewId }}">Button</vitals-button>
-          {% elseif element.tag === 'vitals-a' %}
-            <vitals-a id="{{ previewId }}" href="#">Anchor</vitals-a>
-          {% elseif element.tag === 'vitals-card' %}
-            <vitals-card id="{{ previewId }}">
+          {% if element.tag === 'mh-button' %}
+            <mh-button id="{{ previewId }}">Button</mh-button>
+          {% elseif element.tag === 'mh-a' %}
+            <mh-a id="{{ previewId }}" href="#">Anchor</mh-a>
+          {% elseif element.tag === 'mh-card' %}
+            <mh-card id="{{ previewId }}">
               <span slot="header-title">Card Title</span>
               Card content goes here.
               <span slot="footer-start">Footer</span>
-            </vitals-card>
-          {% elseif element.tag === 'vitals-icon' %}
-            <vitals-icon id="{{ previewId }}" name="search"></vitals-icon>
-          {% elseif element.tag === 'vitals-icon-button' %}
-            <vitals-icon-button id="{{ previewId }}" name="search" title="Search"></vitals-icon-button>
-          {% elseif element.tag === 'vitals-spinner' %}
-            <vitals-spinner id="{{ previewId }}"></vitals-spinner>
-          {% elseif element.tag === 'vitals-divider' %}
+            </mh-card>
+          {% elseif element.tag === 'mh-icon' %}
+            <mh-icon id="{{ previewId }}" name="search"></mh-icon>
+          {% elseif element.tag === 'mh-icon-button' %}
+            <mh-icon-button id="{{ previewId }}" name="search" title="Search"></mh-icon-button>
+          {% elseif element.tag === 'mh-spinner' %}
+            <mh-spinner id="{{ previewId }}"></mh-spinner>
+          {% elseif element.tag === 'mh-divider' %}
             <div style="width: 100%">
-              <vitals-divider id="{{ previewId }}"></vitals-divider>
+              <mh-divider id="{{ previewId }}"></mh-divider>
             </div>
           {% else %}
-            <{{ element.tag }} id="{{ previewId }}">{{ element.tag | replace('vitals-', '') }}</{{ element.tag }}>
+            <{{ element.tag }} id="{{ previewId }}">{{ element.tag | replace('mh-', '') }}</{{ element.tag }}>
           {% endif %}
         </div>
       </div>

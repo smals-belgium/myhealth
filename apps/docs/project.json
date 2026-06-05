@@ -14,11 +14,11 @@
     "build": {
       "dependsOn": [
         {
-          "projects": ["@myhealth-belgium/vitals"],
+          "projects": ["@myhealth/design-kit"],
           "target": "build"
         },
         {
-          "projects": ["@myhealth-belgium/vitals"],
+          "projects": ["@myhealth/design-kit"],
           "target": "generate-manifest"
         }
       ],
@@ -32,11 +32,11 @@
     "serve": {
       "dependsOn": [
         {
-          "projects": ["@myhealth-belgium/vitals"],
+          "projects": ["@myhealth/design-kit"],
           "target": "build"
         },
         {
-          "projects": ["@myhealth-belgium/vitals"],
+          "projects": ["@myhealth/design-kit"],
           "target": "generate-manifest"
         }
       ],

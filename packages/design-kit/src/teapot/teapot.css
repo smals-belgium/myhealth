@@ -1,0 +1,6 @@
+:host {
+  --color: var(--mh-color-teapot);
+
+  display: block;
+  color: var(--color);
+}

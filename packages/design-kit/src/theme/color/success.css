@@ -1,0 +1,20 @@
+@layer mh-color {
+  :where(:root) {
+    --mh-color-success-type-louder: #0a2e1e;
+    --mh-color-success-type-loud: #145c3c;
+    --mh-color-success-type: #1d8657;
+    --mh-color-success-type-quieter: #ffffff;
+
+    --mh-color-success-fill-louder: #0a2e1e;
+    --mh-color-success-fill-loud: #145c3c;
+    --mh-color-success-fill: #1d8657;
+    --mh-color-success-fill-quiet: #b8efd6;
+    --mh-color-success-fill-quieter: #f2fcf8;
+
+    --mh-color-success-border-louder: #0a2e1e;
+    --mh-color-success-border-loud: #145c3c;
+    --mh-color-success-border: #1d8657;
+    --mh-color-success-border-quiet: #b8efd6;
+    --mh-color-success-border-quieter: #f2fcf8;
+  }
+}

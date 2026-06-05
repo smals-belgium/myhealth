@@ -5,7 +5,7 @@ export default defineConfig(() => ({
   root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/apps/playground',
   resolve: {
-    conditions: ['@vitals/source'],
+    conditions: ['@myhealth/source'],
   },
   server: {
     port: 4200,

@@ -1,1 +1,1 @@
-/* Global styles — design tokens imported via main.ts */
+@import '../../../packages/design-kit/src/my-health.css';

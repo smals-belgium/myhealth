@@ -6,7 +6,6 @@
     "name": "playground"
   },
   "dependencies": {
-    "@myhealth-belgium/vitals": "0.0.1",
-    "@vitals/tokens": "0.0.1"
+    "@myhealth/design-kit": "0.0.1"
   }
 }

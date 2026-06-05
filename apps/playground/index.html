@@ -2,7 +2,7 @@
 <html lang="nl">
   <head>
     <meta charset="utf-8" />
-    <title>Vitals Playground</title>
+    <title>MyHealth Playground</title>
     <base href="/" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,307 +14,262 @@
 
     <article>
       <h2>Divider</h2>
-      <vitals-divider loudness="louder"></vitals-divider>
-      <vitals-divider loudness="loud"></vitals-divider>
-      <vitals-divider></vitals-divider>
-      <vitals-divider loudness="quiet"></vitals-divider>
-      <vitals-divider loudness="quieter"></vitals-divider>
+      <mh-divider loudness="louder"></mh-divider>
+      <mh-divider loudness="loud"></mh-divider>
+      <mh-divider></mh-divider>
+      <mh-divider loudness="quiet"></mh-divider>
+      <mh-divider loudness="quieter"></mh-divider>
     </article>
 
     <article>
       <h2>Icon</h2>
-      normal: <vitals-icon name="search"></vitals-icon><br />
-      rotate: <vitals-icon name="search" rotate="45"></vitals-icon><br />
+      normal: <mh-icon name="search"></mh-icon><br />
+      rotate: <mh-icon name="search" rotate="45"></mh-icon><br />
       <h2>Sizes</h2>
-      <vitals-icon name="search" size="xs"></vitals-icon>
-      <vitals-icon name="search" size="s"></vitals-icon>
-      <vitals-icon name="search" size="m"></vitals-icon>
-      <vitals-icon name="search" size="l"></vitals-icon>
-      <vitals-icon name="search" size="xl"></vitals-icon>
+      <mh-icon name="search" size="xs"></mh-icon>
+      <mh-icon name="search" size="s"></mh-icon>
+      <mh-icon name="search" size="m"></mh-icon>
+      <mh-icon name="search" size="l"></mh-icon>
+      <mh-icon name="search" size="xl"></mh-icon>
     </article>
 
     <article>
       <h2>Spinner</h2>
-      <vitals-spinner lang="en"></vitals-spinner>
+      <mh-spinner lang="en"></mh-spinner>
     </article>
 
     <article>
       <h2>Icon Button</h2>
-      <vitals-icon-button name="search" title="search"></vitals-icon-button>
-      <vitals-icon-button
-        name="search"
-        title="search"
-        disabled
-      ></vitals-icon-button
+      <mh-icon-button name="search" title="search"></mh-icon-button>
+      <mh-icon-button name="search" title="search" disabled></mh-icon-button
       ><br />
-      <vitals-icon-button
+      <mh-icon-button
         name="search"
         label="search"
         loudness="loud"
-      ></vitals-icon-button>
-      <vitals-icon-button
+      ></mh-icon-button>
+      <mh-icon-button
         name="search"
         label="search"
         loudness="loud"
         disabled
-      ></vitals-icon-button
+      ></mh-icon-button
       ><br />
-      <vitals-icon-button
+      <mh-icon-button
         name="search"
         label="search"
         appearance="square"
-      ></vitals-icon-button>
-      <vitals-icon-button
+      ></mh-icon-button>
+      <mh-icon-button
         name="search"
         label="search"
         appearance="square"
         disabled
-      ></vitals-icon-button
+      ></mh-icon-button
       ><br />
-      <vitals-icon-button
+      <mh-icon-button
         name="search"
         label="search"
         appearance="square"
         loudness="loud"
-      ></vitals-icon-button>
-      <vitals-icon-button
+      ></mh-icon-button>
+      <mh-icon-button
         name="search"
         label="search"
         appearance="square"
         loudness="loud"
         disabled
-      ></vitals-icon-button>
+      ></mh-icon-button>
     </article>
 
     <article>
       <h2>Button</h2>
 
       <h3>Filled</h3>
-      <vitals-button onclick="console.log('click')">Click me</vitals-button>
-      <vitals-button
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
+      <mh-button onclick="console.log('click')">Click me</mh-button>
+      <mh-button><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button>
+      <mh-button>Add me<mh-icon name="add" slot="end"></mh-icon></mh-button>
+      <mh-button variant="danger">Click me</mh-button>
+      <mh-button variant="danger"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
-      <vitals-button variant="danger">Click me</vitals-button>
-      <vitals-button variant="danger"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
+      <mh-button variant="danger"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
+      <mh-button variant="warning">Click me</mh-button>
+      <mh-button variant="warning"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button variant="danger"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
-      <vitals-button variant="warning">Click me</vitals-button>
-      <vitals-button variant="warning"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
+      <mh-button variant="warning"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
+      <mh-button variant="success">Click me</mh-button>
+      <mh-button variant="success"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button variant="warning"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
-      <vitals-button variant="success">Click me</vitals-button>
-      <vitals-button variant="success"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
-      >
-      <vitals-button variant="success"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
+      <mh-button variant="success"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
 
       <h3>Outlined</h3>
-      <vitals-button appearance="outlined">Click me</vitals-button>
-      <vitals-button appearance="outlined"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
+      <mh-button appearance="outlined">Click me</mh-button>
+      <mh-button appearance="outlined"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button appearance="outlined"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
-      <vitals-button appearance="outlined" variant="danger"
-        >Click me</vitals-button
+      <mh-button appearance="outlined"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
+      <mh-button appearance="outlined" variant="danger">Click me</mh-button>
+      <mh-button appearance="outlined" variant="danger"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button appearance="outlined" variant="danger"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
+      <mh-button appearance="outlined" variant="danger"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
+      <mh-button appearance="outlined" variant="warning">Click me</mh-button>
+      <mh-button appearance="outlined" variant="warning"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button appearance="outlined" variant="danger"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
-      <vitals-button appearance="outlined" variant="warning"
-        >Click me</vitals-button
+      <mh-button appearance="outlined" variant="warning"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
+      <mh-button appearance="outlined" variant="success">Click me</mh-button>
+      <mh-button appearance="outlined" variant="success"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button appearance="outlined" variant="warning"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
-      >
-      <vitals-button appearance="outlined" variant="warning"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
-      <vitals-button appearance="outlined" variant="success"
-        >Click me</vitals-button
-      >
-      <vitals-button appearance="outlined" variant="success"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
-      >
-      <vitals-button appearance="outlined" variant="success"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
+      <mh-button appearance="outlined" variant="success"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
 
       <h3>Link</h3>
-      <vitals-button appearance="link">Click me</vitals-button>
-      <vitals-button appearance="link"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
+      <mh-button appearance="link">Click me</mh-button>
+      <mh-button appearance="link"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button appearance="link"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
-      <vitals-button appearance="link" variant="danger">Click me</vitals-button>
-      <vitals-button appearance="link" variant="danger"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
+      <mh-button appearance="link"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
+      <mh-button appearance="link" variant="danger">Click me</mh-button>
+      <mh-button appearance="link" variant="danger"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button appearance="link" variant="danger"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
-      <vitals-button appearance="link" variant="warning"
-        >Click me</vitals-button
+      <mh-button appearance="link" variant="danger"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
+      <mh-button appearance="link" variant="warning">Click me</mh-button>
+      <mh-button appearance="link" variant="warning"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button appearance="link" variant="warning"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
+      <mh-button appearance="link" variant="warning"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
+      <mh-button appearance="link" variant="success">Click me</mh-button>
+      <mh-button appearance="link" variant="success"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button appearance="link" variant="warning"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
-      <vitals-button appearance="link" variant="success"
-        >Click me</vitals-button
-      >
-      <vitals-button appearance="link" variant="success"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
-      >
-      <vitals-button appearance="link" variant="success"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
+      <mh-button appearance="link" variant="success"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
 
       <h3>Disabled</h3>
-      <vitals-button disabled onclick="console.log('click')"
-        >Click me</vitals-button
-      >
-      <vitals-button appearance="outlined" disabled>Click me</vitals-button>
-      <vitals-button appearance="link" disabled>Click me</vitals-button>
+      <mh-button disabled onclick="console.log('click')">Click me</mh-button>
+      <mh-button appearance="outlined" disabled>Click me</mh-button>
+      <mh-button appearance="link" disabled>Click me</mh-button>
 
       <h3>Small</h3>
-      <vitals-button size="s" onclick="console.log('click')"
-        >Click me</vitals-button
+      <mh-button size="s" onclick="console.log('click')">Click me</mh-button>
+      <mh-button size="s"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button size="s"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
+      <mh-button size="s"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
+      <mh-button size="s" appearance="outlined">Click me</mh-button>
+      <mh-button size="s" appearance="outlined"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button size="s"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
-      <vitals-button size="s" appearance="outlined">Click me</vitals-button>
-      <vitals-button size="s" appearance="outlined"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
+      <mh-button size="s" appearance="outlined"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
+      <mh-button size="s" appearance="link">Click me</mh-button>
+      <mh-button size="s" appearance="link"
+        ><mh-icon name="add" slot="start"></mh-icon>Add me</mh-button
       >
-      <vitals-button size="s" appearance="outlined"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
-      <vitals-button size="s" appearance="link">Click me</vitals-button>
-      <vitals-button size="s" appearance="link"
-        ><vitals-icon name="add" slot="start"></vitals-icon>Add
-        me</vitals-button
-      >
-      <vitals-button size="s" appearance="link"
-        >Add me<vitals-icon name="add" slot="end"></vitals-icon
-      ></vitals-button>
+      <mh-button size="s" appearance="link"
+        >Add me<mh-icon name="add" slot="end"></mh-icon
+      ></mh-button>
 
       <h3>Loading</h3>
-      <vitals-button loading>Click me</vitals-button>
-      <vitals-button loading appearance="outlined">Click me</vitals-button>
-      <vitals-button loading appearance="link">Click me</vitals-button>
+      <mh-button loading>Click me</mh-button>
+      <mh-button loading appearance="outlined">Click me</mh-button>
+      <mh-button loading appearance="link">Click me</mh-button>
     </article>
 
     <article>
       <h2>A</h2>
-      <vitals-a href="mijngezondheid.belgie.be">Click me</vitals-a>
-      <vitals-a href="mijngezondheid.belgie.be" appearance="outlined"
-        >Click me</vitals-a
+      <mh-a href="mijngezondheid.belgie.be">Click me</mh-a>
+      <mh-a href="mijngezondheid.belgie.be" appearance="outlined"
+        >Click me</mh-a
       >
-      <vitals-a href="mijngezondheid.belgie.be" appearance="link"
-        >Click me</vitals-a
-      >
-      <vitals-a
+      <mh-a href="mijngezondheid.belgie.be" appearance="link">Click me</mh-a>
+      <mh-a
         href="mijngezondheid.belgie.be"
         disabled
         onclick="console.log('click')"
-        >Click me</vitals-a
+        >Click me</mh-a
       >
-      <vitals-a href="mijngezondheid.belgie.be" appearance="outlined" disabled
-        >Click me</vitals-a
+      <mh-a href="mijngezondheid.belgie.be" appearance="outlined" disabled
+        >Click me</mh-a
       >
-      <vitals-a href="mijngezondheid.belgie.be" appearance="link" disabled
-        >Click me</vitals-a
+      <mh-a href="mijngezondheid.belgie.be" appearance="link" disabled
+        >Click me</mh-a
       >
     </article>
 
     <article>
       <h2>Card</h2>
-      <vitals-card>
+      <mh-card>
         <h2 slot="header-title">Title</h2>
         <span slot="header-end">badge tbd</span>
         <input type="checkbox" checked slot="header-extras-start" />
         <span slot="header-extras-end">tag tbd</span>
-        <vitals-icon-button
-          name="menu"
-          slot="header-extras-end"
-        ></vitals-icon-button>
+        <mh-icon-button name="menu" slot="header-extras-end"></mh-icon-button>
         card content
-        <vitals-button appearance="link" size="s" slot="footer">
+        <mh-button appearance="link" size="s" slot="footer">
           Details
-          <vitals-icon name="chevron_right" slot="end"></vitals-icon>
-        </vitals-button>
-      </vitals-card>
+          <mh-icon name="chevron_right" slot="end"></mh-icon>
+        </mh-button>
+      </mh-card>
       <br style="margin: 1rem" />
-      <vitals-card appearance="outlined">
+      <mh-card appearance="outlined">
         <h2 slot="header-title">Title</h2>
         <span slot="header-badge">badge tbd</span>
         <input type="checkbox" checked slot="header-extras" />
         <span slot="header-extras">tag tbd</span>
-        <vitals-icon-button
-          name="menu"
-          slot="header-extras-end"
-        ></vitals-icon-button>
+        <mh-icon-button name="menu" slot="header-extras-end"></mh-icon-button>
         card content
-        <vitals-button appearance="link" slot="footer-end">
+        <mh-button appearance="link" slot="footer-end">
           Details
-          <vitals-icon name="chevron_right" slot="end"></vitals-icon>
-        </vitals-button>
-      </vitals-card>
+          <mh-icon name="chevron_right" slot="end"></mh-icon>
+        </mh-button>
+      </mh-card>
       <br style="margin: 1rem" />
-      <vitals-card>
+      <mh-card>
         <h2 slot="header">Custom header</h2>
         card content
-        <vitals-button appearance="link" size="m" slot="footer">
+        <mh-button appearance="link" size="m" slot="footer">
           Details
-          <vitals-icon name="chevron_right" slot="end"></vitals-icon>
-        </vitals-button>
-      </vitals-card>
+          <mh-icon name="chevron_right" slot="end"></mh-icon>
+        </mh-button>
+      </mh-card>
       <br style="margin: 1rem" />
-      <vitals-card>
+      <mh-card>
         <label slot="header-title">
           <input type="radio" />
           radio header
         </label>
         card content
-      </vitals-card>
+      </mh-card>
     </article>
   </body>
 </html>

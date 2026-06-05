@@ -4,16 +4,10 @@
   "files": [],
   "references": [
     {
-      "path": "./packages/vitals/components"
-    },
-    {
-      "path": "./packages/vitals/tokens"
-    },
-    {
-      "path": "./packages/vitals/core"
-    },
-    {
       "path": "./apps/playground"
+    },
+    {
+      "path": "./packages/design-kit"
     }
   ]
 }

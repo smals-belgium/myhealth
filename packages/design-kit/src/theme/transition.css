@@ -1,0 +1,8 @@
+@layer mh-transition {
+  :where(:root) {
+    --mh-transition-slow: 300ms;
+    --mh-transition-normal: 150ms;
+    --mh-transition-fast: 75ms;
+    --mh-transition-easing: ease;
+  }
+}

@@ -1,0 +1,89 @@
+:host([variant='brand']) {
+  --mh-color-type-louder: var(--mh-color-brand-type-louder);
+  --mh-color-type-loud: var(--mh-color-brand-type-loud);
+  --mh-color-type: var(--mh-color-brand-type);
+  --mh-color-type-quiet: var(--mh-color-brand-type-quiet);
+  --mh-color-type-quieter: var(--mh-color-brand-type-quieter);
+  --mh-color-fill-louder: var(--mh-color-brand-fill-louder);
+  --mh-color-fill-loud: var(--mh-color-brand-fill-loud);
+  --mh-color-fill: var(--mh-color-brand-fill);
+  --mh-color-fill-quiet: var(--mh-color-brand-fill-quiet);
+  --mh-color-fill-quieter: var(--mh-color-brand-fill-quieter);
+  --mh-color-border-louder: var(--mh-color-brand-border-louder);
+  --mh-color-border-loud: var(--mh-color-brand-border-loud);
+  --mh-color-border: var(--mh-color-brand-border);
+  --mh-color-border-quiet: var(--mh-color-brand-border-quiet);
+  --mh-color-border-quieter: var(--mh-color-brand-border-quieter);
+}
+
+:host([variant='danger']) {
+  --mh-color-type-louder: var(--mh-color-danger-type-louder);
+  --mh-color-type-loud: var(--mh-color-danger-type-loud);
+  --mh-color-type: var(--mh-color-danger-type);
+  --mh-color-type-quiet: var(--mh-color-danger-type-quiet);
+  --mh-color-type-quieter: var(--mh-color-danger-type-quieter);
+  --mh-color-fill-louder: var(--mh-color-danger-fill-louder);
+  --mh-color-fill-loud: var(--mh-color-danger-fill-loud);
+  --mh-color-fill: var(--mh-color-danger-fill);
+  --mh-color-fill-quiet: var(--mh-color-danger-fill-quiet);
+  --mh-color-fill-quieter: var(--mh-color-danger-fill-quieter);
+  --mh-color-border-louder: var(--mh-color-danger-border-louder);
+  --mh-color-border-loud: var(--mh-color-danger-border-loud);
+  --mh-color-border: var(--mh-color-danger-border);
+  --mh-color-border-quiet: var(--mh-color-danger-border-quiet);
+  --mh-color-border-quieter: var(--mh-color-danger-border-quieter);
+}
+
+:host([variant='warning']) {
+  --mh-color-type-louder: var(--mh-color-warning-type-louder);
+  --mh-color-type-loud: var(--mh-color-warning-type-loud);
+  --mh-color-type: var(--mh-color-warning-type);
+  --mh-color-type-quiet: var(--mh-color-warning-type-quiet);
+  --mh-color-type-quieter: var(--mh-color-warning-type-quieter);
+  --mh-color-fill-louder: var(--mh-color-warning-fill-louder);
+  --mh-color-fill-loud: var(--mh-color-warning-fill-loud);
+  --mh-color-fill: var(--mh-color-warning-fill);
+  --mh-color-fill-quiet: var(--mh-color-warning-fill-quiet);
+  --mh-color-fill-quieter: var(--mh-color-warning-fill-quieter);
+  --mh-color-border-louder: var(--mh-color-warning-border-louder);
+  --mh-color-border-loud: var(--mh-color-warning-border-loud);
+  --mh-color-border: var(--mh-color-warning-border);
+  --mh-color-border-quiet: var(--mh-color-warning-border-quiet);
+  --mh-color-border-quieter: var(--mh-color-warning-border-quieter);
+}
+
+:host([variant='success']) {
+  --mh-color-type-louder: var(--mh-color-success-type-louder);
+  --mh-color-type-loud: var(--mh-color-success-type-loud);
+  --mh-color-type: var(--mh-color-success-type);
+  --mh-color-type-quiet: var(--mh-color-success-type-quiet);
+  --mh-color-type-quieter: var(--mh-color-success-type-quieter);
+  --mh-color-fill-louder: var(--mh-color-success-fill-louder);
+  --mh-color-fill-loud: var(--mh-color-success-fill-loud);
+  --mh-color-fill: var(--mh-color-success-fill);
+  --mh-color-fill-quiet: var(--mh-color-success-fill-quiet);
+  --mh-color-fill-quieter: var(--mh-color-success-fill-quieter);
+  --mh-color-border-louder: var(--mh-color-success-border-louder);
+  --mh-color-border-loud: var(--mh-color-success-border-loud);
+  --mh-color-border: var(--mh-color-success-border);
+  --mh-color-border-quiet: var(--mh-color-success-border-quiet);
+  --mh-color-border-quieter: var(--mh-color-success-border-quieter);
+}
+
+:host([variant='neutral']) {
+  --mh-color-type-louder: var(--mh-color-neutral-type-louder);
+  --mh-color-type-loud: var(--mh-color-neutral-type-loud);
+  --mh-color-type: var(--mh-color-neutral-type);
+  --mh-color-type-quiet: var(--mh-color-neutral-type-quiet);
+  --mh-color-type-quieter: var(--mh-color-neutral-type-quieter);
+  --mh-color-fill-louder: var(--mh-color-neutral-fill-louder);
+  --mh-color-fill-loud: var(--mh-color-neutral-fill-loud);
+  --mh-color-fill: var(--mh-color-neutral-fill);
+  --mh-color-fill-quiet: var(--mh-color-neutral-fill-quiet);
+  --mh-color-fill-quieter: var(--mh-color-neutral-fill-quieter);
+  --mh-color-border-louder: var(--mh-color-neutral-border-louder);
+  --mh-color-border-loud: var(--mh-color-neutral-border-loud);
+  --mh-color-border: var(--mh-color-neutral-border);
+  --mh-color-border-quiet: var(--mh-color-neutral-border-quiet);
+  --mh-color-border-quieter: var(--mh-color-neutral-border-quieter);
+}

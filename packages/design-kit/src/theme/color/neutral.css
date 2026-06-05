@@ -1,0 +1,20 @@
+@layer mh-color {
+  :where(:root) {
+    --mh-color-neutral-type-louder: #0d0d0d;
+    --mh-color-neutral-type-loud: #5c5c5c;
+    --mh-color-neutral-type: #808080;
+    --mh-color-neutral-type-quieter: #ffffff;
+
+    --mh-color-neutral-fill-louder: #0d0d0d;
+    --mh-color-neutral-fill-loud: #696969;
+    --mh-color-neutral-fill: #808080;
+    --mh-color-neutral-fill-quiet: #ebebeb;
+    --mh-color-neutral-fill-quieter: #f5f5f5;
+
+    --mh-color-neutral-border-louder: #0d0d0d;
+    --mh-color-neutral-border-loud: #696969;
+    --mh-color-neutral-border: #808080;
+    --mh-color-neutral-border-quiet: #9c9c9c;
+    --mh-color-neutral-border-quieter: #d1d1d1;
+  }
+}

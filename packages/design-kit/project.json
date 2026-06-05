@@ -1,0 +1,13 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "generate-manifest": {
+      "executor": "nx:run-commands",
+      "outputs": ["{projectRoot}/custom-elements.json"],
+      "options": {
+        "command": "cem analyze",
+        "cwd": "packages/design-kit"
+      }
+    }
+  }
+}

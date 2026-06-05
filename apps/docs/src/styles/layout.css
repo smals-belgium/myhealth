@@ -24,7 +24,7 @@
 .page-header {
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+  border-bottom: 1px solid var(--mh-color-neutral-border-quieter);
 }
 
 .page-header h1 {
@@ -35,7 +35,7 @@
 
 .page-subtitle {
   font-size: 0.9375rem;
-  color: var(--vitals-color-neutral-type-loud);
+  color: var(--mh-color-neutral-type-loud);
   margin: 0 0 0.75rem;
 }
 
@@ -58,8 +58,8 @@
   font-weight: 600;
   margin: 1.5rem 0 0.75rem;
   padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
-  color: var(--vitals-color-neutral-type-louder);
+  border-bottom: 1px solid var(--mh-color-neutral-border-quieter);
+  color: var(--mh-color-neutral-type-louder);
 }
 
 /* ── Responsive ───────────────────────────────────────────────────── */

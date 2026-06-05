@@ -6,24 +6,23 @@ export default function (config) {
     '..',
     '..',
     'packages',
-    'vitals',
-    'components',
+    'design-kit',
     'dist',
   );
-  const tokensSrc = path.join(
+  const designKitSrc = path.join(
     import.meta.dirname,
     '..',
     '..',
     'packages',
-    'vitals',
-    'tokens',
+    'design-kit',
     'src',
   );
 
   config.addPassthroughCopy({
-    [componentsDist]: 'assets/vitals',
-    [path.join(tokensSrc, 'vitals.css')]: 'assets/vitals/vitals.css',
-    [path.join(tokensSrc, 'theme')]: 'assets/vitals/theme',
+    [componentsDist]: 'assets/design-kit',
+    [path.join(designKitSrc, 'my-health.css')]:
+      'assets/design-kit/my-health.css',
+    [path.join(designKitSrc, 'theme')]: 'assets/design-kit/theme',
   });
   config.addPassthroughCopy('src/styles');
   config.addPassthroughCopy('src/scripts');

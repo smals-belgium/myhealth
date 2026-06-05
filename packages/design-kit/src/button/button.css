@@ -1,0 +1,45 @@
+:host {
+  display: inline-block;
+}
+
+[part='base'] {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  user-select: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 0 1rem;
+  font-size: inherit;
+  font-weight: 600;
+  height: var(--height);
+
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: var(--mh-border-width-m);
+
+  transition-property:
+    background, border, box-shadow, color, opacity, transform;
+  transition-duration: var(--mh-transition-normal);
+  transition-timing-function: var(--mh-transition-easing);
+  transform-origin: center;
+
+  &:disabled,
+  :host([disabled]) & {
+    cursor: not-allowed;
+  }
+}
+
+.main {
+  display: inline-block;
+}
+
+mh-spinner {
+  --size: 1.5rem;
+  --track-width: 1.5px;
+
+  margin-left: 0.25rem;
+}

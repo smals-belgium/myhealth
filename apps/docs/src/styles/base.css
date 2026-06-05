@@ -16,8 +16,8 @@ body {
   font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 14px;
   line-height: 1.5;
-  background: var(--vitals-color-neutral-fill-quieter);
-  color: var(--vitals-color-neutral-type-louder);
+  background: var(--mh-color-neutral-fill-quieter);
+  color: var(--mh-color-neutral-type-louder);
 }
 
 h1,
@@ -34,12 +34,12 @@ p {
 }
 
 a {
-  color: var(--vitals-color-brand-fill);
+  color: var(--mh-color-brand-fill);
 }
 
 code {
-  background: var(--vitals-color-neutral-fill-quiet);
-  border: 1px solid var(--vitals-color-neutral-border-quieter);
+  background: var(--mh-color-neutral-fill-quiet);
+  border: 1px solid var(--mh-color-neutral-border-quieter);
   border-radius: 3px;
   padding: 0.1rem 0.35rem;
   font-size: 0.85em;
@@ -67,8 +67,8 @@ code {
   left: 1rem;
   z-index: 9999;
   padding: 0.5rem 1rem;
-  background: var(--vitals-color-brand-fill);
-  color: var(--vitals-color-neutral-type-quieter);
+  background: var(--mh-color-brand-fill);
+  color: var(--mh-color-neutral-type-quieter);
   border-radius: 0 0 6px 6px;
   font-weight: 600;
   text-decoration: none;

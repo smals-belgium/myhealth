@@ -1,0 +1,21 @@
+@layer mh-color {
+  :where(:root) {
+    --mh-color-brand-type-louder: #164583;
+    --mh-color-brand-type-loud: #1d5caf;
+    --mh-color-brand-type: #2473db;
+    --mh-color-brand-type-quiet: #3e84df;
+    --mh-color-brand-type-quieter: #ffffff;
+
+    --mh-color-brand-fill-louder: #164583;
+    --mh-color-brand-fill-loud: #1d5caf;
+    --mh-color-brand-fill: #2473db;
+    --mh-color-brand-fill-quiet: #caddf6;
+    --mh-color-brand-fill-quieter: #f2f7fd;
+
+    --mh-color-brand-border-louder: #164583;
+    --mh-color-brand-border-loud: #1d5caf;
+    --mh-color-brand-border: #2473db;
+    --mh-color-brand-border-quiet: #caddf6;
+    --mh-color-brand-border-quieter: #e5eefb;
+  }
+}

@@ -1,8 +1,8 @@
 /* ── Sidebar ──────────────────────────────────────────────────────── */
 
 .sidebar {
-  background: var(--vitals-color-neutral-type-quieter);
-  border-right: 1px solid var(--vitals-color-neutral-border-quieter);
+  background: var(--mh-color-neutral-type-quieter);
+  border-right: 1px solid var(--mh-color-neutral-border-quieter);
   position: sticky;
   top: 0;
   height: 100dvh;
@@ -13,7 +13,7 @@
 
 .sidebar-brand {
   padding: 1rem 1rem 0.875rem;
-  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+  border-bottom: 1px solid var(--mh-color-neutral-border-quieter);
   flex-shrink: 0;
 }
 
@@ -28,12 +28,12 @@
 .sidebar-brand-name {
   font-weight: 700;
   font-size: 0.9375rem;
-  color: var(--vitals-color-neutral-type-louder);
+  color: var(--mh-color-neutral-type-louder);
 }
 
 .sidebar-brand-version {
   font-size: 0.75rem;
-  color: var(--vitals-color-neutral-type);
+  color: var(--mh-color-neutral-type);
 }
 
 .sidebar nav {
@@ -51,7 +51,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--vitals-color-neutral-type);
+  color: var(--mh-color-neutral-type);
   padding: 0.75rem 1rem 0.25rem;
 }
 
@@ -60,21 +60,21 @@
   text-transform: capitalize;
   padding: 0.3rem 1rem;
   font-size: 0.875rem;
-  color: var(--vitals-color-neutral-type-loud);
+  color: var(--mh-color-neutral-type-loud);
   text-decoration: none;
   border-left: 3px solid transparent;
 }
 
 .nav-item:hover {
-  background: var(--vitals-color-neutral-fill-quiet);
-  color: var(--vitals-color-neutral-type-louder);
+  background: var(--mh-color-neutral-fill-quiet);
+  color: var(--mh-color-neutral-type-louder);
 }
 
 .nav-item.is-active {
-  background: var(--vitals-color-brand-fill-quieter);
-  color: var(--vitals-color-brand-fill);
+  background: var(--mh-color-brand-fill-quieter);
+  color: var(--mh-color-brand-fill);
   font-weight: 600;
-  border-left-color: var(--vitals-color-brand-fill);
+  border-left-color: var(--mh-color-brand-fill);
 }
 
 @media (max-width: 768px) {
@@ -82,14 +82,14 @@
     position: static;
     height: auto;
     border-right: none;
-    border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+    border-bottom: 1px solid var(--mh-color-neutral-border-quieter);
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .nav-item {
     transition:
-      background var(--vitals-transition-fast) var(--vitals-transition-easing),
-      color var(--vitals-transition-fast) var(--vitals-transition-easing);
+      background var(--mh-transition-fast) var(--mh-transition-easing),
+      color var(--mh-transition-fast) var(--mh-transition-easing);
   }
 }

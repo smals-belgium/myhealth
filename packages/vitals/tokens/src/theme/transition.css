@@ -1,8 +1,0 @@
-@layer vitals-transition {
-  :where(:root) {
-    --vitals-transition-slow: 300ms;
-    --vitals-transition-normal: 150ms;
-    --vitals-transition-fast: 75ms;
-    --vitals-transition-easing: ease;
-  }
-}

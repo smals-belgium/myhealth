@@ -1,0 +1,20 @@
+@layer mh-color {
+  :where(:root) {
+    --mh-color-warning-type-louder: #331700;
+    --mh-color-warning-type-loud: #662e00;
+    --mh-color-warning-type: #994500;
+    --mh-color-warning-type-quieter: #ffffff;
+
+    --mh-color-warning-fill-louder: #331700;
+    --mh-color-warning-fill-loud: #662e00;
+    --mh-color-warning-fill: #994500;
+    --mh-color-warning-fill-quiet: #ffca9e;
+    --mh-color-warning-fill-quieter: #ffeee0;
+
+    --mh-color-warning-border-louder: #331700;
+    --mh-color-warning-border-loud: #662e00;
+    --mh-color-warning-border: #994500;
+    --mh-color-warning-border-quiet: #ffca9e;
+    --mh-color-warning-border-quieter: #ffddc2;
+  }
+}
