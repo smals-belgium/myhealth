@@ -1,0 +1,34 @@
+:host {
+  /* --- type --- */
+  --mh-text-input__color-type-label: var(--mh-color-neutral-type-louder);
+  --mh-text-input__color-type-input: var(--mh-color-neutral-type-louder);
+  --mh-text-input__color-type-help: var(--mh-color-neutral-type-loud);
+  --mh-text-input__color-type-hint: var(--mh-color-neutral-type);
+  --mh-text-input__color-type-required-symbol: var(--mh-color-danger-type);
+  --mh-text-input__color-type-disabled: var(--mh-color-neutral-type);
+  --mh-text-input__color-type-icon: var(--mh-color-neutral-type-loud);
+  --mh-text-input__color-type-icon-button: var(--mh-color-brand-type);
+  --mh-text-input__color-type-icon-button__hover: var(
+    --mh-color-brand-type-loud
+  );
+  --mh-text-input__color-type-icon-button__active: var(
+    --mh-color-brand-type-louder
+  );
+
+  /* --- fill --- */
+  --mh-text-input__color-fill-input: #ffffff;
+  --mh-text-input__color-fill-input__disabled: #ffffff;
+
+  /* border */
+  --mh-text-input__color-border-input: var(--mh-color-neutral-border);
+  --mh-text-input__color-border-input__focus: var(--mh-color-brand-border-loud);
+  --mh-text-input__color-border-input__hover: var(--mh-color-brand-border);
+  --mh-text-input__color-border-input__invalid: var(--mh-color-danger-border);
+  --mh-text-input__color-border-input__invalid-hover: var(
+    --mh-color-danger-border-loud
+  );
+
+  /* --- size --- */
+  --mh-text-input__size-border-radius: var(--mh-border-radius);
+  --mh-text-input__size-height: var(--mh-form-control-height);
+}

@@ -15,7 +15,7 @@
   padding: 0 1rem;
   font-size: inherit;
   font-weight: 600;
-  height: var(--height);
+  height: var(--mh-form-control-height);
 
   border-radius: 9999px;
   border-style: solid;

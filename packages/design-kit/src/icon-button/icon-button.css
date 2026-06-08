@@ -1,5 +1,5 @@
 :host {
-  --button-size: 2.5rem;
+  --mh-icon-button__size: 2.5rem;
 
   display: inline-block;
 }
@@ -8,8 +8,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--button-size);
-  height: var(--button-size);
+  width: var(--mh-icon-button__size);
+  height: var(--mh-icon-button__size);
   cursor: pointer;
   border: none;
   transition-property:
@@ -18,7 +18,22 @@
   transition-timing-function: var(--mh-transition-easing);
   transform-origin: center;
 
+  color: var(--mh-icon-button__color-type);
+  background-color: var(--mh-icon-button__color-fill);
+
+  &:hover {
+    color: var(--mh-icon-button__color-type__hover);
+    background-color: var(--mh-icon-button__color-fill__hover);
+  }
+
+  &:active {
+    color: var(--mh-icon-button__color-type__active);
+    background-color: var(--mh-icon-button__color-fill__active);
+  }
+
   &:disabled {
     cursor: not-allowed;
+    color: var(--mh-icon-button__color-type__disabled);
+    background-color: var(--mh-icon-button__color-fill__disabled);
   }
 }

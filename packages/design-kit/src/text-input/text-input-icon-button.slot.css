@@ -1,0 +1,9 @@
+::slotted(mh-icon-button) {
+  --mh-icon-button__size: var(--mh-text-input__size-height);
+  --mh-icon-button__color-type__hover: var(--mh-color-brand-type-loud);
+  --mh-icon-button__color-type__active: var(--mh-color-brand-type-louder);
+  --mh-icon-button__color-fill: transparent;
+  --mh-icon-button__color-fill__hover: transparent;
+  --mh-icon-button__color-fill__active: transparent;
+  --mh-icon-button__color-fill__disabled: transparent;
+}

@@ -1,36 +1,23 @@
-:host([loudness='normal']) [part='button'] {
-  color: var(--mh-color-brand-type);
-  background-color: var(--mh-color-brand-fill-quieter);
+:host([loudness='normal']) {
+  --mh-icon-button__color-type: var(--mh-color-brand-type);
+  --mh-icon-button__color-type__hover: var(--mh-color-brand-type-quieter);
+  --mh-icon-button__color-type__active: var(--mh-color-brand-type-quieter);
+  --mh-icon-button__color-type__disabled: var(--mh-color-neutral-type);
 
-  &:hover {
-    color: var(--mh-color-brand-type-quieter);
-    background-color: var(--mh-color-brand-fill);
-  }
-
-  &:active {
-    color: var(--mh-color-brand-type-quieter);
-    background-color: var(--mh-color-brand-fill-loud);
-  }
-
-  &:disabled {
-    color: var(--mh-color-neutral-type);
-    background-color: var(--mh-color-neutral-fill-quiet);
-  }
+  --mh-icon-button__color-fill: var(--mh-color-brand-fill-quieter);
+  --mh-icon-button__color-fill__hover: var(--mh-color-brand-fill);
+  --mh-icon-button__color-fill__active: var(--mh-color-brand-fill-loud);
+  --mh-icon-button__color-fill__disabled: var(--mh-color-neutral-fill-quiet);
 }
 
-:host([loudness='loud']) [part='button'] {
-  color: var(--mh-color-brand-type-quieter);
-  background-color: var(--mh-color-brand-fill);
+:host([loudness='loud']) {
+  --mh-icon-button__color-type: var(--mh-color-brand-type-quieter);
+  --mh-icon-button__color-type__hover: var(--mh-color-brand-type-quieter);
+  --mh-icon-button__color-type__active: var(--mh-color-brand-type-quieter);
+  --mh-icon-button__color-type__disabled: var(--mh-color-neutral-type-quieter);
 
-  &:hover {
-    background-color: var(--mh-color-brand-fill-loud);
-  }
-
-  &:active {
-    background-color: var(--mh-color-brand-fill-louder);
-  }
-
-  &:disabled {
-    background-color: var(--mh-color-neutral-fill);
-  }
+  --mh-icon-button__color-fill: var(--mh-color-brand-fill);
+  --mh-icon-button__color-fill__hover: var(--mh-color-brand-fill-loud);
+  --mh-icon-button__color-fill__active: var(--mh-color-brand-fill-louder);
+  --mh-icon-button__color-fill__disabled: var(--mh-color-neutral-fill);
 }

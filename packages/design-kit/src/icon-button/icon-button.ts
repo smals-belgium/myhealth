@@ -30,7 +30,7 @@ export type IconButtonLoudness = Extract<Loudness, 'normal' | 'loud'>;
  */
 @customElement('mh-icon-button')
 export class IconButton extends LitElement {
-  static override readonly styles = [styles, appearance, loudness].map(
+  static override readonly styles = [loudness, styles, appearance].map(
     unsafeCSS,
   );
 

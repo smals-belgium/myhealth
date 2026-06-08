@@ -231,9 +231,13 @@
       <mh-card>
         <h2 slot="header-title">Title</h2>
         <span slot="header-end">badge tbd</span>
-        <input type="checkbox" checked slot="header-extras-start" />
+        <mh-checkbox checked slot="header-extras-start"></mh-checkbox>
         <span slot="header-extras-end">tag tbd</span>
-        <mh-icon-button name="menu" slot="header-extras-end"></mh-icon-button>
+        <mh-icon-button
+          name="menu"
+          label="card menu"
+          slot="header-extras-end"
+        ></mh-icon-button>
         card content
         <mh-button appearance="link" size="s" slot="footer">
           Details
@@ -244,9 +248,13 @@
       <mh-card appearance="outlined">
         <h2 slot="header-title">Title</h2>
         <span slot="header-badge">badge tbd</span>
-        <input type="checkbox" checked slot="header-extras" />
+        <mh-checkbox slot="header-extras"></mh-checkbox>
         <span slot="header-extras">tag tbd</span>
-        <mh-icon-button name="menu" slot="header-extras-end"></mh-icon-button>
+        <mh-icon-button
+          name="menu"
+          label="card menu"
+          slot="header-extras-end"
+        ></mh-icon-button>
         card content
         <mh-button appearance="link" slot="footer-end">
           Details
@@ -264,12 +272,98 @@
       </mh-card>
       <br style="margin: 1rem" />
       <mh-card>
-        <label slot="header-title">
-          <input type="radio" />
-          radio header
-        </label>
+        <mh-radio slot="header-title">radio header</mh-radio>
         card content
       </mh-card>
     </article>
+
+    <form id="radioForm">
+      <article>
+        <h2>Radio</h2>
+        gender: <mh-radio name="gender" value="f">I'm a lady</mh-radio>
+        <mh-radio name="gender" value="m" checked>I'm a gentleman</mh-radio>
+        <mh-radio name="gender" value="x" disabled>I don't know</mh-radio>
+      </article>
+
+      <article>
+        <h2>Checkbox</h2>
+        preferences:
+        <mh-checkbox name="prefs" value="all" indeterminate
+          >I like everything</mh-checkbox
+        >
+        <mh-checkbox name="prefs" value="f">I like ladies</mh-checkbox>
+        <mh-checkbox name="prefs" value="m" checked
+          >I like gentlemen</mh-checkbox
+        >
+        <mh-checkbox name="prefs" value="x" checked disabled
+          >I like people who don't know</mh-checkbox
+        >
+      </article>
+
+      <article>
+        <h2>Text input</h2>
+        <mh-text-input
+          name="someText"
+          required
+          placeholder="placeholder"
+          help="help text"
+          hint="a hint here"
+        >
+          <mh-icon name="search" slot="start"></mh-icon>
+          Label2
+          <mh-icon-button name="add" slot="end"></mh-icon-button>
+        </mh-text-input>
+
+        <br style="margin: 1rem" />
+        <mh-text-input
+          name="someText2"
+          required
+          disabled
+          placeholder="placeholder"
+          help="help text"
+          hint="a hint here"
+        >
+          <mh-icon name="search" slot="start"></mh-icon>
+          Label
+          <mh-icon-button id="test" name="add" slot="end"></mh-icon-button>
+        </mh-text-input>
+        <br style="margin: 1rem" />
+        <mh-text-input
+          name="someText3"
+          required
+          placeholder="placeholder"
+          size="s"
+          help="help text"
+          hint="a hint here"
+        >
+          Label
+        </mh-text-input>
+      </article>
+
+      <footer>
+        <mh-button type="submit">submit</mh-button>
+        <mh-button type="reset" appearance="outlined">reset</mh-button>
+      </footer>
+    </form>
+
+    <script type="module">
+      document
+        .querySelector('#radioForm')
+        .addEventListener('submit', (event) => {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+
+          console.log([...new FormData(event.target).entries()]);
+        });
+
+      document
+        .querySelector('#radioForm')
+        .addEventListener('reset', (event) => {
+          console.log([...new FormData(event.target).entries()]);
+        });
+      document.querySelector('#test').addEventListener('click', (event) => {
+        console.log('TEST');
+      });
+    </script>
   </body>
 </html>

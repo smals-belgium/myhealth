@@ -1,0 +1,15 @@
+::slotted(mh-icon) {
+  color: var(--mh-text-input_color-type-icon);
+}
+
+[part='start']::slotted(mh-icon) {
+  margin-left: 0.5rem;
+}
+
+[part='end']::slotted(mh-icon) {
+  margin-right: 0.5rem;
+}
+
+label:has(input:disabled) ::slotted(mh-icon) {
+  color: var(--mh-text-input_color-type-disabled);
+}

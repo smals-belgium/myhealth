@@ -1,5 +1,5 @@
 :host([appearance='round']) [part='button'] {
-  border-radius: var(--button-size);
+  border-radius: var(--mh-icon-button__size);
 }
 
 :host([appearance='square']) [part='button'] {

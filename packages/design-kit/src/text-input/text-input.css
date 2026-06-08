@@ -1,0 +1,89 @@
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+[part='label'] {
+  display: flex;
+  gap: 0.25rem;
+  color: var(--mh-text-input__color-type-label);
+
+  label:has(:required) &::after {
+    content: '*';
+    color: var(--mh-text-input__color-type-required-symbol);
+  }
+}
+
+[part='help'] {
+  font-size: 0.75rem;
+  color: var(--mh-text-input__color-type-help);
+  margin-bottom: 0.125rem;
+}
+
+[part='hint'] {
+  font-size: 0.75rem;
+  color: var(--mh-text-input__color-type-hint);
+}
+
+[part='input-container'] {
+  display: flex;
+  align-items: center;
+
+  height: var(--mh-text-input__size-height);
+  border-radius: var(--mh-text-input__size-border-radius);
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--mh-text-input__color-border-input);
+  background-color: var(--mh-text-input__color-fill-input);
+
+  &:has(input:focus) {
+    border-color: var(--mh-text-input__color-border-input__focus);
+    box-shadow: 0 0 0 1px var(--mh-text-input__color-border-input__focus);
+  }
+
+  &:has(input:invalid) {
+    border-color: var(--mh-text-input__color-border-input__invalid);
+  }
+
+  &:has(input:invalid):has(input:focus) {
+    box-shadow: 0 0 0 1px var(--mh-text-input__color-border-input__invalid);
+  }
+
+  /* Avoid hover state on disabled input */
+  label:has(input:not(:disabled)) & {
+    &:hover {
+      border-color: var(--mh-text-input__color-border-input__invalid);
+    }
+
+    &:has(input:invalid):hover {
+      border-color: var(--mh-text-input__color-border-input__invalid-hover);
+    }
+  }
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  outline: none;
+
+  flex: 1;
+  margin: 0 0.5rem;
+  height: calc(var(--mh-text-input__size-height) - 2px);
+  border-radius: var(--mh-text-input__size-border-radius);
+  font-size: 1rem;
+  color: var(--mh-text-input__color-type-input);
+
+  &:disabled {
+    background-color: var(--mh-text-input__color-fill-input__disabled);
+  }
+}
+
+label:has(input:disabled) {
+  & [part='label'],
+  & [part='label']::after,
+  & [part='help'] {
+    color: var(--mh-text-input__color-type-disabled);
+  }
+}
