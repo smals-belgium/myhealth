@@ -5,4 +5,12 @@
     --mh-transition-fast: 75ms;
     --mh-transition-easing: ease;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where(:root) {
+      --mh-transition-slow: 0ms;
+      --mh-transition-normal: 0ms;
+      --mh-transition-fast: 0ms;
+    }
+  }
 }
