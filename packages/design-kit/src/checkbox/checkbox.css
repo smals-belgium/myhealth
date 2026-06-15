@@ -5,32 +5,53 @@
 label {
   display: inline-flex;
   flex-direction: row;
-  align-items: baseline;
-  gap: 0.5rem;
+  align-items: center;
 }
 
 input {
+  --touch-target-size: 3rem;
   --outer-size: 1.375rem;
   --inner-size: 1rem;
+  --state-layer-spread: 0.5rem;
 
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
-  width: var(--outer-size);
-  height: var(--outer-size);
-  border-radius: var(--mh-border-radius);
-  border-style: solid;
-  border-width: 1px;
-  border-color: var(--mh-color-brand-border);
-  background-color: #ffffff;
+  width: var(--touch-target-size);
+  height: var(--touch-target-size);
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: none;
 
+  /* Visual checkbox box */
+  &::after {
+    content: '';
+    position: absolute;
+    width: var(--outer-size);
+    height: var(--outer-size);
+    border-radius: var(--mh-border-radius);
+    border: 1px solid var(--mh-color-brand-border);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 0 transparent;
+    transition:
+      border-color var(--mh-transition-normal) var(--mh-transition-easing),
+      background-color var(--mh-transition-normal) var(--mh-transition-easing),
+      box-shadow var(--mh-transition-normal) var(--mh-transition-easing);
+  }
+
+  /* Checkmark / indeterminate mark */
   &::before {
     content: '';
+    position: absolute;
+    z-index: 1;
     width: var(--inner-size);
     height: var(--inner-size);
     /* converted from checkmark svg */
@@ -48,44 +69,57 @@ input {
     clip-path: polygon(25% 54.17%, 25% 45.83%, 75% 45.83%, 75% 54.17%);
   }
 
-  &:checked,
-  &:indeterminate {
-    border: none;
+  &:checked::after,
+  &:indeterminate::after {
+    border-color: transparent;
     background-color: var(--mh-color-brand-fill);
   }
 
   &:checked::before,
-  &:indeterminate:before {
+  &:indeterminate::before {
     background-color: var(--mh-color-brand-type-quieter);
   }
 
-  &:hover:not(:disabled) {
-    box-shadow: 0 0 0 0.5rem var(--mh-color-brand-border-quieter);
+  &:focus-visible {
+    outline: none;
   }
 
-  &:invalid {
-    border-color: var(--mh-color-danger-border);
-  }
-
-  &:checked:invalid {
-    border: none;
-    background-color: var(--mh-color-danger-fill);
-  }
-
-  &:invalid:hover:not(:disabled) {
-    box-shadow: 0 0 0 0.5rem var(--mh-color-danger-border-quieter);
+  &:hover::after,
+  &:focus-visible::after {
+    box-shadow: 0 0 0 var(--state-layer-spread)
+      var(--mh-color-brand-border-quieter);
   }
 
   &:disabled {
-    border-color: var(--mh-color-neutral-border-quiet);
-    background-color: var(--mh-color-neutral-fill-quieter);
+    cursor: not-allowed;
   }
 
-  &:checked:disabled {
+  &:invalid::after {
+    border-color: var(--mh-color-danger-border);
+  }
+
+  &:checked:invalid::after {
+    border-color: transparent;
+    background-color: var(--mh-color-danger-fill);
+  }
+
+  &:invalid:hover::after,
+  &:invalid:focus-visible::after {
+    box-shadow: 0 0 0 var(--state-layer-spread)
+      var(--mh-color-danger-border-quieter);
+  }
+
+  &:disabled::after {
+    border-color: var(--mh-color-neutral-border-quiet);
+    background-color: var(--mh-color-neutral-fill-quieter);
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  &:checked:disabled::after {
     background-color: var(--mh-color-neutral-fill-quiet);
   }
 
-  &:checked:disabled:before {
+  &:checked:disabled::before {
     background-color: var(--mh-color-neutral-type);
   }
 }
