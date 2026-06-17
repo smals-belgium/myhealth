@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - card</title>
+    <base href="/" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/src/styles.css" />
+
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+
+  <body>
+    <h2>Card</h2>
+    <mh-card>
+      <h2 slot="header-title">Title</h2>
+      <span slot="header-end">badge tbd</span>
+      <mh-checkbox checked slot="header-extras-start"></mh-checkbox>
+      <span slot="header-extras-end">tag tbd</span>
+      <mh-icon-button
+        name="menu"
+        label="card menu"
+        slot="header-extras-end"
+      ></mh-icon-button>
+      card content
+      <mh-button appearance="link" size="s" slot="footer">
+        Details
+        <mh-icon name="chevron_right" slot="end"></mh-icon>
+      </mh-button>
+    </mh-card>
+    <br style="margin: 1rem" />
+    <mh-card appearance="outlined">
+      <h2 slot="header-title">Title</h2>
+      <span slot="header-badge">badge tbd</span>
+      <mh-checkbox slot="header-extras"></mh-checkbox>
+      <span slot="header-extras">tag tbd</span>
+      <mh-icon-button
+        name="menu"
+        label="card menu"
+        slot="header-extras-end"
+      ></mh-icon-button>
+      card content
+      <mh-button appearance="link" slot="footer-end">
+        Details
+        <mh-icon name="chevron_right" slot="end"></mh-icon>
+      </mh-button>
+    </mh-card>
+    <br style="margin: 1rem" />
+    <mh-card>
+      <h2 slot="header">Custom header</h2>
+      card content
+      <mh-button appearance="link" size="m" slot="footer">
+        Details
+        <mh-icon name="chevron_right" slot="end"></mh-icon>
+      </mh-button>
+    </mh-card>
+    <br style="margin: 1rem" />
+    <mh-card>
+      <mh-radio slot="header-title">radio header</mh-radio>
+      card content
+    </mh-card>
+  </body>
+</html>

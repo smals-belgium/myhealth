@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - text-input</title>
+    <base href="/" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/src/styles.css" />
+
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/form.ts"></script>
+  </head>
+
+  <body>
+    <form id="form">
+      <h2>Text input</h2>
+      <mh-text-input
+        name="someText"
+        required
+        placeholder="placeholder"
+        help="help text"
+        hint="a hint here"
+      >
+        <mh-icon name="search" slot="start"></mh-icon>
+        Label2
+        <mh-icon-button name="add" label="add" slot="end"></mh-icon-button>
+      </mh-text-input>
+
+      <br style="margin: 1rem" />
+      <mh-text-input
+        name="someText2"
+        required
+        disabled
+        placeholder="placeholder"
+        help="help text"
+        hint="a hint here"
+      >
+        <mh-icon name="search" slot="start"></mh-icon>
+        Label
+        <mh-icon-button
+          id="test"
+          name="add"
+          label="add"
+          slot="end"
+        ></mh-icon-button>
+      </mh-text-input>
+      <br style="margin: 1rem" />
+      <mh-text-input
+        name="someText3"
+        required
+        placeholder="placeholder"
+        size="s"
+        help="help text"
+        hint="a hint here"
+      >
+        Label
+      </mh-text-input>
+
+      <footer>
+        <mh-button type="submit">submit</mh-button>
+        <mh-button type="reset" appearance="outlined">reset</mh-button>
+      </footer>
+    </form>
+  </body>
+</html>

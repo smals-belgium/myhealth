@@ -6,6 +6,7 @@ export default defineConfig(() => ({
   cacheDir: '../../node_modules/.vite/apps/playground',
   resolve: {
     conditions: ['@myhealth/source'],
+    tsconfigPaths: true,
   },
   server: {
     port: 4200,

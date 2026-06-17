@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - radio</title>
+    <base href="/" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/src/styles.css" />
+
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/form.ts"></script>
+  </head>
+
+  <body>
+    <form id="form">
+      <h2>Radio</h2>
+      gender: <mh-radio name="gender" value="f">I'm a lady</mh-radio>
+      <mh-radio name="gender" value="m" checked>I'm a gentleman</mh-radio>
+      <mh-radio name="gender" value="x" disabled>I don't know</mh-radio>
+
+      <footer>
+        <mh-button type="submit">submit</mh-button>
+        <mh-button type="reset" appearance="outlined">reset</mh-button>
+      </footer>
+    </form>
+  </body>
+</html>

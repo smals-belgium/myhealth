@@ -57,7 +57,7 @@
       }
     }
   ],
-  "useDaemonProcess": false,
+  "useDaemonProcess": true,
   "neverConnectToCloud": true,
   "analytics": false,
   "targetDefaults": {

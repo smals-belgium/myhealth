@@ -1,4 +1,2 @@
-npx nx affected -t lint --uncommitted --parallel
-npx nx affected -t typecheck --uncommitted --parallel
-npx nx affected -t test --uncommitted --parallel
 npx nx format:write --uncommitted
+npx nx affected -t lint,typecheck,test --uncommitted --parallel
