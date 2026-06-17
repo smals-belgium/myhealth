@@ -16,6 +16,7 @@
   font-size: inherit;
   font-weight: 600;
   height: var(--mh-form-control-height);
+  width: inherit;
 
   border-radius: 9999px;
   border-style: solid;

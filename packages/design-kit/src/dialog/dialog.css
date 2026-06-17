@@ -1,0 +1,93 @@
+:host {
+  --spacing: var(--mh-space-m);
+
+  --box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
+
+  /* Backdrop tint: brand fill shown at 60% transparency (40% opacity). */
+  --backdrop: color-mix(in srgb, var(--mh-color-brand-fill) 60%, transparent);
+
+  /* The native dialog renders in the top layer, so the host itself takes no space. */
+  display: contents;
+}
+
+[part='dialog'] {
+  width: max-content;
+  max-width: min(90vw, 32rem);
+  max-height: min(85vh, 40rem);
+  padding: 0;
+  border: none;
+  border-radius: var(--mh-border-radius);
+  background-color: var(--mh-color-neutral-type-quieter);
+  box-shadow: var(--box-shadow);
+  color: inherit;
+  overflow: hidden;
+}
+
+/* A native dialog is hidden by the user agent until it is open; only lay it out once it is. */
+[part='dialog'][open] {
+  display: flex;
+  flex-direction: column;
+}
+
+[part='dialog']::backdrop {
+  background-color: var(--backdrop);
+}
+
+[part='header'] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(var(--spacing) / 2);
+  padding: 0 var(--spacing);
+}
+
+[part='content'] {
+  display: block;
+  flex: 1 1 auto;
+  padding: 0 var(--spacing);
+  overflow: auto;
+}
+
+[part='actions'] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: calc(var(--spacing) / 2);
+  padding: 0 var(--spacing) var(--spacing) var(--spacing);
+}
+
+/* On small screens (--mh-media-breakpoint-s: 960px), stack the actions and let them fill the dialog width. */
+@media (max-width: 960px) {
+  [part='actions'] {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  [part='actions'] ::slotted(*) {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [part='dialog'][open] {
+    animation: dialog-show 0.15s ease-out;
+  }
+
+  [part='dialog'][open]::backdrop {
+    animation: backdrop-show 0.15s ease-out;
+  }
+}
+
+@keyframes dialog-show {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@keyframes backdrop-show {
+  from {
+    opacity: 0;
+  }
+}
