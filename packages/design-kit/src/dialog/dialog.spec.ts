@@ -1,7 +1,12 @@
 import { fixture, oneEvent } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility, part, slot } from '../core/testing/index.js';
+import {
+  assertAccessibility,
+  defaultSlot,
+  part,
+  slot,
+} from '../core/testing/index.js';
 
 import './dialog';
 import type { Dialog } from './dialog.js';
@@ -37,10 +42,15 @@ describe('dialog', () => {
   describe('accessibility', () => {
     it(`passes accessibility tests`, async () => {
       const el = await fixture<Dialog>(html`
-        <mh-dialog label="Example dialog">
-          <h2 slot="header">Title</h2>
-          <p slot="content">Body content</p>
-          <button slot="actions" dialog-close>Close</button>
+        <mh-dialog>
+          <h2 slot="header-title">Title</h2>
+          <p>Body content</p>
+          <button
+            slot="actions"
+            dialog-close
+          >
+            Close
+          </button>
         </mh-dialog>
       `);
       el.open();
@@ -50,18 +60,38 @@ describe('dialog', () => {
   });
 
   describe('slots', () => {
-    it('renders the header, content and actions slots', async () => {
+    it('renders the header-title, content and actions slots', async () => {
       const el = await fixture<Dialog>(html`
         <mh-dialog>
-          <span slot="header">Header</span>
-          <span slot="content">Content</span>
+          <span slot="header-title">Title</span>
+          <span slot="header-actions">Header actions</span>
+          <span>Content</span>
           <span slot="actions">Actions</span>
         </mh-dialog>
       `);
 
-      expect(slot('header', el)?.assignedNodes().length).toBe(1);
-      expect(slot('content', el)?.assignedNodes().length).toBe(1);
+      expect(slot('header-title', el)?.assignedNodes().length).toBe(1);
+      expect(slot('header-actions', el)?.assignedNodes().length).toBe(1);
+      expect(defaultSlot(el)?.assignedElements().length).toBe(1);
       expect(slot('actions', el)?.assignedNodes().length).toBe(1);
+    });
+  });
+
+  describe('variant', () => {
+    it('defaults to the "basic" variant', async () => {
+      const el = await fixture<Dialog>(html`<mh-dialog></mh-dialog>`);
+
+      expect(el.variant).toBe('basic');
+      expect(el.getAttribute('variant')).toBe('basic');
+    });
+
+    it('reflects the "fullscreen" variant to an attribute', async () => {
+      const el = await fixture<Dialog>(
+        html`<mh-dialog variant="fullscreen"></mh-dialog>`,
+      );
+
+      expect(el.variant).toBe('fullscreen');
+      expect(el.getAttribute('variant')).toBe('fullscreen');
     });
   });
 
@@ -155,7 +185,12 @@ describe('dialog', () => {
     it('closes with the attribute value when an action is activated', async () => {
       const el = await fixture<Dialog>(html`
         <mh-dialog>
-          <button slot="actions" dialog-close="ok">OK</button>
+          <button
+            slot="actions"
+            dialog-close="ok"
+          >
+            OK
+          </button>
         </mh-dialog>
       `);
       el.open();
