@@ -1,10 +1,11 @@
 import { html, LitElement, unsafeCSS } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
 
 import styles from './dialog.css?inline';
 
 import { DialogAfterClosedEvent, DialogAfterOpenedEvent } from './dialog.event';
+
+export type DialogVariant = 'basic' | 'fullscreen';
 
 /**
  * @summary Dialogs are modal popups that focus the user's attention on a single task or piece of information. They trap
@@ -16,14 +17,17 @@ import { DialogAfterClosedEvent, DialogAfterOpenedEvent } from './dialog.event';
  * @event mh-after-opened - Emitted after the dialog has opened.
  * @event mh-after-closed - Emitted after the dialog has closed. The `result` property carries the optional close value.
  *
- * @slot header - The dialog's header, typically a title.
- * @slot content - The dialog's main content.
+ * @slot - The dialog's main content.
+ * @slot header-title - The dialog's title, displayed at the start of the header.
+ * @slot header-actions - Actions displayed at the end of the header, such as a close button.
  * @slot actions - The dialog's actions, typically buttons. Add the `dialog-close` attribute to any element here to
  *  close the dialog when it is activated; its value is forwarded as the close result.
  *
  * @csspart dialog - The native `dialog` element.
- * @csspart header - The container that wraps the `header` slot.
- * @csspart content - The container that wraps the `content` slot.
+ * @csspart header - The container that wraps the header slots.
+ * @csspart header-title - The container that wraps the `header-title` slot.
+ * @csspart header-actions - The container that wraps the `header-actions` slot.
+ * @csspart content - The container that wraps the default (content) slot.
  * @csspart actions - The container that wraps the `actions` slot.
  *
  * @cssproperty [--spacing=var(--mh-space-m)] - The amount of space around and between sections of the dialog.
@@ -39,8 +43,8 @@ export class Dialog extends LitElement {
 
   @query('[part="dialog"]') private readonly dialog!: HTMLDialogElement;
 
-  /** An accessible name for the dialog, exposed to assistive technology. */
-  @property() label?: string;
+  /** The dialog's variant. `fullscreen` makes the dialog cover the entire screen. */
+  @property({ reflect: true }) variant: DialogVariant = 'basic';
 
   /** Whether closing the dialog via the backdrop or the Escape key is disabled. */
   @property({ type: Boolean, reflect: true, attribute: 'disable-close' })
@@ -140,17 +144,25 @@ export class Dialog extends LitElement {
     return html`
       <dialog
         part="dialog"
-        aria-label=${ifDefined(this.label)}
+        aria-labelledby="title"
         @close=${this.#onClose}
         @cancel=${this.#onCancel}
         @click=${this.#onClick}
       >
         <header part="header">
-          <slot name="header"></slot>
+          <span
+            part="header-title"
+            id="title"
+          >
+            <slot name="header-title"></slot>
+          </span>
+          <span part="header-actions">
+            <slot name="header-actions"></slot>
+          </span>
         </header>
 
         <div part="content">
-          <slot name="content"></slot>
+          <slot></slot>
         </div>
 
         <footer part="actions">

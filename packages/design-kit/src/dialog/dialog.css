@@ -33,12 +33,32 @@
   background-color: var(--backdrop);
 }
 
+/* Fullscreen variant: the dialog covers the entire viewport with no rounded corners or shadow. */
+:host([variant='fullscreen']) [part='dialog'] {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 [part='header'] {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   gap: calc(var(--spacing) / 2);
   padding: 0 var(--spacing);
+}
+
+[part='header-title'],
+[part='header-actions'] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(var(--spacing) / 2);
 }
 
 [part='content'] {

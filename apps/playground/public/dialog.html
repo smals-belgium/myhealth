@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - dialog</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/styles.css"
+    />
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+  </head>
+
+  <body>
+    <h2>Dialog</h2>
+
+    <!-- Basic dialog -->
+    <h3>Basic</h3>
+    <mh-button id="openBasic">Open dialog</mh-button>
+    <span
+      id="basicResult"
+      aria-live="polite"
+    ></span>
+
+    <mh-dialog
+      id="basicDialog"
+      aria-label="Delete item"
+    >
+      <h2 slot="header-title">Delete item?</h2>
+      <mh-icon-button
+        slot="header-actions"
+        name="close"
+        label="Close dialog"
+        dialog-close="dismissed"
+      ></mh-icon-button>
+      <p>
+        This action cannot be undone. Are you sure you want to permanently
+        delete this item?
+      </p>
+      <mh-button
+        slot="actions"
+        appearance="outlined"
+        dialog-close="cancel"
+      >
+        Cancel
+      </mh-button>
+      <mh-button
+        slot="actions"
+        variant="danger"
+        dialog-close="confirm"
+      >
+        Delete
+      </mh-button>
+    </mh-dialog>
+
+    <br style="margin: 1rem" />
+
+    <!-- Dialog with no light dismiss -->
+    <h3>No light dismiss (disable-close)</h3>
+    <mh-button id="openPersistent">Open dialog</mh-button>
+    <span
+      id="persistentResult"
+      aria-live="polite"
+    ></span>
+
+    <mh-dialog
+      id="persistentDialog"
+      aria-label="Confirm action"
+      disable-close
+    >
+      <h2 slot="header-title">Are you sure?</h2>
+      <p>
+        This dialog cannot be dismissed by clicking the backdrop or pressing
+        Escape. You must choose an action.
+      </p>
+      <mh-button
+        slot="actions"
+        appearance="outlined"
+        dialog-close="cancel"
+      >
+        Cancel
+      </mh-button>
+      <mh-button
+        slot="actions"
+        dialog-close="confirm"
+      >
+        Confirm
+      </mh-button>
+    </mh-dialog>
+
+    <br style="margin: 1rem" />
+
+    <!-- Fullscreen dialog -->
+    <h3>Fullscreen</h3>
+    <mh-button id="openFullscreen">Open dialog</mh-button>
+
+    <mh-dialog
+      id="fullscreenDialog"
+      variant="fullscreen"
+      aria-label="Fullscreen example"
+    >
+      <h2 slot="header-title">Fullscreen dialog</h2>
+      <mh-icon-button
+        slot="header-actions"
+        name="close"
+        label="Close dialog"
+        dialog-close="dismissed"
+      ></mh-icon-button>
+      <p>This dialog covers the entire screen.</p>
+      <mh-button
+        slot="actions"
+        dialog-close="done"
+      >
+        Done
+      </mh-button>
+    </mh-dialog>
+
+    <br style="margin: 1rem" />
+
+    <!-- Dialog with long scrollable content -->
+    <h3>Scrollable content</h3>
+    <mh-button id="openScrollable">Open dialog</mh-button>
+
+    <mh-dialog
+      id="scrollableDialog"
+      aria-label="Terms of service"
+    >
+      <h2 slot="header-title">Terms of service</h2>
+      <div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <p>
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <p>
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+          dolore eu fugiat nulla pariatur.
+        </p>
+        <p>
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+          officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+          accusantium doloremque laudantium.
+        </p>
+        <p>
+          Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+          fugit, sed quia consequuntur magni dolores.
+        </p>
+        <p>
+          Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+          consectetur, adipisci velit.
+        </p>
+        <p>
+          Ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad
+          minima veniam, quis nostrum exercitationem ullam corporis suscipit.
+        </p>
+        <p>
+          Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
+          quam nihil molestiae consequatur.
+        </p>
+        <p>
+          At vero eos et accusamus et iusto odio dignissimos ducimus qui
+          blanditiis praesentium voluptatum deleniti atque corrupti.
+        </p>
+      </div>
+      <mh-button
+        slot="actions"
+        appearance="outlined"
+        dialog-close="decline"
+      >
+        Decline
+      </mh-button>
+      <mh-button
+        slot="actions"
+        dialog-close="accept"
+      >
+        Accept
+      </mh-button>
+    </mh-dialog>
+
+    <br style="margin: 1rem" />
+
+    <!-- Header-only dialog (no actions) -->
+    <h3>Header only (no actions)</h3>
+    <mh-button id="openHeaderOnly">Open dialog</mh-button>
+
+    <mh-dialog
+      id="headerOnlyDialog"
+      aria-label="Info"
+    >
+      <h2 slot="header-title">Just a message</h2>
+      <p>
+        This dialog has no action buttons. Click the backdrop or press Escape to
+        dismiss it.
+      </p>
+    </mh-dialog>
+
+    <br style="margin: 1rem" />
+
+    <!-- Nested scenario: stacked dialogs -->
+    <h3>Stacked dialogs</h3>
+    <mh-button id="openFirst">Open first dialog</mh-button>
+
+    <mh-dialog
+      id="firstDialog"
+      aria-label="First dialog"
+    >
+      <h2 slot="header-title">First dialog</h2>
+      <p>Click the button below to open a second dialog on top of this one.</p>
+      <mh-button
+        slot="actions"
+        id="openSecond"
+        >Open second dialog</mh-button
+      >
+      <mh-button
+        slot="actions"
+        appearance="outlined"
+        dialog-close="close"
+      >
+        Close
+      </mh-button>
+    </mh-dialog>
+
+    <mh-dialog
+      id="secondDialog"
+      aria-label="Second dialog"
+    >
+      <h2 slot="header-title">Second dialog</h2>
+      <p>Both dialogs are open. Closing this one should keep the first open.</p>
+      <mh-button
+        slot="actions"
+        dialog-close="close"
+      >
+        Close
+      </mh-button>
+    </mh-dialog>
+
+    <script type="module">
+      const basicDialog = document.querySelector('#basicDialog');
+      const basicResult = document.querySelector('#basicResult');
+      document
+        .querySelector('#openBasic')
+        .addEventListener('click', () => basicDialog.open());
+      basicDialog.addEventListener(
+        'mh-after-closed',
+        e =>
+          (basicResult.textContent = `closed with: "${e.result ?? 'dismissed'}"`),
+      );
+
+      const persistentDialog = document.querySelector('#persistentDialog');
+      const persistentResult = document.querySelector('#persistentResult');
+      document
+        .querySelector('#openPersistent')
+        .addEventListener('click', () => persistentDialog.open());
+      persistentDialog.addEventListener(
+        'mh-after-closed',
+        e =>
+          (persistentResult.textContent = `closed with: "${e.result ?? 'dismissed'}"`),
+      );
+
+      document
+        .querySelector('#openScrollable')
+        .addEventListener('click', () =>
+          document.querySelector('#scrollableDialog').open(),
+        );
+
+      document
+        .querySelector('#openFullscreen')
+        .addEventListener('click', () =>
+          document.querySelector('#fullscreenDialog').open(),
+        );
+
+      document
+        .querySelector('#openHeaderOnly')
+        .addEventListener('click', () =>
+          document.querySelector('#headerOnlyDialog').open(),
+        );
+
+      const firstDialog = document.querySelector('#firstDialog');
+      const secondDialog = document.querySelector('#secondDialog');
+      document
+        .querySelector('#openFirst')
+        .addEventListener('click', () => firstDialog.open());
+      document
+        .querySelector('#openSecond')
+        .addEventListener('click', () => secondDialog.open());
+    </script>
+  </body>
+</html>
