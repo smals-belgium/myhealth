@@ -2,11 +2,12 @@ import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import vars from './text-input.vars.css?inline';
-import styles from './text-input.css?inline';
-import iconSlot from './text-input-icon.slot.css?inline';
-import iconButtonSlot from './text-input-icon-button.slot.css?inline';
 import size from '../form-control/form-control.size.css?inline';
+
+import iconButtonSlot from './text-input-icon-button.slot.css?inline';
+import iconSlot from './text-input-icon.slot.css?inline';
+import styles from './text-input.css?inline';
+import vars from './text-input.vars.css?inline';
 
 /** HTMLInputElement['type'] is `string`, so we narrow it down. */
 export type TextInputType =

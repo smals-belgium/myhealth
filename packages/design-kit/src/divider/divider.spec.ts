@@ -1,10 +1,10 @@
 import { elementUpdated, fixture } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility } from '../core/testing/index.js';
+import { assertAccessibility } from '../core/testing';
 
 import './divider';
-import type { Divider } from './divider.js';
+import type { Divider } from './divider';
 
 describe('divider', () => {
   const setup = (tpl = html`<mh-divider></mh-divider>`): Promise<Divider> =>

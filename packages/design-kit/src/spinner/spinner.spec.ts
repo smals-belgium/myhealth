@@ -1,10 +1,7 @@
 import { fixture } from '@open-wc/testing';
 import { html } from 'lit';
 
-import {
-  adoptedStylesheet,
-  assertAccessibility,
-} from '../core/testing/index.js';
+import { adoptedStylesheet, assertAccessibility } from '../core/testing';
 
 import './spinner';
 

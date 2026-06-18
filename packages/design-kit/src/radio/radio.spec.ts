@@ -1,10 +1,10 @@
 import { fixture } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility, part } from '../core/testing/index.js';
+import { assertAccessibility, part } from '../core/testing';
 
 import './radio';
-import type { Radio } from './radio.js';
+import type { Radio } from './radio';
 
 // JSDOM does not implement ElementInternals.setFormValue; polyfill it so form-
 // associated behaviour (which calls setFormValue inside radioGroups.updateValue)

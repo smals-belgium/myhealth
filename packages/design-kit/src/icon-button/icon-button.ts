@@ -1,12 +1,11 @@
 import { LitElement, html, unsafeCSS, PropertyValues } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 
-import '../icon/icon.js';
-import { ErrorEvent } from '../core/event/error.event.js';
-import type { Loudness } from '../core/loudness.js';
+import { ErrorEvent } from '../core/event/error.event';
+import type { Loudness } from '../core/loudness';
 
-import styles from './icon-button.css?inline';
 import appearance from './icon-button.appearance.css?inline';
+import styles from './icon-button.css?inline';
 import loudness from './icon-button.loudness.css?inline';
 
 export type IconButtonAppearance = 'round' | 'square';

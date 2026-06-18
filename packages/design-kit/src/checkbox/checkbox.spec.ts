@@ -1,10 +1,10 @@
-﻿import { fixture } from '@open-wc/testing';
+import { fixture } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility, part } from '../core/testing/index.js';
+import { assertAccessibility, part } from '../core/testing';
 
 import './checkbox';
-import type { Checkbox } from './checkbox.js';
+import type { Checkbox } from './checkbox';
 
 const setFormValueSpy = vi.fn();
 

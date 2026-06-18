@@ -2,7 +2,7 @@ import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import { ButtonBase } from './base.js';
+import { ButtonBase } from './base';
 
 /**
  * @summary Buttons represent actions the user can take, such as submitting a form, opening a dialog, or navigating to

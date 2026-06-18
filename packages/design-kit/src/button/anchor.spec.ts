@@ -1,11 +1,11 @@
 import { elementUpdated, fixture } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility } from '../core/testing/index.js';
+import { assertAccessibility } from '../core/testing';
 
 import './anchor';
-import type { Anchor } from './anchor.js';
-import type { ButtonVariant } from './base.js';
+import type { Anchor } from './anchor';
+import type { ButtonVariant } from './base';
 
 const variants: ButtonVariant[] = ['brand', 'success', 'warning', 'danger'];
 

@@ -1,15 +1,15 @@
 import { fixture, oneEvent } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { ErrorEvent } from '../core/event/error.event.js';
-import { assertAccessibility, part } from '../core/testing/index.js';
+import { ErrorEvent } from '../core/event/error.event';
+import { assertAccessibility, part } from '../core/testing';
 
 import './icon-button';
-import type { IconButton } from './icon-button.js';
 import type {
+  IconButton,
   IconButtonAppearance,
   IconButtonLoudness,
-} from './icon-button.js';
+} from './icon-button';
 
 const appearances: IconButtonAppearance[] = ['round', 'square'];
 const loudnesses: IconButtonLoudness[] = ['normal', 'loud'];

@@ -21,6 +21,13 @@ export default [
     },
   },
   {
+    files: ['**/*.spec.ts'],
+    rules: {
+      // need to import self-registering web components in their respective unit tests
+      'import/no-unassigned-import': 'off',
+    },
+  },
+  {
     ignores: ['**/out-tsc'],
   },
 ];

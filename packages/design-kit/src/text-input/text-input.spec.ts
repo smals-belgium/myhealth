@@ -1,10 +1,10 @@
-﻿import { fixture } from '@open-wc/testing';
+import { fixture } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility, part } from '../core/testing/index.js';
+import { assertAccessibility, part } from '../core/testing';
 
 import './text-input';
-import type { TextInput } from './text-input.js';
+import type { TextInput } from './text-input';
 
 const setFormValueSpy = vi.fn();
 

@@ -2,9 +2,8 @@ import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import styles from './radio.css?inline';
-
 import { radioGroups } from './radio-groups';
+import styles from './radio.css?inline';
 
 /**
  * @summary Radios represent a single option within a mutually exclusive set. Use them inside a radio group when users

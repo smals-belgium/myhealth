@@ -1,15 +1,10 @@
 import { fixture } from '@open-wc/testing';
 import { html } from 'lit';
 
-import {
-  assertAccessibility,
-  defaultSlot,
-  part,
-  slot,
-} from '../core/testing/index.js';
+import { assertAccessibility, defaultSlot, part, slot } from '../core/testing';
 
 import './card';
-import type { Card } from './card.js';
+import type { Card } from './card';
 
 describe('card', () => {
   describe('accessibility', () => {

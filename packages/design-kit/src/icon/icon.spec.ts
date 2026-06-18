@@ -1,11 +1,11 @@
 import { elementUpdated, fixture, oneEvent } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { LoadEvent } from '../core/event/load.event.js';
-import { assertAccessibility, textContent } from '../core/testing/index.js';
+import { LoadEvent } from '../core/event/load.event';
+import { assertAccessibility, textContent } from '../core/testing';
 
 import './icon';
-import type { Icon } from './icon.js';
+import type { Icon } from './icon';
 
 describe('icon', () => {
   describe('accessibility', () => {

@@ -2,6 +2,7 @@ import { html, LitElement, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
 import { LocalizeController } from '../core/i18n';
+
 import styles from './spinner.css?inline';
 
 /**

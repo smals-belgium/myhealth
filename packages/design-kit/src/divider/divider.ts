@@ -2,6 +2,7 @@ import { LitElement, PropertyValues, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import { Loudness, Orientation } from '../core';
+
 import styles from './divider.css?inline';
 
 /**

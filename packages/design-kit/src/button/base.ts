@@ -2,11 +2,11 @@ import { LitElement, unsafeCSS } from 'lit';
 import { property, query } from 'lit/decorators.js';
 
 import { Size, Variant } from '../core';
-
-import styles from './button.css?inline';
-import appearance from './button.appearance.css?inline';
-import size from '../form-control/form-control.size.css?inline';
 import variant from '../core/variant.css?inline';
+import size from '../form-control/form-control.size.css?inline';
+
+import appearance from './button.appearance.css?inline';
+import styles from './button.css?inline';
 
 export type ButtonAppearance = 'filled' | 'outlined' | 'link';
 export type ButtonSize = Extract<Size, 's' | 'm'>;

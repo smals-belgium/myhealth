@@ -4,6 +4,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 import { Size } from '../core';
 import { ErrorEvent, LoadEvent } from '../core/event';
+
 import styles from './icon.css?inline';
 import size from './icon.size.css?inline';
 

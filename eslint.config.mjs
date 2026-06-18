@@ -1,9 +1,12 @@
 import nx from '@nx/eslint-plugin';
 
+import { importPluginConfig } from './packages/lint/import.mjs';
+
 export default [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
+  ...importPluginConfig,
   {
     ignores: ['**/dist', '**/out-tsc', '**/vite.config.*.timestamp*'],
   },

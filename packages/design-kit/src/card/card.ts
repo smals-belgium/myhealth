@@ -1,8 +1,8 @@
 import { html, LitElement, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import styles from './card.css?inline';
 import appearance from './card.appearance.css?inline';
+import styles from './card.css?inline';
 
 export type CardAppearance = 'raised' | 'outlined';
 

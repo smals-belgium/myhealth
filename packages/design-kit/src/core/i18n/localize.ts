@@ -3,9 +3,10 @@ import type {
   ReactiveController,
   ReactiveControllerHost,
 } from 'lit';
+
+import { ErrorEvent } from '../event';
 import type { LabelKey } from '../label-key';
 import type { Language } from '../language';
-import { ErrorEvent } from '../event';
 
 import { de } from './de';
 import { en } from './en';

@@ -1,5 +1,5 @@
-import type { Radio } from './radio.js';
-import { radioGroups } from './radio-groups.js';
+import type { Radio } from './radio';
+import { radioGroups } from './radio-groups';
 
 // Minimal mock that satisfies the subset of Radio used by radioGroups.
 const makeRadio = (name: string, value: string, checked = false): Radio => {
