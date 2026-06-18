@@ -1,10 +1,14 @@
 :host {
-  --spacing: var(--mh-space-m);
+  --mh-dialog__spacing: var(--mh-space-m);
 
-  --box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
+  --mh-dialog__box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
 
   /* Backdrop tint: brand fill shown at 60% transparency (40% opacity). */
-  --backdrop: color-mix(in srgb, var(--mh-color-brand-fill) 60%, transparent);
+  --mh-dialog__backdrop: color-mix(
+    in srgb,
+    var(--mh-color-brand-fill) 60%,
+    transparent
+  );
 
   /* The native dialog renders in the top layer, so the host itself takes no space. */
   display: contents;
@@ -18,7 +22,7 @@
   border: none;
   border-radius: var(--mh-border-radius);
   background-color: var(--mh-color-neutral-type-quieter);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--mh-dialog__box-shadow);
   color: inherit;
   overflow: hidden;
 }
@@ -30,7 +34,7 @@
 }
 
 [part='dialog']::backdrop {
-  background-color: var(--backdrop);
+  background-color: var(--mh-dialog__backdrop);
 }
 
 /* Fullscreen variant: the dialog covers the entire viewport with no rounded corners or shadow. */
@@ -49,8 +53,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: calc(var(--spacing) / 2);
-  padding: 0 var(--spacing);
+  gap: calc(var(--mh-dialog__spacing) / 2);
+  padding: 0 var(--mh-dialog__spacing);
 }
 
 [part='header-title'],
@@ -58,13 +62,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: calc(var(--spacing) / 2);
+  gap: calc(var(--mh-dialog__spacing) / 2);
 }
 
 [part='content'] {
   display: block;
   flex: 1 1 auto;
-  padding: 0 var(--spacing);
+  padding: 0 var(--mh-dialog__spacing);
   overflow: auto;
 }
 
@@ -73,8 +77,9 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  gap: calc(var(--spacing) / 2);
-  padding: 0 var(--spacing) var(--spacing) var(--spacing);
+  gap: calc(var(--mh-dialog__spacing) / 2);
+  padding: 0 var(--mh-dialog__spacing) var(--mh-dialog__spacing)
+    var(--mh-dialog__spacing);
 }
 
 /* On small screens (--mh-media-breakpoint-s: 960px), stack the actions and let them fill the dialog width. */
@@ -84,7 +89,7 @@
     align-items: stretch;
   }
 
-  [part='actions'] ::slotted(*) {
+  [part='actions'] ::slotted(mh-button) {
     width: 100%;
   }
 }
