@@ -25,13 +25,13 @@ export type DialogVariant = 'basic' | 'fullscreen';
  *
  * @csspart dialog - The native `dialog` element.
  * @csspart header - The container that wraps the header slots.
- * @csspart header-title - The container that wraps the `header-title` slot.
- * @csspart header-actions - The container that wraps the `header-actions` slot.
- * @csspart content - The container that wraps the default (content) slot.
+ * @csspart header-title - The `header-title` slot.
+ * @csspart header-actions - The `header-actions` slot.
+ * @csspart content - The default (content) slot.
  * @csspart actions - The container that wraps the `actions` slot.
  *
- * @cssproperty [--spacing=var(--mh-space-m)] - The amount of space around and between sections of the dialog.
- * @cssproperty [--backdrop=color-mix(in srgb, var(--mh-color-brand-fill) 60%, transparent)] - The backdrop color.
+ * @cssproperty [--mh-dialog__spacing=var(--mh-space-m)] - The amount of space around and between sections of the dialog.
+ * @cssproperty [--mh-dialog__backdrop=color-mix(in srgb, var(--mh-color-brand-fill) 60%, transparent)] - The backdrop color.
  */
 @customElement('mh-dialog')
 export class Dialog extends LitElement {
@@ -50,7 +50,7 @@ export class Dialog extends LitElement {
   @property({ type: Boolean, reflect: true, attribute: 'disable-close' })
   disableClose = false;
 
-  #result: unknown = undefined;
+  #result?: string | boolean;
   #ownsScrollLock = false;
 
   /** Whether the dialog is currently open. */
@@ -68,8 +68,10 @@ export class Dialog extends LitElement {
     this.dispatchEvent(new DialogAfterOpenedEvent());
   }
 
-  /** Closes the dialog, forwarding the optional `result` through `mh-after-closed`. */
-  close(result?: unknown) {
+  /**
+   * Closes the dialog, forwarding the optional `result` through `mh-after-closed`.
+   */
+  close(result?: string | boolean) {
     if (!this.dialog.open) return;
 
     this.#result = result;
@@ -149,23 +151,27 @@ export class Dialog extends LitElement {
         @cancel=${this.#onCancel}
         @click=${this.#onClick}
       >
-        <header part="header">
-          <span
+        <header
+          part="header"
+          role="presentation"
+        >
+          <slot
+            name="header-title"
             part="header-title"
             id="title"
-          >
-            <slot name="header-title"></slot>
-          </span>
-          <span part="header-actions">
-            <slot name="header-actions"></slot>
-          </span>
+          ></slot>
+          <slot
+            name="header-actions"
+            part="header-actions"
+          ></slot>
         </header>
 
-        <div part="content">
-          <slot></slot>
-        </div>
+        <slot part="content"></slot>
 
-        <footer part="actions">
+        <footer
+          part="actions"
+          role="presentation"
+        >
           <slot name="actions"></slot>
         </footer>
       </dialog>

@@ -254,55 +254,9 @@
       </mh-button>
     </mh-dialog>
 
-    <script type="module">
-      const basicDialog = document.querySelector('#basicDialog');
-      const basicResult = document.querySelector('#basicResult');
-      document
-        .querySelector('#openBasic')
-        .addEventListener('click', () => basicDialog.open());
-      basicDialog.addEventListener(
-        'mh-after-closed',
-        e =>
-          (basicResult.textContent = `closed with: "${e.result ?? 'dismissed'}"`),
-      );
-
-      const persistentDialog = document.querySelector('#persistentDialog');
-      const persistentResult = document.querySelector('#persistentResult');
-      document
-        .querySelector('#openPersistent')
-        .addEventListener('click', () => persistentDialog.open());
-      persistentDialog.addEventListener(
-        'mh-after-closed',
-        e =>
-          (persistentResult.textContent = `closed with: "${e.result ?? 'dismissed'}"`),
-      );
-
-      document
-        .querySelector('#openScrollable')
-        .addEventListener('click', () =>
-          document.querySelector('#scrollableDialog').open(),
-        );
-
-      document
-        .querySelector('#openFullscreen')
-        .addEventListener('click', () =>
-          document.querySelector('#fullscreenDialog').open(),
-        );
-
-      document
-        .querySelector('#openHeaderOnly')
-        .addEventListener('click', () =>
-          document.querySelector('#headerOnlyDialog').open(),
-        );
-
-      const firstDialog = document.querySelector('#firstDialog');
-      const secondDialog = document.querySelector('#secondDialog');
-      document
-        .querySelector('#openFirst')
-        .addEventListener('click', () => firstDialog.open());
-      document
-        .querySelector('#openSecond')
-        .addEventListener('click', () => secondDialog.open());
-    </script>
+    <script
+      type="module"
+      src="/src/dialog.ts"
+    ></script>
   </body>
 </html>
