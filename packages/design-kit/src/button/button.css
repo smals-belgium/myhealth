@@ -16,6 +16,7 @@
   font-size: inherit;
   font-weight: 600;
   height: var(--mh-form-control-height);
+  /* Inherit host width without forcing width in regular inline usage. */
   width: inherit;
 
   border-radius: 9999px;

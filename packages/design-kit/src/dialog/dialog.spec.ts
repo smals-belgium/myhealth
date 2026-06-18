@@ -175,7 +175,7 @@ describe('dialog', () => {
       const event = (await oneEvent(
         el,
         'mh-after-closed',
-      )) as DialogAfterClosedEvent<string>;
+      )) as DialogAfterClosedEvent;
 
       expect(event.result).toBe('confirmed');
     });
@@ -201,7 +201,7 @@ describe('dialog', () => {
       const event = (await oneEvent(
         el,
         'mh-after-closed',
-      )) as DialogAfterClosedEvent<string>;
+      )) as DialogAfterClosedEvent;
 
       expect(event.result).toBe('ok');
       expect(el.isOpen).toBe(false);

@@ -8,10 +8,10 @@ export class DialogAfterOpenedEvent extends Event {
   }
 }
 
-export class DialogAfterClosedEvent<T = unknown> extends Event {
-  readonly result?: T;
+export class DialogAfterClosedEvent extends Event {
+  readonly result?: string | boolean;
 
-  constructor(result?: T) {
+  constructor(result?: string | boolean) {
     super('mh-after-closed', {
       bubbles: true,
       cancelable: false,
