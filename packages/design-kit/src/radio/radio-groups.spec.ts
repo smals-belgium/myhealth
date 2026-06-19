@@ -109,8 +109,8 @@ describe('radioGroups', () => {
 
       radioGroups.updateValue(r1);
 
-      expect(r1.el.checked).toBe(true);
-      expect(r2.el.checked).toBe(false);
+      expect(r1.el?.checked).toBe(true);
+      expect(r2.el?.checked).toBe(false);
     });
 
     it('calls setFormValue(value) on the selected element', () => {

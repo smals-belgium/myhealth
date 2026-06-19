@@ -62,11 +62,11 @@ describe('card', () => {
       const bodyPart = part('body', el);
       expect(bodyPart).not.toBeNull();
 
-      const slot = defaultSlot(el);
+      const slotEl = defaultSlot(el);
       bodyPart?.querySelector<HTMLSlotElement>('slot:not([name])');
-      expect(slot).not.toBeNull();
+      expect(slotEl).not.toBeNull();
 
-      const assigned = slot?.assignedNodes({ flatten: true });
+      const assigned = slotEl?.assignedNodes({ flatten: true });
       expect(assigned?.length).toBe(1);
     });
 

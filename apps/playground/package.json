@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "nx": {
-    "name": "playground"
+    "name": "playground",
+    "tags": [
+      "type:app",
+      "scope:playground"
+    ]
   },
   "dependencies": {
     "@myhealth/design-kit": "0.0.1"
