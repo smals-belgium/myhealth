@@ -19,7 +19,7 @@ export abstract class ButtonBase extends LitElement {
 
   @query('[part="base"]') el!: HTMLElement;
 
-  @property() override title = ''; // make reactive to pass through
+  @property() override title = '';
 
   /** The button's theme variant. Defaults to `brand` if not within another element with a variant. */
   @property({ reflect: true }) variant: ButtonVariant = 'brand';

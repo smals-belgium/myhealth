@@ -30,12 +30,12 @@ export class Checkbox extends LitElement {
   static formAssociated = true;
   readonly internals = this.attachInternals();
 
-  @query('[part="input"]') el!: HTMLInputElement;
+  @query('[part="input"]') el?: HTMLInputElement;
 
   @property() override title = '';
 
-  @property({ reflect: true }) name!: string;
-  @property({ reflect: true }) value!: string;
+  @property({ reflect: true }) name?: string;
+  @property({ reflect: true }) value?: string;
 
   @property({ type: Boolean, reflect: true }) checked = false;
   @property({ type: Boolean, reflect: true }) disabled = false;
@@ -48,12 +48,12 @@ export class Checkbox extends LitElement {
   @property({ type: Boolean, reflect: true }) indeterminate = false;
 
   // Captures the HTML-declared defaults once; used to restore state on form reset.
-  #defaultChecked: boolean | undefined = undefined;
-  #defaultIndeterminate: boolean | undefined = undefined;
+  #defaultChecked: boolean | undefined;
+  #defaultIndeterminate: boolean | undefined;
 
-  override readonly click = () => this.el.click();
-  override readonly focus = () => this.el.focus();
-  override readonly blur = () => this.el.blur();
+  override readonly click = () => this.el?.click();
+  override readonly focus = () => this.el?.focus();
+  override readonly blur = () => this.el?.blur();
 
   override connectedCallback() {
     super.connectedCallback();
@@ -65,17 +65,17 @@ export class Checkbox extends LitElement {
   formResetCallback() {
     this.checked = this.#defaultChecked ?? false;
     this.indeterminate = this.#defaultIndeterminate ?? false;
-    this.internals.setFormValue(this.checked ? this.value : null);
+    this.internals.setFormValue(this.checked ? (this.value ?? null) : null);
   }
 
   override updated(changed: PropertyValueMap<this>) {
     if (changed.has('checked') && this.checked)
-      this.internals.setFormValue(this.value);
+      this.internals.setFormValue(this.value ?? null);
   }
 
   #onChange() {
-    this.checked = this.el.checked;
-    this.internals.setFormValue(this.checked ? this.value : null);
+    if (this.el) this.checked = this.el.checked;
+    this.internals.setFormValue(this.checked ? (this.value ?? null) : null);
   }
 
   override render() {

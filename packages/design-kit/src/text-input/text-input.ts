@@ -127,7 +127,7 @@ export class TextInput extends LitElement {
   @property({ reflect: true }) hint?: string;
 
   // Captures the HTML-declared defaults once; used to restore state on form reset.
-  #defaultValue: string | null | undefined = undefined;
+  #defaultValue: string | null | undefined;
 
   override readonly click = () => this.el.click();
   override readonly focus = () => this.el.focus();
@@ -147,7 +147,7 @@ export class TextInput extends LitElement {
   override updated(changed: PropertyValueMap<this>) {
     if (changed.has('value')) this.internals.setFormValue(this.value);
 
-    // propagate disabled state to all slotted elements that can be disabled
+    // Propagate disabled state to all slotted elements that can be disabled
     if (changed.has('disabled'))
       Array.from(this.renderRoot.querySelectorAll<HTMLSlotElement>('slot'))
         .flatMap(slot => slot.assignedElements({ flatten: true }))
@@ -159,6 +159,7 @@ export class TextInput extends LitElement {
     this.internals.setFormValue(this.el.value);
   }
 
+  // eslint-disable-next-line max-lines-per-function
   override render() {
     return html`
       <label part="base">

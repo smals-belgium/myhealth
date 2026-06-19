@@ -31,7 +31,7 @@ export class Radio extends LitElement {
   static formAssociated = true;
   readonly internals = this.attachInternals();
 
-  @query('[part="input"]') el!: HTMLInputElement;
+  @query('[part="input"]') el?: HTMLInputElement;
 
   @property() override title = '';
 
@@ -43,11 +43,11 @@ export class Radio extends LitElement {
   @property({ type: Boolean, reflect: true }) required = false;
 
   // Captures the HTML-declared default once; used to restore state on form reset.
-  #defaultChecked: boolean | undefined = undefined;
+  #defaultChecked: boolean | undefined;
 
-  override readonly click = () => this.el.click();
-  override readonly focus = () => this.el.focus();
-  override readonly blur = () => this.el.blur();
+  override readonly click = () => this.el?.click();
+  override readonly focus = () => this.el?.focus();
+  override readonly blur = () => this.el?.blur();
 
   override connectedCallback() {
     super.connectedCallback();
@@ -70,7 +70,7 @@ export class Radio extends LitElement {
   }
 
   #onChange() {
-    if (this.el.checked) radioGroups.updateValue(this);
+    if (this.el?.checked) radioGroups.updateValue(this);
   }
 
   override render() {

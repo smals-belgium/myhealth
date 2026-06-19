@@ -14,14 +14,17 @@ import { fr } from './fr';
 import { nl } from './nl';
 
 const connectedElements = new Set<HTMLElement>();
-const translations: Map<string, Record<LabelKey, string>> = new Map(
-  Object.entries({ de, en, fr, nl }),
-);
+const translations: Record<Language, Record<LabelKey, string>> = {
+  de,
+  en,
+  fr,
+  nl,
+};
 
 let documentLanguage: Language = 'en';
 
 const isSupported = (lang: string): lang is Language =>
-  ['de', 'en', 'fr', 'nl'].includes(lang);
+  Object.keys(translations).includes(lang);
 
 const invalidateDocumentLanguage = () => {
   const lang = document.documentElement.lang || navigator.language;
@@ -37,6 +40,18 @@ const isClient =
   typeof document !== 'undefined' &&
   typeof document.documentElement !== 'undefined';
 
+/** Updates all localized elements that are currently connected */
+export const update = () => {
+  if (isClient) invalidateDocumentLanguage();
+
+  [...connectedElements.keys()]
+    .filter(
+      (el): el is LitElement =>
+        'requestUpdate' in el && typeof el.requestUpdate === 'function',
+    )
+    .forEach(el => el.requestUpdate());
+};
+
 if (isClient) {
   const documentElementObserver = new MutationObserver(update);
   invalidateDocumentLanguage();
@@ -48,38 +63,6 @@ if (isClient) {
 }
 
 update();
-
-/** Updates all localized elements that are currently connected */
-export function update() {
-  if (isClient) invalidateDocumentLanguage();
-
-  [...connectedElements.keys()].map(el => {
-    if (typeof (el as Partial<LitElement>).requestUpdate === 'function') {
-      (el as LitElement).requestUpdate();
-    }
-  });
-}
-
-const getTranslationData = (lang: Language) => {
-  // Some environments (such as Chrome's built-in page translation) set `<html lang>` to abnormal values, e.g.
-  // `en-x-mtfrom-nb`. This try/catch guards against this so we fall through to the fallback translation.
-  let locale: Intl.Locale | undefined;
-  try {
-    locale = new Intl.Locale(lang);
-  } catch {
-    return {
-      locale: undefined,
-      language: '',
-      region: '',
-      labels: undefined,
-    };
-  }
-  const language = locale.language.toLowerCase();
-  const region = locale.region?.toLowerCase() ?? '';
-  const labels = translations.get(language);
-
-  return { locale, language, region, labels };
-};
 
 /**
  * Localize Reactive Controller for components built with Lit
@@ -124,36 +107,33 @@ export class LocalizeController implements ReactiveController {
     if (this.#host.lang) {
       const lang = this.#host.lang.toLowerCase();
       if (isSupported(lang)) return lang;
-      else {
-        this.#host.dispatchEvent(
-          new ErrorEvent(
-            `Element language not supported: ${lang} 
+
+      this.#host.dispatchEvent(
+        new ErrorEvent(
+          `Element language not supported: ${lang}
             on element ${this.#host.tagName};
             falling back to document language: ${documentLanguage}`,
-          ),
-        );
-        return documentLanguage;
-      }
+        ),
+      );
+      return documentLanguage;
     }
     return documentLanguage;
   }
 
   /** Determines if the specified term exists, optionally checking the fallback translation. */
-  exists<K extends LabelKey>(key: K): boolean {
-    const { labels } = getTranslationData(this.lang());
-    return !!labels?.[key];
+  exists(key: LabelKey): boolean {
+    return Boolean(translations[this.lang()][key]);
   }
 
   /** Outputs a translated term. */
-  term<K extends LabelKey>(key: K): string {
-    const { labels } = getTranslationData(this.lang());
-    const label = labels?.[key];
+  term(key: LabelKey): string {
+    const label = translations[this.lang()][key];
 
     if (!label) {
       this.#host.dispatchEvent(
-        new ErrorEvent(`No translation found for: ${String(key)}`),
+        new ErrorEvent(`No translation found for: ${key}`),
       );
-      return String(key);
+      return key;
     }
 
     return label;
@@ -164,8 +144,8 @@ export class LocalizeController implements ReactiveController {
     dateToFormat: Date | string,
     options?: Intl.DateTimeFormatOptions,
   ): string {
-    dateToFormat = new Date(dateToFormat);
-    return new Intl.DateTimeFormat(this.lang(), options).format(dateToFormat);
+    const date = new Date(dateToFormat);
+    return new Intl.DateTimeFormat(this.lang(), options).format(date);
   }
 
   /** Outputs a localized number in the specified format. */
@@ -173,10 +153,10 @@ export class LocalizeController implements ReactiveController {
     numberToFormat: number | string,
     options?: Intl.NumberFormatOptions,
   ): string {
-    numberToFormat = Number(numberToFormat);
-    return isNaN(numberToFormat)
+    const number = Number(numberToFormat);
+    return isNaN(number)
       ? ''
-      : new Intl.NumberFormat(this.lang(), options).format(numberToFormat);
+      : new Intl.NumberFormat(this.lang(), options).format(number);
   }
 
   /** Outputs a localized time in relative format. */

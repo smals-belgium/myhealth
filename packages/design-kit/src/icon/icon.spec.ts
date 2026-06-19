@@ -48,6 +48,7 @@ describe('icon', () => {
     });
 
     it(`renders SVG from custom 'src'`, async () => {
+      // eslint-disable-next-line no-undef
       global.fetch = vi.fn(() =>
         Promise.resolve({
           ok: true,

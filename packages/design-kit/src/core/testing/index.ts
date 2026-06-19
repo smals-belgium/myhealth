@@ -8,8 +8,8 @@ export const assertAccessibility = (el: Element) => {
 export const textContent = (el: Element) =>
   el.shadowRoot
     ? Array.from(el.shadowRoot.childNodes)
-        .filter(n => n.nodeType === Node.TEXT_NODE)
-        .map(n => n.textContent)
+        .filter(node => node.nodeType === Node.TEXT_NODE)
+        .map(node => node.textContent)
         .join('')
         .trim()
     : '';
@@ -17,6 +17,7 @@ export const textContent = (el: Element) =>
 export const adoptedStylesheet = (el: Element) =>
   el.shadowRoot?.querySelector('style')?.textContent ?? '';
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters -- handing down to wrapped function
 export const part = <T extends Element = HTMLElement>(
   name: string,
   el: Element,

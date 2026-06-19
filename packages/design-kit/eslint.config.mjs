@@ -1,7 +1,9 @@
 import baseConfig from '../../eslint.config.mjs';
+import { typedConfig } from '../../packages/lint/typed.mjs';
 
 export default [
   ...baseConfig,
+  ...typedConfig('design-kit'),
   {
     files: ['**/*.json'],
     rules: {
@@ -18,6 +20,15 @@ export default [
     },
     languageOptions: {
       parser: await import('jsonc-eslint-parser'),
+    },
+  },
+  {
+    files: ['**/*.ts'],
+    rules: {
+      // allow Lit lifecycle hooks that don't access state
+      'class-methods-use-this': ['error', { exceptMethods: ['render'] }],
+      // this is how Lit works: methods referenced from templates are correctly bound
+      '@typescript-eslint/unbound-method': 'off',
     },
   },
   {
