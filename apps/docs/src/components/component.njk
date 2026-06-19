@@ -16,10 +16,8 @@ permalink: "components/{{ component.slug }}/index.html"
     <code>{{ component.sourceDir }}</code>
   </p>
 </div>
-
 {# ── Accessible live region for control changes ── #}
 <div id="a11y-status" role="status" aria-live="polite" class="sr-only"></div>
-
 {% if component.elements.length %}
   {% for element in component.elements %}
     {% set previewId = 'preview-' + component.slug + '-' + loop.index %}
@@ -27,11 +25,9 @@ permalink: "components/{{ component.slug }}/index.html"
       <h2 id="{{ previewId }}-title">
         <code>&lt;{{ element.tag }}&gt;</code>
       </h2>
-
       {% if element.description %}
         <p class="element-description">{{ element.description }}</p>
       {% endif %}
-
       {# ── Canvas ── #}
       <div class="canvas" aria-label="{{ element.tag }} live preview">
         <div class="canvas-inner">
@@ -55,12 +51,21 @@ permalink: "components/{{ component.slug }}/index.html"
             <div style="width: 100%">
               <mh-divider id="{{ previewId }}"></mh-divider>
             </div>
+          {% elseif element.tag === 'mh-dialog' %}
+            <mh-dialog id="{{ previewId }}" aria-label="Dialog preview">
+              <h2 slot="header-title">Dialog title</h2>
+              <p>This is a dialog preview in the docs canvas.</p>
+              <mh-button slot="actions" appearance="outlined" dialog-close="cancel">
+                Cancel
+              </mh-button>
+              <mh-button slot="actions" dialog-close="confirm">Confirm</mh-button>
+            </mh-dialog>
+            <mh-button data-dialog-open="{{ previewId }}">Open dialog</mh-button>
           {% else %}
             <{{ element.tag }} id="{{ previewId }}">{{ element.tag | replace('mh-', '') }}</{{ element.tag }}>
           {% endif %}
         </div>
       </div>
-
       {# ── Code snippet ── #}
       <div class="snippet-panel">
         <div class="snippet-header">
@@ -68,7 +73,6 @@ permalink: "components/{{ component.slug }}/index.html"
         </div>
         <pre class="snippet-pre"><code class="snippet-code"></code></pre>
       </div>
-
       {# ── Controls panel ── #}
       <div class="controls-panel">
         <div class="controls-header">
@@ -102,25 +106,9 @@ permalink: "components/{{ component.slug }}/index.html"
                     </td>
                     <td>
                       {% if prop.kind === 'boolean' %}
-                        <input
-                          type="checkbox"
-                          class="property-input"
-                          aria-label="Toggle {{ prop.name }}"
-                          data-target="{{ previewId }}"
-                          data-property="{{ prop.name }}"
-                          data-kind="boolean"
-                          data-default-value="{{ prop.defaultValue }}"
-                          {% if prop.defaultValue === 'true' %} checked {% endif %}
-                        />
+                        <input type="checkbox" class="property-input" aria-label="Toggle {{ prop.name }}" data-target="{{ previewId }}" data-property="{{ prop.name }}" data-kind="boolean" data-default-value="{{ prop.defaultValue }}" {% if prop.defaultValue === 'true' %} checked {% endif %}/>
                       {% elseif prop.kind === 'select' and prop.options.length %}
-                        <select
-                          class="property-input"
-                          aria-label="Set {{ prop.name }}"
-                          data-target="{{ previewId }}"
-                          data-property="{{ prop.name }}"
-                          data-kind="select"
-                          data-default-value="{{ prop.defaultValue }}"
-                        >
+                        <select class="property-input" aria-label="Set {{ prop.name }}" data-target="{{ previewId }}" data-property="{{ prop.name }}" data-kind="select" data-default-value="{{ prop.defaultValue }}">
                           <option value="">(unset)</option>
                           {% for option in prop.options %}
                             <option value="{{ option }}" {% if prop.defaultValue === option %} selected {% endif %}>
@@ -129,27 +117,9 @@ permalink: "components/{{ component.slug }}/index.html"
                           {% endfor %}
                         </select>
                       {% elseif prop.kind === 'number' %}
-                        <input
-                          type="number"
-                          class="property-input"
-                          aria-label="Set {{ prop.name }}"
-                          data-target="{{ previewId }}"
-                          data-property="{{ prop.name }}"
-                          data-kind="number"
-                          data-default-value="{{ prop.defaultValue }}"
-                          value="{{ prop.defaultValue }}"
-                        />
+                        <input type="number" class="property-input" aria-label="Set {{ prop.name }}" data-target="{{ previewId }}" data-property="{{ prop.name }}" data-kind="number" data-default-value="{{ prop.defaultValue }}" value="{{ prop.defaultValue }}"/>
                       {% else %}
-                        <input
-                          type="text"
-                          class="property-input"
-                          aria-label="Set {{ prop.name }}"
-                          data-target="{{ previewId }}"
-                          data-property="{{ prop.name }}"
-                          data-kind="text"
-                          data-default-value="{{ prop.defaultValue }}"
-                          value="{{ prop.defaultValue }}"
-                        />
+                        <input type="text" class="property-input" aria-label="Set {{ prop.name }}" data-target="{{ previewId }}" data-property="{{ prop.name }}" data-kind="text" data-default-value="{{ prop.defaultValue }}" value="{{ prop.defaultValue }}"/>
                       {% endif %}
                     </td>
                   </tr>
@@ -161,7 +131,6 @@ permalink: "components/{{ component.slug }}/index.html"
           <p class="controls-empty">This element has no configurable properties.</p>
         {% endif %}
       </div>
-
       {# ── API Reference: Slots ── #}
       {% if element.slots.length %}
         <div class="api-section">
@@ -176,7 +145,9 @@ permalink: "components/{{ component.slug }}/index.html"
             <tbody>
               {% for slot in element.slots %}
                 <tr>
-                  <td><code>{{ slot.name or '(default)' }}</code></td>
+                  <td>
+                    <code>{{ slot.name or '(default)' }}</code>
+                  </td>
                   <td>{{ slot.description or '—' }}</td>
                 </tr>
               {% endfor %}
@@ -184,7 +155,6 @@ permalink: "components/{{ component.slug }}/index.html"
           </table>
         </div>
       {% endif %}
-
       {# ── API Reference: Events ── #}
       {% if element.events.length %}
         <div class="api-section">
@@ -199,7 +169,9 @@ permalink: "components/{{ component.slug }}/index.html"
             <tbody>
               {% for event in element.events %}
                 <tr>
-                  <td><code>{{ event.name }}</code></td>
+                  <td>
+                    <code>{{ event.name }}</code>
+                  </td>
                   <td>{{ event.description or '—' }}</td>
                 </tr>
               {% endfor %}
@@ -207,7 +179,6 @@ permalink: "components/{{ component.slug }}/index.html"
           </table>
         </div>
       {% endif %}
-
       {# ── API Reference: CSS Parts ── #}
       {% if element.cssParts.length %}
         <div class="api-section">
@@ -222,7 +193,9 @@ permalink: "components/{{ component.slug }}/index.html"
             <tbody>
               {% for part in element.cssParts %}
                 <tr>
-                  <td><code>{{ part.name }}</code></td>
+                  <td>
+                    <code>{{ part.name }}</code>
+                  </td>
                   <td>{{ part.description or '—' }}</td>
                 </tr>
               {% endfor %}
@@ -230,7 +203,6 @@ permalink: "components/{{ component.slug }}/index.html"
           </table>
         </div>
       {% endif %}
-
       {# ── API Reference: CSS Custom Properties ── #}
       {% if element.cssProperties.length %}
         <div class="api-section">
@@ -246,8 +218,12 @@ permalink: "components/{{ component.slug }}/index.html"
             <tbody>
               {% for prop in element.cssProperties %}
                 <tr>
-                  <td><code>{{ prop.name }}</code></td>
-                  <td><code class="default-label">{{ prop.default or '—' }}</code></td>
+                  <td>
+                    <code>{{ prop.name }}</code>
+                  </td>
+                  <td>
+                    <code class="default-label">{{ prop.default or '—' }}</code>
+                  </td>
                   <td>{{ prop.description or '—' }}</td>
                 </tr>
               {% endfor %}
@@ -255,7 +231,6 @@ permalink: "components/{{ component.slug }}/index.html"
           </table>
         </div>
       {% endif %}
-
     </section>
   {% endfor %}
 {% else %}
