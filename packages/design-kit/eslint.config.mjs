@@ -1,7 +1,7 @@
 import lit from 'eslint-plugin-lit';
 
 import baseConfig from '../../eslint.config.mjs';
-import { typedConfig } from '../../packages/lint/typed.mjs';
+import { typedConfig } from '../../tools/eslint-rules/typed.mjs';
 
 export default [
   ...baseConfig,

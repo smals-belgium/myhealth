@@ -1,9 +1,9 @@
 import nx from '@nx/eslint-plugin';
 import tsEslint from 'typescript-eslint';
 
-import { importPluginConfig } from './packages/lint/import.mjs';
-import { jsTsConfig } from './packages/lint/js-ts.mjs';
-import { jsTsTestConfig } from './packages/lint/js-ts-test.mjs';
+import { importPluginConfig } from './tools/eslint-rules/import.mjs';
+import { jsTsConfig } from './tools/eslint-rules/js-ts.mjs';
+import { jsTsTestConfig } from './tools/eslint-rules/js-ts-test.mjs';
 
 export default [
   {

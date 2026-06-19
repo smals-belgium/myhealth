@@ -1,6 +1,6 @@
 import baseConfig from '../../eslint.config.mjs';
-import { jsTsConfig } from '../../packages/lint/js-ts.mjs';
-import { setLevel } from '../../packages/lint/util.mjs';
+import { jsTsConfig } from '../../tools/eslint-rules/js-ts.mjs';
+import { setLevel } from '../../tools/eslint-rules/util.mjs';
 
 export default [
   ...baseConfig,
