@@ -1,0 +1,64 @@
+:host {
+  --mh-skeleton-color: var(--mh-color-neutral-fill-quiet);
+  --mh-skeleton-sheen-color: var(--mh-color-neutral-fill-quieter);
+  --mh-skeleton-border-radius: var(--mh-border-radius);
+  --mh-skeleton-height: 1rem;
+  --mh-skeleton-gap: var(--mh-space-s);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-skeleton-gap);
+  width: 100%;
+}
+
+[part~='indicator'] {
+  display: block;
+  width: 100%;
+  height: var(--mh-skeleton-height);
+  border-radius: var(--mh-skeleton-border-radius);
+  background: var(--mh-skeleton-color);
+}
+
+:host([effect='sheen']) [part~='indicator'] {
+  background: linear-gradient(
+    270deg,
+    var(--mh-skeleton-sheen-color),
+    var(--mh-skeleton-color),
+    var(--mh-skeleton-color),
+    var(--mh-skeleton-sheen-color)
+  );
+  background-size: 400% 100%;
+  animation: sheen 8s ease-in-out infinite;
+}
+
+:host([effect='pulse']) [part~='indicator'] {
+  animation: pulse 2s ease-in-out 0.5s infinite;
+}
+
+@keyframes sheen {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host([effect='sheen']) [part~='indicator'],
+  :host([effect='pulse']) [part~='indicator'] {
+    animation: none;
+  }
+}

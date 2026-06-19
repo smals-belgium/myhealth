@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - skeleton</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/styles.css"
+    />
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+
+    <style>
+      .skeleton-effects mh-skeleton:not(:first-child) {
+        margin-top: 1rem;
+      }
+
+      .skeleton-avatars {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .skeleton-avatars mh-skeleton {
+        width: 3rem;
+        --mh-skeleton-height: 3rem;
+      }
+      .skeleton-avatars mh-skeleton.square {
+        --mh-skeleton-border-radius: 0;
+      }
+      .skeleton-avatars mh-skeleton.circle {
+        --mh-skeleton-border-radius: 50%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Skeleton</h2>
+
+    <h3>Effects</h3>
+    <div class="skeleton-effects">
+      <mh-skeleton effect="none"></mh-skeleton>
+      <mh-skeleton effect="sheen"></mh-skeleton>
+      <mh-skeleton effect="pulse"></mh-skeleton>
+    </div>
+
+    <h3>Paragraphs</h3>
+    <!-- A single element renders five rows and announces "Loading" once. -->
+    <mh-skeleton
+      lang="en"
+      effect="sheen"
+      count="5"
+    ></mh-skeleton>
+
+    <h3>Avatars</h3>
+    <div class="skeleton-avatars">
+      <mh-skeleton
+        class="square"
+        effect="sheen"
+      ></mh-skeleton>
+      <mh-skeleton
+        class="circle"
+        effect="sheen"
+      ></mh-skeleton>
+    </div>
+  </body>
+</html>
