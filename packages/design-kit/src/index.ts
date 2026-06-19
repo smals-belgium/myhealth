@@ -7,5 +7,4 @@ export * from './divider';
 export * from './icon';
 export * from './radio';
 export * from './spinner';
-export * from './teapot';
 export * from './text-input';

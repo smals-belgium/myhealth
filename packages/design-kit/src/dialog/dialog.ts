@@ -2,7 +2,6 @@ import { html, LitElement, unsafeCSS } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 
 import styles from './dialog.css?inline';
-
 import { DialogAfterClosedEvent, DialogAfterOpenedEvent } from './dialog.event';
 
 export type DialogVariant = 'basic' | 'fullscreen';

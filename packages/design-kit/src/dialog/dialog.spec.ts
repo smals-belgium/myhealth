@@ -1,16 +1,11 @@
 import { fixture, oneEvent } from '@open-wc/testing';
 import { html } from 'lit';
 
-import {
-  assertAccessibility,
-  defaultSlot,
-  part,
-  slot,
-} from '../core/testing/index.js';
+import { assertAccessibility, defaultSlot, part, slot } from '../core/testing';
 
 import './dialog';
-import type { Dialog } from './dialog.js';
 import type { DialogAfterClosedEvent } from './dialog.event.js';
+import type { Dialog } from './dialog.js';
 
 // jsdom does not implement the native modal dialog APIs, so we polyfill the
 // minimal behaviour the component relies on (open state + a `close` event).
