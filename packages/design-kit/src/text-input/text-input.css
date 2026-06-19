@@ -59,6 +59,10 @@ label {
       border-color: var(--mh-text-input__color-border-input__invalid-hover);
     }
   }
+
+  &:has(input:disabled) {
+    cursor: not-allowed;
+  }
 }
 
 input {
@@ -76,6 +80,7 @@ input {
   color: var(--mh-text-input__color-type-input);
 
   &:disabled {
+    cursor: not-allowed;
     background-color: var(--mh-text-input__color-fill-input__disabled);
   }
 }

@@ -1,9 +1,12 @@
+import lit from 'eslint-plugin-lit';
+
 import baseConfig from '../../eslint.config.mjs';
 import { typedConfig } from '../../packages/lint/typed.mjs';
 
 export default [
   ...baseConfig,
   ...typedConfig('design-kit'),
+  lit.configs['flat/all'],
   {
     files: ['**/*.json'],
     rules: {
@@ -29,6 +32,8 @@ export default [
       'class-methods-use-this': ['error', { exceptMethods: ['render'] }],
       // this is how Lit works: methods referenced from templates are correctly bound
       '@typescript-eslint/unbound-method': 'off',
+      // we're mirroring native elements (and their attributes) in many cases
+      'lit/no-native-attributes': 'off',
     },
   },
   {

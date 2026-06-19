@@ -1,5 +1,5 @@
 import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { customElement, property, query, queryAll } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 import size from '../form-control/form-control.size.css?inline';
@@ -83,15 +83,16 @@ export class TextInput extends LitElement {
   static formAssociated = true;
   readonly internals = this.attachInternals();
 
-  @query('[part="input"]') el!: HTMLInputElement;
+  @query('[part="input"]') el?: HTMLInputElement;
+  @queryAll('slot') slots?: NodeListOf<HTMLSlotElement>;
 
   @property() override title = '';
   @property() type: TextInputType = 'text';
 
   @property({ reflect: true }) size: 'm' | 's' = 'm';
 
-  @property({ reflect: true }) name!: string;
-  @property({ reflect: true }) value!: string | null;
+  @property({ reflect: true }) name?: string;
+  @property({ reflect: true }) value?: string | null;
 
   @property({ reflect: true }) placeholder?: string;
   @property({ type: Boolean, reflect: true }) disabled = false;
@@ -129,9 +130,9 @@ export class TextInput extends LitElement {
   // Captures the HTML-declared defaults once; used to restore state on form reset.
   #defaultValue: string | null | undefined;
 
-  override readonly click = () => this.el.click();
-  override readonly focus = () => this.el.focus();
-  override readonly blur = () => this.el.blur();
+  override readonly click = () => this.el?.click();
+  override readonly focus = () => this.el?.focus();
+  override readonly blur = () => this.el?.blur();
 
   override connectedCallback() {
     super.connectedCallback();
@@ -145,18 +146,18 @@ export class TextInput extends LitElement {
   }
 
   override updated(changed: PropertyValueMap<this>) {
-    if (changed.has('value')) this.internals.setFormValue(this.value);
+    if (changed.has('value')) this.internals.setFormValue(this.value ?? null);
 
     // Propagate disabled state to all slotted elements that can be disabled
-    if (changed.has('disabled'))
-      Array.from(this.renderRoot.querySelectorAll<HTMLSlotElement>('slot'))
+    if (changed.has('disabled') && this.slots)
+      Array.from(this.slots)
         .flatMap(slot => slot.assignedElements({ flatten: true }))
         .filter(el => 'disabled' in el)
         .forEach(el => (el.disabled = this.disabled));
   }
 
   #onChange() {
-    this.internals.setFormValue(this.el.value);
+    if (this.el) this.internals.setFormValue(this.el.value);
   }
 
   // eslint-disable-next-line max-lines-per-function
@@ -181,12 +182,9 @@ export class TextInput extends LitElement {
           <input
             id="input"
             part="input"
-            type="${this.type}"
+            type=${this.type}
             title=${this.title}
             name=${ifDefined(this.name)}
-            value=${ifDefined(this.value)}
-            .disabled=${this.disabled}
-            .required=${this.required}
             placeholder=${ifDefined(this.placeholder)}
             minlength=${ifDefined(this.minlength)}
             maxlength=${ifDefined(this.maxlength)}
@@ -199,6 +197,9 @@ export class TextInput extends LitElement {
             enterkeyhint=${ifDefined(this.enterkeyhint)}
             inputmode=${ifDefined(this.inputmode)}
             aria-describedby="help hint"
+            .disabled=${this.disabled}
+            .required=${this.required}
+            .value=${ifDefined(this.value)}
             @change=${this.#onChange}
           />
 

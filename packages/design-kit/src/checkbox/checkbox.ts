@@ -86,7 +86,7 @@ export class Checkbox extends LitElement {
           type="checkbox"
           title=${this.title}
           name=${ifDefined(this.name)}
-          value=${ifDefined(this.value)}
+          .value=${ifDefined(this.value)}
           .checked=${this.checked}
           .disabled=${this.disabled}
           .required=${this.required}
