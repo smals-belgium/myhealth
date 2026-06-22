@@ -99,6 +99,16 @@ document.addEventListener('input', e => {
   }
 });
 
+// Open the dialog preview from its explicit trigger button in docs canvas.
+document.querySelectorAll('[data-dialog-open]').forEach(button => {
+  button.addEventListener('click', () => {
+    const dialog = document.getElementById(
+      button.getAttribute('data-dialog-open'),
+    );
+    dialog?.open?.();
+  });
+});
+
 // Build initial snippets for all previews on page load
 document.querySelectorAll('.element-section').forEach(section => {
   const target =

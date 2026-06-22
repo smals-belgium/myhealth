@@ -1,0 +1,187 @@
+import { html, LitElement, unsafeCSS } from 'lit';
+import { customElement, property, query } from 'lit/decorators.js';
+
+import { DialogAfterClosedEvent } from './dialog-after-closed.event';
+import { DialogAfterOpenedEvent } from './dialog-after-opened.event';
+import styles from './dialog.css?inline';
+
+export type DialogVariant = 'basic' | 'fullscreen';
+
+/**
+ * @summary Dialogs are modal popups that focus the user's attention on a single task or piece of information. They trap
+ *  focus, dim the page behind a backdrop, and must be dismissed before the user can interact with the rest of the page.
+ * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/dialog
+ * @status stable
+ * @since 1.0
+ *
+ * @event mh-after-opened - Emitted after the dialog has opened.
+ * @event mh-after-closed - Emitted after the dialog has closed. The `result` property carries the optional close value.
+ *
+ * @slot - The dialog's main content.
+ * @slot header-title - The dialog's title, displayed at the start of the header.
+ * @slot header-actions - Actions displayed at the end of the header, such as a close button.
+ * @slot actions - The dialog's actions, typically buttons. Add the `dialog-close` attribute to any element here to
+ *  close the dialog when it is activated; its value is forwarded as the close result.
+ *
+ * @csspart dialog - The native `dialog` element.
+ * @csspart header - The container that wraps the header slots.
+ * @csspart header-title - The `header-title` slot.
+ * @csspart header-actions - The `header-actions` slot.
+ * @csspart content - The default (content) slot.
+ * @csspart actions - The container that wraps the `actions` slot.
+ *
+ * @cssproperty [--mh-dialog__spacing=var(--mh-space-m)] - The amount of space around and between sections of the dialog.
+ * @cssproperty [--mh-dialog__backdrop=color-mix(in srgb, var(--mh-color-brand-fill) 60%, transparent)] - The backdrop color.
+ */
+@customElement('mh-dialog')
+export class Dialog extends LitElement {
+  static override readonly styles = unsafeCSS(styles);
+
+  private static scrollLockOwners = new Set<Dialog>();
+  private static bodyOverflowBeforeLock: string | null = null;
+  private static documentOverflowBeforeLock: string | null = null;
+
+  @query('[part="dialog"]') private readonly dialog!: HTMLDialogElement;
+
+  /** The dialog's variant. `fullscreen` makes the dialog cover the entire screen. */
+  @property({ reflect: true }) variant: DialogVariant = 'basic';
+
+  /** Whether closing the dialog via the backdrop or the Escape key is disabled. */
+  @property({ type: Boolean, reflect: true, attribute: 'disable-close' })
+  disableClose = false;
+
+  #result?: string | boolean;
+  #ownsScrollLock = false;
+
+  /** Whether the dialog is currently open. */
+  get isOpen() {
+    return this.dialog.open;
+  }
+
+  /** Opens the dialog as a modal and emits `mh-after-opened`. */
+  open() {
+    if (this.dialog.open) return;
+
+    this.dialog.showModal();
+    this.toggleAttribute('open', true);
+    this.#acquireScrollLock();
+    this.dispatchEvent(new DialogAfterOpenedEvent());
+  }
+
+  /**
+   * Closes the dialog, forwarding the optional `result` through `mh-after-closed`.
+   */
+  close(result?: string | boolean) {
+    if (!this.dialog.open) return;
+
+    this.#result = result;
+    this.dialog.close();
+  }
+
+  #onClose = () => {
+    this.#releaseScrollLock();
+    this.toggleAttribute('open', false);
+    this.dispatchEvent(new DialogAfterClosedEvent(this.#result));
+    this.#resetResult();
+  };
+
+  /** Resets the pending close result back to its empty default. */
+  #resetResult(result?: string | boolean) {
+    this.#result = result;
+  }
+
+  override disconnectedCallback() {
+    this.#releaseScrollLock();
+    super.disconnectedCallback();
+  }
+
+  #acquireScrollLock() {
+    if (this.#ownsScrollLock) return;
+
+    this.#ownsScrollLock = true;
+    Dialog.scrollLockOwners.add(this);
+
+    if (Dialog.scrollLockOwners.size > 1) return;
+
+    Dialog.bodyOverflowBeforeLock = document.body.style.overflow;
+    Dialog.documentOverflowBeforeLock = document.documentElement.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+  }
+
+  #releaseScrollLock() {
+    if (!this.#ownsScrollLock) return;
+
+    this.#ownsScrollLock = false;
+    Dialog.scrollLockOwners.delete(this);
+
+    if (Dialog.scrollLockOwners.size > 0) return;
+
+    document.body.style.overflow = Dialog.bodyOverflowBeforeLock ?? '';
+    document.documentElement.style.overflow =
+      Dialog.documentOverflowBeforeLock ?? '';
+    Dialog.bodyOverflowBeforeLock = null;
+    Dialog.documentOverflowBeforeLock = null;
+  }
+
+  #onCancel = (event: Event) => {
+    // The native `cancel` event fires for the Escape key. Block it when closing is disabled.
+    if (this.disableClose) event.preventDefault();
+  };
+
+  #onClick = (event: MouseEvent) => {
+    // Close when an element flagged with `dialog-close` is activated, forwarding its value as the result.
+    const trigger = event
+      .composedPath()
+      .find(
+        (target): target is HTMLElement =>
+          target instanceof HTMLElement && target.hasAttribute('dialog-close'),
+      );
+
+    if (trigger) {
+      const result = trigger.getAttribute('dialog-close');
+      if (result) this.close(result);
+      else this.close();
+      return;
+    }
+
+    // Light dismiss: a click on the backdrop registers on the dialog element itself.
+    if (!this.disableClose && event.target === this.dialog) this.close();
+  };
+
+  override render() {
+    return html`
+      <dialog
+        part="dialog"
+        aria-labelledby="title"
+        @close=${this.#onClose}
+        @cancel=${this.#onCancel}
+        @click=${this.#onClick}
+      >
+        <header
+          part="header"
+          role="presentation"
+        >
+          <slot
+            name="header-title"
+            part="header-title"
+            id="title"
+          ></slot>
+          <slot
+            name="header-actions"
+            part="header-actions"
+          ></slot>
+        </header>
+
+        <slot part="content"></slot>
+
+        <footer
+          part="actions"
+          role="presentation"
+        >
+          <slot name="actions"></slot>
+        </footer>
+      </dialog>
+    `;
+  }
+}

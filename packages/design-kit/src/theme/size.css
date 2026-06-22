@@ -9,6 +9,11 @@
     --mh-border-width-m: 0.125rem;
     --mh-border-width-l: 0.1875rem;
 
+    --mh-media-breakpoint-xs: 600px;
+    --mh-media-breakpoint-s: 960px;
+    --mh-media-breakpoint-m: 1280px;
+    --mh-media-breakpoint-l: 1920px;
+
     --mh-space-s: 0.5rem;
     --mh-space-m: 1rem;
     --mh-space-l: 2rem;
