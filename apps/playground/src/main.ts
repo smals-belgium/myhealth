@@ -1,10 +1,13 @@
 import('@myhealth/design-kit');
 
 document.addEventListener('mh-error', event => {
-  const e = event as Event & { message: string; error?: Error };
+  const { message, error } = event as Event & {
+    message: string;
+    error?: Error;
+  };
 
-  if (e.error) {
-    console.warn(e.message);
-    throw e.error;
-  } else console.error(e.message);
+  if (error) {
+    console.warn(message);
+    throw error;
+  } else console.error(message);
 });

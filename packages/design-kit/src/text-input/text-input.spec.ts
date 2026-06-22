@@ -90,7 +90,7 @@ describe('text-input', () => {
           const el = await fixture<TextInput>(
             html`<mh-text-input
               name="type-${type}"
-              type="${type}"
+              type=${type}
               >Label</mh-text-input
             >`,
           );

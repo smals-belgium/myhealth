@@ -1,45 +1,24 @@
 import nx from '@nx/eslint-plugin';
+import tsEslint from 'typescript-eslint';
 
-import { importPluginConfig } from './packages/lint/import.mjs';
+import { importPluginConfig } from './tools/eslint-rules/import.mjs';
+import { jsTsConfig } from './tools/eslint-rules/js-ts.mjs';
+import { jsTsTestConfig } from './tools/eslint-rules/js-ts-test.mjs';
 
 export default [
-  ...nx.configs['flat/base'],
-  ...nx.configs['flat/typescript'],
-  ...nx.configs['flat/javascript'],
-  ...importPluginConfig,
   {
-    ignores: ['**/dist', '**/out-tsc', '**/vite.config.*.timestamp*'],
-  },
-  {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    rules: {
-      '@nx/enforce-module-boundaries': [
-        'error',
-        {
-          enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
-          depConstraints: [
-            {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    files: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.cts',
-      '**/*.mts',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.cjs',
-      '**/*.mjs',
+    ignores: [
+      '**/*.config.mjs',
+      '**/dist',
+      '**/out-tsc',
+      '**/vite.config.*.timestamp*',
     ],
-    // Override or add rules here
-    rules: {},
   },
+  ...nx.configs['flat/base'],
+  ...nx.configs['flat/javascript'],
+  ...nx.configs['flat/typescript'],
+  ...tsEslint.configs.strict,
+  ...jsTsConfig,
+  ...jsTsTestConfig,
+  ...importPluginConfig,
 ];

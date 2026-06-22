@@ -10,7 +10,7 @@ import size from './icon.size.css?inline';
 
 export type IconSize = Size;
 
-const icons = import.meta.glob('./svg/*.svg', {
+const icons: Record<string, string> = import.meta.glob('./svg/*.svg', {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -56,8 +56,8 @@ export class Icon extends LitElement {
 
   protected override willUpdate(props: PropertyValues<this>) {
     if (props.has('src') && this.src && this.#validateSrc(this.src))
-      return this.#loadCustomSvg(this.src);
-    if (props.has('name') && this.name) return this.#loadBuiltInSvg(this.name);
+      this.#loadCustomSvg(this.src);
+    if (props.has('name') && this.name) this.#loadBuiltInSvg(this.name);
   }
 
   protected override update(props: PropertyValues<this>): void {
@@ -68,7 +68,7 @@ export class Icon extends LitElement {
 
   #loadBuiltInSvg(name: string) {
     const key = `./svg/${name}.svg`;
-    this.svg = (icons[key] as string) ?? '';
+    this.svg = icons[key] ?? '';
     this.dispatchEvent(new LoadEvent());
   }
 
@@ -107,7 +107,7 @@ export class Icon extends LitElement {
       })
       .then(svg => (this.svg = svg))
       .then(() => this.dispatchEvent(new LoadEvent()))
-      .catch(e => this.dispatchEvent(new ErrorEvent(e)));
+      .catch((error: unknown) => this.dispatchEvent(new ErrorEvent(error)));
   }
 
   #handleLabelChange() {
@@ -125,7 +125,7 @@ export class Icon extends LitElement {
   }
 
   #rotate() {
-    this.style.setProperty('--rotate-angle', `${this.rotate}deg`);
+    this.style.setProperty('--rotate-angle', `${this.rotate.toString(10)}deg`);
   }
 
   override render() {

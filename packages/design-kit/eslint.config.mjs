@@ -1,7 +1,12 @@
+import lit from 'eslint-plugin-lit';
+
 import baseConfig from '../../eslint.config.mjs';
+import { typedConfig } from '../../tools/eslint-rules/typed.mjs';
 
 export default [
   ...baseConfig,
+  ...typedConfig('design-kit'),
+  lit.configs['flat/all'],
   {
     files: ['**/*.json'],
     rules: {
@@ -18,6 +23,17 @@ export default [
     },
     languageOptions: {
       parser: await import('jsonc-eslint-parser'),
+    },
+  },
+  {
+    files: ['**/*.ts'],
+    rules: {
+      // allow Lit lifecycle hooks that don't access state
+      'class-methods-use-this': ['error', { exceptMethods: ['render'] }],
+      // this is how Lit works: methods referenced from templates are correctly bound
+      '@typescript-eslint/unbound-method': 'off',
+      // we're mirroring native elements (and their attributes) in many cases
+      'lit/no-native-attributes': 'off',
     },
   },
   {
