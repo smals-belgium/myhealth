@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - fonts</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/styles.css"
+    />
+
+    <style>
+      main {
+        max-width: 72rem;
+        margin: 0 auto;
+      }
+
+      .sample-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.875rem;
+      }
+
+      .sample {
+        margin: 0;
+        padding: 0.875rem 1rem;
+        border: 1px solid var(--mh-color-neutral-border-subtle, #d4dae2);
+        border-radius: 0.5rem;
+        background: var(--mh-color-neutral-fill-subtle, #f9fafc);
+        line-height: 1.5;
+      }
+
+      .meta {
+        display: block;
+        font-size: 0.875rem;
+        color: var(--mh-color-neutral-type-subtle, #4e5968);
+      }
+
+      .w-300 {
+        font-weight: 300;
+      }
+
+      .w-400 {
+        font-weight: 400;
+      }
+
+      .w-500 {
+        font-weight: 500;
+      }
+
+      .w-600 {
+        font-weight: 600;
+      }
+
+      .w-700 {
+        font-weight: 700;
+      }
+
+      .w-800 {
+        font-weight: 800;
+      }
+
+      .italic-400 {
+        font-style: italic;
+        font-weight: 400;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <h1>Open Sans Font Showcase</h1>
+      <p>
+        This page previews all configured font weights for Open Sans in the
+        design kit, plus regular italic.
+      </p>
+
+      <h2>Weights</h2>
+      <ul class="sample-list">
+        <li>
+          <p class="sample w-300">
+            The quick brown fox jumps over the lazy dog. 0123456789
+            <span class="meta">Weight 300 (Light)</span>
+          </p>
+        </li>
+        <li>
+          <p class="sample w-400">
+            The quick brown fox jumps over the lazy dog. 0123456789
+            <span class="meta">Weight 400 (Regular)</span>
+          </p>
+        </li>
+        <li>
+          <p class="sample w-500">
+            The quick brown fox jumps over the lazy dog. 0123456789
+            <span class="meta">Weight 500 (Medium)</span>
+          </p>
+        </li>
+        <li>
+          <p class="sample w-600">
+            The quick brown fox jumps over the lazy dog. 0123456789
+            <span class="meta">Weight 600 (Semibold)</span>
+          </p>
+        </li>
+        <li>
+          <p class="sample w-700">
+            The quick brown fox jumps over the lazy dog. 0123456789
+            <span class="meta">Weight 700 (Bold)</span>
+          </p>
+        </li>
+        <li>
+          <p class="sample w-800">
+            The quick brown fox jumps over the lazy dog. 0123456789
+            <span class="meta">Weight 800 (ExtraBold)</span>
+          </p>
+        </li>
+      </ul>
+
+      <h2>Italic</h2>
+      <p class="sample italic-400">
+        The quick brown fox jumps over the lazy dog. 0123456789
+        <span class="meta">Italic 400 (Regular Italic)</span>
+      </p>
+    </main>
+  </body>
+</html>

@@ -80,7 +80,9 @@ input {
   margin: 0 0.5rem;
   height: calc(var(--mh-text-input__size-height) - 2px);
   border-radius: var(--mh-text-input__size-border-radius);
+  font-family: inherit;
   font-size: 1rem;
+  line-height: inherit;
   color: var(--mh-text-input__color-type-input);
 
   &:disabled {
