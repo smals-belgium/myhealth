@@ -8,7 +8,7 @@ describe('teapot', () => {
     it('passes accessibility tests', async () => {
       const el = await fixture(html`<mh-teapot></mh-teapot>`);
       document.body.appendChild(el);
-      // teapot is not a valid ARIA role :)
+      // Teapot is not a valid ARIA role :)
       expect(el).not.to.be.accessible();
     });
 

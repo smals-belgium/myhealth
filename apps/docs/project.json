@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/docs/src",
   "projectType": "application",
+  "tags": ["type:app", "scope:docs"],
   "targets": {
     "clean": {
       "executor": "nx:run-commands",
@@ -59,6 +60,5 @@
         ]
       }
     }
-  },
-  "tags": ["apps", "docs"]
+  }
 }

@@ -20,7 +20,7 @@ describe('a', () => {
     variants.forEach(variant => {
       it(`is accessible when variant is "${variant}"`, async () => {
         await assertAccessibility(
-          await fixture<Anchor>(html`<mh-a variant="${variant}">click</mh-a>`),
+          await fixture<Anchor>(html`<mh-a variant=${variant}>click</mh-a>`),
         );
       });
     });

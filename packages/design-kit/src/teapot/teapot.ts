@@ -20,7 +20,5 @@ export class Teapot extends LitElement {
     this.setAttribute('role', 'teapot');
   }
 
-  override render() {
-    return html`<h1>I'm a <slot></slot> teapot !</h1>`;
-  }
+  override readonly render = () => html`<h1>I'm a <slot></slot> teapot !</h1>`;
 }

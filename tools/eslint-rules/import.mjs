@@ -24,6 +24,11 @@ export const importPluginConfig = [
       '**/*.mjs',
     ],
     rules: {
+      // turn off interfering base eslint rules
+      'no-duplicate-imports': 'off',
+      'sort-imports': 'off',
+
+      // now the real config
       ...setLevel('error', flatConfigs.recommended.rules),
       'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
       'import/first': 'error',
@@ -71,6 +76,13 @@ export const importPluginConfig = [
           alwaysTryTypes: true,
         },
       },
+    },
+  },
+  // library barrels: allow as imports as needed
+  {
+    files: ['**/index.ts'],
+    rules: {
+      'import/max-dependencies': 'off',
     },
   },
   // many config files of external tools work with default exports

@@ -23,7 +23,7 @@ describe('button', () => {
       it(`is accessible when variant is "${variant}"`, async () => {
         await assertAccessibility(
           await fixture<Button>(
-            html`<mh-button variant="${variant}">click</mh-button>`,
+            html`<mh-button variant=${variant}>click</mh-button>`,
           ),
         );
       });

@@ -36,7 +36,7 @@ describe('icon-button', () => {
             html`<mh-icon-button
               title="Close"
               name="x"
-              appearance="${appearance}"
+              appearance=${appearance}
             ></mh-icon-button>`,
           ),
         );
@@ -50,7 +50,7 @@ describe('icon-button', () => {
             html`<mh-icon-button
               title="Close"
               name="x"
-              loudness="${loudness}"
+              loudness=${loudness}
             ></mh-icon-button>`,
           ),
         );
