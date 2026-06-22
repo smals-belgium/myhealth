@@ -12,6 +12,8 @@
   height: var(--mh-icon-button__size);
   cursor: pointer;
   border: none;
+  font-family: inherit;
+  line-height: inherit;
   transition-property:
     background, border, box-shadow, color, opacity, transform;
   transition-duration: var(--mh-transition-normal);

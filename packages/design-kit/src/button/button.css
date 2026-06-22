@@ -13,6 +13,8 @@
   vertical-align: middle;
   cursor: pointer;
   padding: 0 1rem;
+  font-family: inherit;
+  line-height: inherit;
   font-size: inherit;
   font-weight: 600;
   height: var(--mh-form-control-height);
