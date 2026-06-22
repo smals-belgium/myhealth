@@ -9,6 +9,10 @@
         "command": "cem analyze",
         "cwd": "packages/design-kit"
       }
+    },
+    "bundle": {
+      "dependsOn": ["build"],
+      "command": "node tools/postcss.js"
     }
   }
 }

@@ -6,7 +6,11 @@ label {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  width: inherit;
+  width: stretch;
+
+  &:has(input:user-invalid) {
+    color: var(--mh-color-danger-type);
+  }
 }
 
 input {
@@ -24,6 +28,7 @@ input {
   align-items: center;
   justify-content: center;
   margin: 0;
+  flex-shrink: 0;
   width: var(--touch-target-size);
   height: var(--touch-target-size);
   border: none;
@@ -95,17 +100,17 @@ input {
     cursor: not-allowed;
   }
 
-  &:invalid::after {
+  &:user-invalid::after {
     border-color: var(--mh-color-danger-border);
   }
 
-  &:checked:invalid::after {
+  &:checked:user-invalid::after {
     border-color: transparent;
     background-color: var(--mh-color-danger-fill);
   }
 
-  &:invalid:hover::after,
-  &:invalid:focus-visible::after {
+  &:user-invalid:hover::after,
+  &:user-invalid:focus-visible::after {
     box-shadow: 0 0 0 var(--state-layer-spread)
       var(--mh-color-danger-border-quieter);
   }

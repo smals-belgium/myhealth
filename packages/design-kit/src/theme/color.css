@@ -1,5 +1,5 @@
-@import url('./color/brand.css');
-@import url('./color/danger.css');
-@import url('./color/warning.css');
-@import url('./color/success.css');
-@import url('./color/neutral.css');
+@import './color/brand.css';
+@import './color/danger.css';
+@import './color/warning.css';
+@import './color/success.css';
+@import './color/neutral.css';

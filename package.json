@@ -42,6 +42,8 @@
     "jsdom": "^27.1.0",
     "jsonc-eslint-parser": "^2.1.0",
     "nx": "22.7.0",
+    "postcss": "^8.5.15",
+    "postcss-import": "^16.1.1",
     "prettier": "^3.8.1",
     "swc-loader": "0.1.15",
     "tslib": "^2.3.0",

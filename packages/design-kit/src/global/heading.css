@@ -1,0 +1,34 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: var(--mh-font-size-xxxl);
+}
+
+h2 {
+  font-size: var(--mh-font-size-xxl);
+}
+
+h3 {
+  font-size: var(--mh-font-size-xl);
+}
+
+h4 {
+  font-size: var(--mh-font-size-l);
+}
+
+h5 {
+  font-size: var(--mh-font-size);
+}
+
+h6 {
+  font-size: var(--mh-font-size-s);
+}
