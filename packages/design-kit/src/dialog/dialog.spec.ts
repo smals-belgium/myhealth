@@ -4,29 +4,26 @@ import { html } from 'lit';
 import { assertAccessibility, defaultSlot, part, slot } from '../core/testing';
 
 import './dialog';
-import type { DialogAfterClosedEvent } from './dialog.event.js';
+import type { DialogAfterClosedEvent } from './dialog-after-closed.event.js';
 import type { Dialog } from './dialog.js';
 
-// jsdom does not implement the native modal dialog APIs, so we polyfill the
-// minimal behaviour the component relies on (open state + a `close` event).
+// The jsdom environment does not implement the native modal dialog APIs, so we
+// polyfill the minimal behaviour the component relies on (open state + a `close`
+// event).
 beforeAll(() => {
-  const proto = HTMLDialogElement.prototype as HTMLDialogElement & {
-    showModal: () => void;
-    show: () => void;
-    close: (returnValue?: string) => void;
-  };
+  const proto = HTMLDialogElement.prototype;
 
   if (typeof proto.showModal !== 'function') {
-    proto.showModal = function () {
+    proto.showModal = function showModal() {
       this.open = true;
     };
-    proto.show = function () {
+    proto.show = function show() {
       this.open = true;
     };
-    proto.close = function (returnValue?: string) {
+    proto.close = function close(returnValue?: string) {
       if (!this.open) return;
       this.open = false;
-      if (returnValue !== undefined) this.returnValue = returnValue;
+      if (typeof returnValue === 'string') this.returnValue = returnValue;
       this.dispatchEvent(new Event('cancel'));
       this.dispatchEvent(new Event('close'));
     };

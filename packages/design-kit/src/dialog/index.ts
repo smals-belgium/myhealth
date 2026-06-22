@@ -1,7 +1,8 @@
 import type { Dialog } from './dialog';
 
 export * from './dialog';
-export * from './dialog.event';
+export * from './dialog-after-closed.event';
+export * from './dialog-after-opened.event';
 
 declare global {
   interface HTMLElementTagNameMap {

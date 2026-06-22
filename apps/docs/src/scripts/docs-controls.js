@@ -100,17 +100,13 @@ document.addEventListener('input', e => {
 });
 
 // Open the dialog preview from its explicit trigger button in docs canvas.
-document.addEventListener('click', e => {
-  const button = e.target.closest?.('[data-dialog-open]');
-  if (!button) return;
-
-  const dialogId = button.getAttribute('data-dialog-open');
-  if (!dialogId) return;
-
-  const dialog = document.getElementById(dialogId);
-  if (dialog && typeof dialog.open === 'function') {
-    dialog.open();
-  }
+document.querySelectorAll('[data-dialog-open]').forEach(button => {
+  button.addEventListener('click', () => {
+    const dialog = document.getElementById(
+      button.getAttribute('data-dialog-open'),
+    );
+    dialog?.open?.();
+  });
 });
 
 // Build initial snippets for all previews on page load

@@ -1,8 +1,9 @@
 import { html, LitElement, unsafeCSS } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 
+import { DialogAfterClosedEvent } from './dialog-after-closed.event';
+import { DialogAfterOpenedEvent } from './dialog-after-opened.event';
 import styles from './dialog.css?inline';
-import { DialogAfterClosedEvent, DialogAfterOpenedEvent } from './dialog.event';
 
 export type DialogVariant = 'basic' | 'fullscreen';
 
@@ -54,7 +55,7 @@ export class Dialog extends LitElement {
 
   /** Whether the dialog is currently open. */
   get isOpen() {
-    return this.dialog?.open ?? false;
+    return this.dialog.open;
   }
 
   /** Opens the dialog as a modal and emits `mh-after-opened`. */
@@ -81,8 +82,13 @@ export class Dialog extends LitElement {
     this.#releaseScrollLock();
     this.toggleAttribute('open', false);
     this.dispatchEvent(new DialogAfterClosedEvent(this.#result));
-    this.#result = undefined;
+    this.#resetResult();
   };
+
+  /** Resets the pending close result back to its empty default. */
+  #resetResult(result?: string | boolean) {
+    this.#result = result;
+  }
 
   override disconnectedCallback() {
     this.#releaseScrollLock();
@@ -133,7 +139,9 @@ export class Dialog extends LitElement {
       );
 
     if (trigger) {
-      this.close(trigger.getAttribute('dialog-close') || undefined);
+      const result = trigger.getAttribute('dialog-close');
+      if (result) this.close(result);
+      else this.close();
       return;
     }
 
