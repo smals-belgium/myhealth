@@ -119,9 +119,10 @@ export class Snackbar extends LitElement {
 
   #onCloseClick = () => this.dismiss('close-button');
 
-  // Pause the auto-dismiss timer while the pointer rests on the snackbar, then restart it on leave.
-  #onPointerEnter = () => this.#clearTimer();
-  #onPointerLeave = () => {
+  // Pause the auto-dismiss timer while the pointer rests on the snackbar or it holds focus, then restart it on leave.
+  // Pausing on focus keeps the snackbar from disappearing while a keyboard or screen-reader user interacts with it.
+  #pause = () => this.#clearTimer();
+  #resume = () => {
     if (this.isOpen) this.#startTimer();
   };
 
@@ -129,8 +130,10 @@ export class Snackbar extends LitElement {
     return html`
       <div
         part="snackbar"
-        @pointerenter=${this.#onPointerEnter}
-        @pointerleave=${this.#onPointerLeave}
+        @pointerenter=${this.#pause}
+        @pointerleave=${this.#resume}
+        @focusin=${this.#pause}
+        @focusout=${this.#resume}
       >
         <span
           part="message"
