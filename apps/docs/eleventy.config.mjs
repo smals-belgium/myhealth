@@ -23,6 +23,7 @@ export default function (config) {
     [path.join(designKitSrc, 'my-health.css')]:
       'assets/design-kit/my-health.css',
     [path.join(designKitSrc, 'theme')]: 'assets/design-kit/theme',
+    [path.join(designKitSrc, 'assets')]: 'assets/design-kit/assets',
   });
   config.addPassthroughCopy('src/styles');
   config.addPassthroughCopy('src/scripts');

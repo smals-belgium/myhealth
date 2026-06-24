@@ -11,8 +11,12 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
-    }
+    },
+    "./assets/*": "./dist/assets/*"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "lit": "^3.3.2"
   },
