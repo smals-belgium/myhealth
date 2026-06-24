@@ -40,6 +40,29 @@ Will start a Vite dev server with a sandbox application to test the MyHealth com
 Currently we use Material icons for backwards compatibility.  
 SVGs can be downloaded from https://fonts.google.com/icons
 
+### Using your own font
+
+The kit ships with [Open Sans](https://fonts.google.com/specimen/Open+Sans) self-hosted as the default
+typeface. Text is rendered with the `--mh-font-family` token, so you can swap the typeface without
+touching component styles.
+
+Declare your own `@font-face` (or reference a font your app already loads), then override the token on
+`:root` (or any scope):
+
+```css
+@font-face {
+  font-family: 'Acme Sans';
+  src: url('/fonts/acme-sans.woff2') format('woff2');
+}
+
+:root {
+  --mh-font-family: 'Acme Sans', sans-serif;
+}
+```
+
+The bundled Open Sans `@font-face` rules stay inert when unused — a browser only downloads a font once
+rendered text references that family — so overriding the token incurs no extra Open Sans download.
+
 ### Nomenclature
 
 - **appearance**: different variations of how the component looks; these can depend on the component, so one
