@@ -1,9 +1,9 @@
 /// <reference types='vitest' />
 import * as path from 'path';
 
+import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
@@ -13,18 +13,11 @@ export default defineConfig(() => ({
       entryRoot: 'src',
       tsconfigPath: path.join(import.meta.dirname, 'tsconfig.lib.json'),
     }),
-    // Copy static assets (e.g. font files) into the published dist so consumers
-    // of the package can access them under `@myhealth/design-kit/assets/*`.
-    viteStaticCopy({
-      targets: [
-        {
-          src: path
-            .join(import.meta.dirname, 'assets/fonts/*')
-            .replace(/\\/g, '/'),
-          dest: '.',
-        },
-      ],
-    }),
+    // Copy static assets (font files) plus package metadata into the published
+    // dist so consumers can access fonts under `@myhealth/design-kit/assets/*`.
+    nxCopyAssetsPlugin([
+      { input: 'assets/fonts', glob: '**/*', output: 'assets/fonts' },
+    ]),
   ],
   // Uncomment this if you are using workers.
   // worker: {

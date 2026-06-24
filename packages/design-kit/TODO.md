@@ -2,20 +2,20 @@
 
 ## Library
 
-- add custom element manifests
-- add @required annotation for runtime property checking
+- [ ] add custom element manifests
+- [ ] add @required annotation for runtime property checking
 
 ## Icon
 
-- add cache
-- add more stock icons
-- sanitize or other strategy for XSS protection
-- unit test that ensures all svgs have `fill="currentColor"`
+- [ ] add cache
+- [ ] add more stock icons
+- [ ] sanitize or other strategy for XSS protection
+- [ ] unit test that ensures all svgs have `fill="currentColor"`
 
 ## Radio group
 
-- group identifier should be form reference + group name (not just name); see
-  https://github.com/smals-belgium/myhealth/pull/8/changes/7e091fb7c96d11fbb0c5734622b3eca084195df6#r3342719879
+- [ ] group identifier should be form reference + group name (not just name); see
+      https://github.com/smals-belgium/myhealth/pull/8/changes/7e091fb7c96d11fbb0c5734622b3eca084195df6#r3342719879
 
 ## A11y CDK
 
@@ -23,7 +23,11 @@
 
 ## Dialog
 
-- define clear dialog width standards for dialog (confirm with ux)
+- [ ] Define clear dialog width standards for dialog (confirm with ux)
+
+## Fonts
+
+- [ ] Provide JS script to override font-family if strictly necessary
 
 ## Components roadmap
 
