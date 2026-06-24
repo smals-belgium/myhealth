@@ -1,0 +1,11 @@
+{
+  "name": "@myhealth/vitals-ng",
+  "version": "21.0.0",
+  "dependencies": {
+    "@myhealth/design-kit": "*"
+  },
+  "peerDependencies": {
+    "@angular/core": "^21.0.0"
+  },
+  "sideEffects": false
+}

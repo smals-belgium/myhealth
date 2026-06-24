@@ -63,6 +63,11 @@
   "targetDefaults": {
     "test": {
       "dependsOn": ["^build"]
+    },
+    "@nx/angular:package": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "release": {
@@ -76,6 +81,13 @@
       "linter": "eslint",
       "unitTestRunner": "none",
       "e2eTestRunner": "none"
+    },
+    "@nx/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "vitest-analog"
+    },
+    "@nx/angular:component": {
+      "style": "css"
     }
   }
 }

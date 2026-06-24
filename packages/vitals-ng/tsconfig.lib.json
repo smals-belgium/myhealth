@@ -1,0 +1,38 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "sourceMap": true,
+    "paths": {
+      "@myhealth/design-kit": ["./packages/design-kit/dist/index.js"]
+    },
+    "types": []
+  },
+  "include": ["src/**/*.ts", "button/src/**/*.ts"],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "vite.config.ts",
+    "vite.config.mts",
+    "vitest.config.ts",
+    "vitest.config.mts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.js",
+    "src/**/*.spec.js",
+    "src/**/*.test.jsx",
+    "src/**/*.spec.jsx",
+    "src/test-setup.ts",
+    "button/src/**/*.spec.ts",
+    "button/src/**/*.test.ts",
+    "button/src/**/*.test.tsx",
+    "button/src/**/*.spec.tsx",
+    "button/src/**/*.test.js",
+    "button/src/**/*.spec.js",
+    "button/src/**/*.test.jsx",
+    "button/src/**/*.spec.jsx"
+  ]
+}

@@ -12,6 +12,7 @@ export default [
       '**/dist',
       '**/out-tsc',
       '**/vite.config.*.timestamp*',
+      '**/vitest.config.*.timestamp*',
     ],
   },
   ...nx.configs['flat/base'],

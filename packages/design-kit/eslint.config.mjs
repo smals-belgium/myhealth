@@ -13,11 +13,7 @@ export default [
       '@nx/dependency-checks': [
         'error',
         {
-          ignoredFiles: [
-            '{projectRoot}/eslint.config.{js,cjs,mjs,ts,cts,mts}',
-            '{projectRoot}/vite.config.{js,ts,mjs,mts}',
-            '{projectRoot}/custom-elements-manifest.config.{js,cjs,mjs,ts,cts,mts}',
-          ],
+          ignoredFiles: ['{projectRoot}/*.config.{js,cjs,mjs,ts,cts,mts}'],
         },
       ],
     },
