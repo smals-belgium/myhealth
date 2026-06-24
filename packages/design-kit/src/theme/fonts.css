@@ -1,5 +1,5 @@
 /**
- * Open Sans — self-hosted web fonts.
+ * Open Sans — self-hosted web fonts (the default typeface).
  *
  * Web (these @font-face rules): variable WOFF2, weight axis 300–800, latin subset.
  *   - open-sans-variable-latin.woff2         (upright, wght 300–800)
@@ -12,7 +12,35 @@
  *
  * Source: Google Fonts — https://fonts.google.com/specimen/Open+Sans (Apache 2.0)
  * Binaries: Google Fonts CDN (fonts.gstatic.com), Open Sans v44.
+ *
+ * ----------------------------------------------------------------------------
+ * Using your own font
+ * ----------------------------------------------------------------------------
+ * The kit renders text with the `--mh-font-family` token (defined below), so
+ * consumers can swap the typeface without touching component styles. Declare
+ * your own @font-face (or reference a font already loaded by your app), then
+ * override the token on `:root` (or any scope):
+ *
+ *   @font-face {
+ *     font-family: 'Acme Sans';
+ *     src: url('/fonts/acme-sans.woff2') format('woff2');
+ *   }
+ *
+ *   :root {
+ *     --mh-font-family: 'Acme Sans', sans-serif;
+ *   }
+ *
+ * The bundled Open Sans @font-face rules below stay inert when unused — a
+ * browser only downloads a font once rendered text references that family —
+ * so overriding the token incurs no extra Open Sans download.
  */
+
+/* Font design tokens — the overridable contract for consumers. */
+@layer mh-font {
+  :where(:root) {
+    --mh-font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+}
 
 /* Upright — full weight range via variable font. */
 @font-face {
