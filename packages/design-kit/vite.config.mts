@@ -19,9 +19,9 @@ export default defineConfig(() => ({
       targets: [
         {
           src: path
-            .join(import.meta.dirname, 'src/assets/fonts/*')
+            .join(import.meta.dirname, 'assets/fonts/*')
             .replace(/\\/g, '/'),
-          dest: 'assets/fonts',
+          dest: '.',
         },
       ],
     }),
