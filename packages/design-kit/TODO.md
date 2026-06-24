@@ -57,20 +57,20 @@ Portal-heavy components that are used in advanced flows or composed screens.
 - [ ] [@angular/material/paginator](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=52834-2800)
 - [ ] @angular/material/sort
 - [ ] [@angular/material/slide-toggle](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=55049-2438)
+- [ ] [@angular/material/tooltip](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=57643-3531)
+- [ ] [Dropdown button](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54443-118)
+- [ ] [Menu](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=56513-2127)
+- [ ] @angular/material/sidenav
 
 ### Phase 3 — Nice to Haves
 
 - [ ] @angular/material/toolbar
-- [ ] @angular/material/sidenav
 - [ ] [@angular/material/progress-bar](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53529-69)
 - [ ] [@angular/material/stepper](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54760-422)
-- [ ] [@angular/material/tooltip](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=57643-3531)
 
 ### Phase 4 - Additional components
 
 These should be included in the design-system roadmap in addition to the Material-based migration phases.
 
 - [ ] [Bottom sheet](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=56126-7238)
-- [ ] [Dropdown button](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54443-118)
 - [ ] [Drag and drop upload field](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54114-574)
-- [ ] [Menu](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=56513-2127)
