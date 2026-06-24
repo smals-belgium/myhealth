@@ -3,6 +3,7 @@ import * as path from 'path';
 
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
@@ -11,6 +12,18 @@ export default defineConfig(() => ({
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(import.meta.dirname, 'tsconfig.lib.json'),
+    }),
+    // Copy static assets (e.g. font files) into the published dist so consumers
+    // of the package can access them under `@myhealth/design-kit/assets/*`.
+    viteStaticCopy({
+      targets: [
+        {
+          src: path
+            .join(import.meta.dirname, 'src/assets/fonts/*')
+            .replace(/\\/g, '/'),
+          dest: 'assets/fonts',
+        },
+      ],
     }),
   ],
   // Uncomment this if you are using workers.
