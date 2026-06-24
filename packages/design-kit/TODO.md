@@ -37,7 +37,7 @@ Core primitives required in both shared MAGS contexts and Portal feature flows.
 - [x] [@angular/material/radio](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53086-1299)
 - [x] [@angular/material/dialog](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53172-220)
 - [x] [@angular/material/progress-spinner](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54114-1172)
-- [ ] [@angular/material/snack-bar](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54932-380)
+- [x] [@angular/material/snack-bar](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54932-380)
 - [x] [@angular/material/card](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53126-1280)
 - [x] [@angular/material/divider](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=52837-541)
 - [x] [Skeleton](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54711-816)

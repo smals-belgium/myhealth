@@ -1,0 +1,78 @@
+:host {
+  --mh-snackbar__spacing: var(--mh-space-m);
+  --mh-snackbar__background: var(--mh-color-neutral-fill-louder);
+  --mh-snackbar__color: var(--mh-color-neutral-type-quieter);
+  --mh-snackbar__width: 360px;
+  --mh-snackbar__inset: var(--mh-space-m);
+
+  /* The snackbar is a fixed overlay, so the host itself takes no layout space. */
+  display: contents;
+}
+
+[part='snackbar'] {
+  position: fixed;
+  inset-block-end: var(--mh-snackbar__inset);
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(var(--mh-snackbar__spacing) / 2);
+
+  box-sizing: border-box;
+  /* Default 360px wide including its side margins; shrinks to the viewport (minus margins) on smaller screens. */
+  width: calc(
+    min(var(--mh-snackbar__width), 100vw) - 2 * var(--mh-snackbar__inset)
+  );
+  padding: calc(var(--mh-snackbar__spacing) / 2) var(--mh-snackbar__spacing);
+
+  border-radius: var(--mh-border-radius);
+  background-color: var(--mh-snackbar__background);
+  box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
+  color: var(--mh-snackbar__color);
+}
+
+:host([open]) [part='snackbar'] {
+  display: flex;
+}
+
+[part='message'] {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+[part='close'] {
+  flex: 0 0 auto;
+  margin-inline-start: auto;
+
+  /* Render the icon button as a transparent, white "X" on the dark surface. */
+  --mh-icon-button__color-type: var(--mh-snackbar__color);
+  --mh-icon-button__color-fill: transparent;
+  --mh-icon-button__color-type__hover: var(--mh-snackbar__color);
+  --mh-icon-button__color-fill__hover: color-mix(
+    in srgb,
+    var(--mh-snackbar__color) 20%,
+    transparent
+  );
+  --mh-icon-button__color-type__active: var(--mh-snackbar__color);
+  --mh-icon-button__color-fill__active: color-mix(
+    in srgb,
+    var(--mh-snackbar__color) 30%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :host([open]) [part='snackbar'] {
+    animation: snackbar-show 0.15s ease-out;
+  }
+}
+
+@keyframes snackbar-show {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 1rem);
+  }
+}

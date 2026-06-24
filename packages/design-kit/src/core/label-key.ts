@@ -1,1 +1,1 @@
-export type LabelKey = 'loading';
+export type LabelKey = 'loading' | 'close';

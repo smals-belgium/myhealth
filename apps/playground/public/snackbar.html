@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - snackbar</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/styles.css"
+    />
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+  </head>
+
+  <body>
+    <h2>Snackbar</h2>
+
+    <!-- Basic snackbar -->
+    <h3>Basic</h3>
+    <mh-button id="openBasic">Show snackbar</mh-button>
+    <span
+      id="basicResult"
+      aria-live="polite"
+    ></span>
+
+    <mh-snackbar id="basicSnackbar"></mh-snackbar>
+
+    <br style="margin: 1rem" />
+
+    <!-- Assertive snackbar -->
+    <h3>Assertive announcement</h3>
+    <mh-button id="openAssertive">Show snackbar</mh-button>
+
+    <mh-snackbar id="assertiveSnackbar"></mh-snackbar>
+
+    <script
+      type="module"
+      src="/src/snackbar.ts"
+    ></script>
+  </body>
+</html>
