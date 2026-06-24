@@ -192,7 +192,6 @@ export class TextInput extends LitElement {
             autocapitalize=${this.autocapitalize}
             autocomplete=${ifDefined(this.autocomplete)}
             spellcheck=${this.spellcheck}
-            ?autocorrect=${this.autocorrect}
             ?autofocus=${this.autofocus}
             enterkeyhint=${ifDefined(this.enterkeyhint)}
             inputmode=${ifDefined(this.inputmode)}

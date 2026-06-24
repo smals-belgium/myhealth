@@ -11,7 +11,7 @@ import styles from './checkbox.css?inline';
  * @status stable
  * @since 1.0
  *
- * @slot - The checklbox' label.
+ * @slot - The checkbox' label.
  *
  * @event blur - Emitted when the control loses focus.
  * @event focus - Emitted when the control gains focus.
@@ -76,6 +76,7 @@ export class Checkbox extends LitElement {
   #onChange() {
     if (this.el) this.checked = this.el.checked;
     this.internals.setFormValue(this.checked ? (this.value ?? null) : null);
+    this.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
   override render() {

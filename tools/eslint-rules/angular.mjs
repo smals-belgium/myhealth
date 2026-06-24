@@ -1,16 +1,11 @@
-const jsRules = {
-  // allow capitals for annotations
-  'new-cap': 'off',
-};
-
-const tsRules = {};
-
 export const angularConfig = [
   {
     files: ['**/*.ts'],
     rules: {
-      ...jsRules,
-      ...tsRules,
+      // allow capitals for annotations
+      'new-cap': 'off',
+      // really stupid presentation components
+      '@typescript-eslint/no-extraneous-class': 'off',
     },
   },
 ];

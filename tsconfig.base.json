@@ -17,9 +17,15 @@
     "target": "es2022",
     "customConditions": ["@myhealth/source"],
     "paths": {
-      "@myhealth/design-kit": ["./packages/design-kit/src/index.ts"],
+      "@myhealth/design-kit": ["./packages/design-kit/dist"],
       "@myhealth/vitals-ng": ["./packages/vitals-ng/src/index.ts"],
-      "@myhealth/vitals-ng/button": ["./packages/vitals-ng/button/src/index.ts"]
+      "@myhealth/vitals-ng/button": [
+        "./packages/vitals-ng/button/src/index.ts"
+      ],
+      "@myhealth/vitals-ng/checkbox": [
+        "./packages/vitals-ng/checkbox/src/index.ts"
+      ],
+      "@myhealth/vitals-ng/radio": ["./packages/vitals-ng/radio/src/index.ts"]
     }
   }
 }

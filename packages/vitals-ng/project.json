@@ -5,6 +5,7 @@
   "prefix": "lib",
   "projectType": "library",
   "tags": ["type:dk"],
+  "implicitDependencies": ["@myhealth/design-kit"],
   "release": {
     "version": {
       "manifestRootsToUpdate": ["dist/{projectRoot}"],
@@ -15,6 +16,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
+      "dependsOn": ["^bundle"],
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "packages/vitals-ng/ng-package.json",
@@ -35,6 +37,9 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "command": "echo Vitest disabled for Angular 19 version !"
     }
   }
 }

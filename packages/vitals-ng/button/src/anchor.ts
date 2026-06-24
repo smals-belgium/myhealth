@@ -10,24 +10,28 @@ import type {
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: 'mh-button',
+  selector: 'mh-a',
   standalone: true,
   host: {
+    '[attr.href]': 'href()',
     '[attr.title]': 'title()',
-    '[attr.type]': 'type()',
+    '[attr.target]': 'target()',
+    '[attr.rel]': 'rel()',
+    '[attr.download]': 'download()',
     '[attr.variant]': 'variant()',
     '[attr.appearance]': 'appearance()',
     '[attr.size]': 'size()',
-    '[attr.loading]': 'loading() ? "" : null',
     '[attr.disabled]': 'disabled() ? "" : null',
   },
 })
-export class Button {
+export class Anchor {
+  readonly href = input.required<string>();
   readonly title = input('');
-  readonly type = input<HTMLButtonElement['type']>('button');
+  readonly target = input<HTMLAnchorElement['target']>('_self');
+  readonly rel = input<string>();
+  readonly download = input<string>();
   readonly variant = input<ButtonVariant>('brand');
   readonly appearance = input<ButtonAppearance>('filled');
   readonly size = input<ButtonSize>('m');
-  readonly loading = input(false);
   readonly disabled = input(false);
 }
