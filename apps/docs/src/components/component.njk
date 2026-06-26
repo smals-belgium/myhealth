@@ -61,6 +61,11 @@ permalink: "components/{{ component.slug }}/index.html"
               <mh-button slot="actions" dialog-close="confirm">Confirm</mh-button>
             </mh-dialog>
             <mh-button data-dialog-open="{{ previewId }}">Open dialog</mh-button>
+          {% elseif element.tag === 'mh-alert' %}
+            <mh-alert id="{{ previewId }}" open>
+              <span slot="title">Alert title</span>
+              <span slot="description">This is an alert preview in the docs canvas.</span>
+            </mh-alert>
           {% else %}
             <{{ element.tag }} id="{{ previewId }}">{{ element.tag | replace('mh-', '') }}</{{ element.tag }}>
           {% endif %}

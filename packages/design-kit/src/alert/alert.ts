@@ -19,6 +19,14 @@ export type AlertVariant =
   | 'notification';
 export type AlertAppearance = 'color' | 'white';
 export type AlertMode = 'normal' | 'expansion';
+export type AlertPosition =
+  | 'topLeft'
+  | 'topRight'
+  | 'topCenter'
+  | 'bottomLeft'
+  | 'bottomRight'
+  | 'bottomCenter'
+  | 'inline';
 
 /** Maps each variant to the icon that is displayed at the start of the alert. */
 const VARIANT_ICONS: Record<AlertVariant, string> = {
@@ -59,6 +67,7 @@ const VARIANT_ICONS: Record<AlertVariant, string> = {
  * @csspart actions - The container that wraps the `actions` slot.
  *
  * @cssproperty [--mh-alert__spacing=var(--mh-space-m)] - The amount of space around and between sections of the alert.
+ * @cssproperty [--mh-alert__offset=var(--mh-space-m)] - The distance from the edge for floating (non-`inline`) positions.
  */
 @customElement('mh-alert')
 export class Alert extends LitElement {
@@ -80,6 +89,12 @@ export class Alert extends LitElement {
 
   /** The `aria-live` politeness used to announce the alert when it opens. */
   @property({ reflect: true }) politeness: LiveAnnouncerPoliteness = 'polite';
+
+  /**
+   * Where to place the alert. The corner and center values float it over the page, or over the nearest positioned
+   * ancestor when one exists; `inline` renders it in normal document flow.
+   */
+  @property({ reflect: true }) position: AlertPosition = 'inline';
 
   #result?: string | boolean;
 
@@ -151,6 +166,7 @@ export class Alert extends LitElement {
 
       <div
         part="region"
+        aria-labelledby="title"
         id="region"
         ?inert=${collapsed}
         @click=${this.#onClick}

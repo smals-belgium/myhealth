@@ -92,6 +92,23 @@ describe('alert', () => {
     });
   });
 
+  describe('position', () => {
+    it('defaults to the "inline" position', async () => {
+      const el = await fixture<Alert>(html`<mh-alert></mh-alert>`);
+
+      expect(el.position).toBe('inline');
+      expect(el.getAttribute('position')).toBe('inline');
+    });
+
+    it('reflects a floating position to an attribute', async () => {
+      const el = await fixture<Alert>(
+        html`<mh-alert position="bottomRight"></mh-alert>`,
+      );
+
+      expect(el.getAttribute('position')).toBe('bottomRight');
+    });
+  });
+
   describe('open / close', () => {
     it('is closed by default', async () => {
       const el = await fixture<Alert>(html`<mh-alert></mh-alert>`);

@@ -2,6 +2,7 @@
   --mh-alert__spacing: var(--mh-space-s);
   --mh-alert__box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
   --mh-alert__icon-size: 1.75rem;
+  --mh-alert__offset: var(--mh-space-m);
 
   /* Hidden until opened. */
   display: none;
@@ -17,6 +18,49 @@
 
   /* Clip the header's hover/active tint to the rounded corners. */
   overflow: hidden;
+}
+
+/*
+ * Floating positions place the alert against an edge of its nearest positioned ancestor, or the page when there is
+ * none. `inline` keeps the alert in normal document flow.
+ */
+:host(:not([position='inline'])) {
+  position: absolute;
+  width: stretch;
+  max-width: min(90vw, 32rem);
+  z-index: 1000;
+}
+
+:host([position='topLeft']) {
+  inset-block-start: var(--mh-alert__offset);
+  inset-inline-start: var(--mh-alert__offset);
+}
+
+:host([position='topRight']) {
+  inset-block-start: var(--mh-alert__offset);
+  inset-inline-end: var(--mh-alert__offset);
+}
+
+:host([position='topCenter']) {
+  inset-block-start: var(--mh-alert__offset);
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+}
+
+:host([position='bottomLeft']) {
+  inset-block-end: var(--mh-alert__offset);
+  inset-inline-start: var(--mh-alert__offset);
+}
+
+:host([position='bottomRight']) {
+  inset-block-end: var(--mh-alert__offset);
+  inset-inline-end: var(--mh-alert__offset);
+}
+
+:host([position='bottomCenter']) {
+  inset-block-end: var(--mh-alert__offset);
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
 }
 
 /* The top row: icon, title, and trailing control, vertically centered so they line up. */
