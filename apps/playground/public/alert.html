@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - alert</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/styles.css"
+    />
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+  </head>
+
+  <body>
+    <h2>Alert</h2>
+
+    <!-- Color appearance -->
+    <h3>Color appearance</h3>
+    <div style="display: grid; gap: 1rem; max-width: 40rem">
+      <mh-alert
+        id="color-info"
+        variant="info"
+        open
+      >
+        <span slot="title">Information</span>
+        <span slot="description">
+          This is an informational message with some extra detail.
+        </span>
+        <mh-button
+          slot="actions"
+          alert-close="acknowledged"
+          >Got it</mh-button
+        >
+      </mh-alert>
+
+      <mh-alert
+        id="color-success"
+        variant="success"
+        open
+      >
+        <span slot="title">Saved successfully</span>
+        <span slot="description">Your changes have been stored.</span>
+      </mh-alert>
+
+      <mh-alert
+        id="color-warning"
+        variant="warning"
+        open
+      >
+        <span slot="title">Check your input</span>
+        <span slot="description">Some fields need your attention.</span>
+      </mh-alert>
+
+      <mh-alert
+        id="color-error"
+        variant="error"
+        politeness="assertive"
+        open
+      >
+        <span slot="title">Something went wrong</span>
+        <span slot="description">We could not complete your request.</span>
+      </mh-alert>
+
+      <mh-alert
+        id="color-notification"
+        variant="notification"
+        open
+      >
+        <span slot="title">New notification</span>
+        <span slot="description">You have a new message in your inbox.</span>
+      </mh-alert>
+    </div>
+
+    <!-- White appearance -->
+    <h3>White appearance</h3>
+    <div style="display: grid; gap: 1rem; max-width: 40rem">
+      <mh-alert
+        id="white-info"
+        variant="info"
+        appearance="white"
+        open
+      >
+        <span slot="title">Information</span>
+        <span slot="description">White surface with a colored icon.</span>
+      </mh-alert>
+
+      <mh-alert
+        id="white-success"
+        variant="success"
+        appearance="white"
+        open
+      >
+        <span slot="title">Saved successfully</span>
+        <span slot="description">White surface with a colored icon.</span>
+      </mh-alert>
+
+      <mh-alert
+        id="white-warning"
+        variant="warning"
+        appearance="white"
+        open
+      >
+        <span slot="title">Check your input</span>
+        <span slot="description">White surface with a colored icon.</span>
+      </mh-alert>
+
+      <mh-alert
+        id="white-error"
+        variant="error"
+        appearance="white"
+        open
+      >
+        <span slot="title">Something went wrong</span>
+        <span slot="description">White surface with a colored icon.</span>
+      </mh-alert>
+
+      <mh-alert
+        id="white-notification"
+        variant="notification"
+        appearance="white"
+        open
+      >
+        <span slot="title">New notification</span>
+        <span slot="description">White surface with a colored icon.</span>
+      </mh-alert>
+    </div>
+
+    <!-- Expansion mode -->
+    <h3>Expansion mode</h3>
+    <div style="display: grid; gap: 1rem; max-width: 40rem">
+      <mh-alert
+        id="expansion-info"
+        variant="info"
+        mode="expansion"
+        open
+      >
+        <span slot="title">Information</span>
+        <span slot="description">
+          Click the title or the chevron to expand and collapse this alert.
+        </span>
+        <mh-button
+          slot="actions"
+          alert-close="done"
+          >Mark as read</mh-button
+        >
+      </mh-alert>
+
+      <mh-alert
+        id="expansion-success"
+        variant="success"
+        mode="expansion"
+        open
+      >
+        <span slot="title">Saved successfully</span>
+        <span slot="description">
+          Click the title or the chevron to expand and collapse this alert.
+        </span>
+      </mh-alert>
+
+      <mh-alert
+        id="expansion-warning"
+        variant="warning"
+        mode="expansion"
+        open
+      >
+        <span slot="title">Check your input</span>
+        <span slot="description">
+          Click the title or the chevron to expand and collapse this alert.
+        </span>
+      </mh-alert>
+
+      <mh-alert
+        id="expansion-error"
+        variant="error"
+        mode="expansion"
+        open
+      >
+        <span slot="title">Something went wrong</span>
+        <span slot="description">
+          Click the title or the chevron to expand and collapse this alert.
+        </span>
+      </mh-alert>
+
+      <mh-alert
+        id="expansion-notification"
+        variant="notification"
+        mode="expansion"
+        open
+      >
+        <span slot="title">New notification</span>
+        <span slot="description">
+          Click the title or the chevron to expand and collapse this alert.
+        </span>
+      </mh-alert>
+    </div>
+
+    <!-- Open on demand -->
+    <h3>Open on demand</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem">
+      <mh-button id="open-demo-color">Open color alert</mh-button>
+      <mh-button id="open-demo-white">Open white alert</mh-button>
+      <mh-button id="open-demo-expansion">Open expansion alert</mh-button>
+    </div>
+
+    <div style="display: grid; gap: 1rem; max-width: 40rem; margin-top: 1rem">
+      <mh-alert
+        id="demo-color"
+        variant="success"
+      >
+        <span slot="title">Opened on demand</span>
+        <span slot="description">This color alert was opened by a button.</span>
+        <mh-button
+          slot="actions"
+          alert-close="acknowledged"
+          >Got it</mh-button
+        >
+      </mh-alert>
+
+      <mh-alert
+        id="demo-white"
+        variant="warning"
+        appearance="white"
+      >
+        <span slot="title">Opened on demand</span>
+        <span slot="description">This white alert was opened by a button.</span>
+      </mh-alert>
+
+      <mh-alert
+        id="demo-expansion"
+        variant="info"
+        mode="expansion"
+      >
+        <span slot="title">Opened on demand</span>
+        <span slot="description">
+          This expansion alert was opened by a button. Click the title to
+          collapse it.
+        </span>
+      </mh-alert>
+    </div>
+
+    <script
+      type="module"
+      src="/src/alert.ts"
+    ></script>
+  </body>
+</html>

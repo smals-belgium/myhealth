@@ -1,0 +1,47 @@
+/*
+ * Variant colors and appearances. Each variant maps onto an existing color family; the appearance then decides how
+ * those colors are applied to the surface, text, and icon.
+ */
+:host {
+  /* The variant color tokens, resolved per `variant` below. */
+  --mh-alert__variant-fill: var(--mh-color-brand-fill-quieter);
+  --mh-alert__variant-type: var(--mh-color-brand-type-louder);
+
+  /* The applied colors, switched by `appearance`. Defaults to the `color` appearance. */
+  --mh-alert__background: var(--mh-alert__variant-fill);
+  --mh-alert__color: var(--mh-alert__variant-type);
+  --mh-alert__icon-color: var(--mh-alert__variant-type);
+}
+
+/* Map each variant onto an existing color family. */
+:host([variant='info']) {
+  --mh-alert__variant-fill: var(--mh-color-brand-fill-quieter);
+  --mh-alert__variant-type: var(--mh-color-brand-type-louder);
+}
+
+:host([variant='success']) {
+  --mh-alert__variant-fill: var(--mh-color-success-fill-quieter);
+  --mh-alert__variant-type: var(--mh-color-success-type-loud);
+}
+
+:host([variant='warning']) {
+  --mh-alert__variant-fill: var(--mh-color-warning-fill-quieter);
+  --mh-alert__variant-type: var(--mh-color-warning-type);
+}
+
+:host([variant='error']) {
+  --mh-alert__variant-fill: var(--mh-color-danger-fill-quieter);
+  --mh-alert__variant-type: var(--mh-color-danger-type);
+}
+
+:host([variant='notification']) {
+  --mh-alert__variant-fill: var(--mh-color-neutral-fill-quieter);
+  --mh-alert__variant-type: var(--mh-color-neutral-type-louder);
+  --mh-alert__icon-color: var(--mh-color-danger-type);
+}
+
+/* White appearance: a white surface with black text; only the icon keeps the variant color. */
+:host([appearance='white']) {
+  --mh-alert__background: var(--mh-color-neutral-type-quieter);
+  --mh-alert__color: var(--mh-color-neutral-type-louder);
+}

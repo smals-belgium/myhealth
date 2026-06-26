@@ -1,0 +1,158 @@
+:host {
+  --mh-alert__spacing: var(--mh-space-s);
+  --mh-alert__box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
+  --mh-alert__icon-size: 1.75rem;
+
+  /* Hidden until opened. */
+  display: none;
+}
+
+:host([open]) {
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--mh-alert__box-shadow);
+  border-radius: var(--mh-border-radius);
+  background-color: var(--mh-alert__background);
+  color: var(--mh-alert__color);
+
+  /* Clip the header's hover/active tint to the rounded corners. */
+  overflow: hidden;
+}
+
+/* The top row: icon, title, and trailing control, vertically centered so they line up. */
+[part='header'] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--mh-alert__spacing);
+  padding: var(--mh-alert__spacing);
+}
+
+[part='icon'] {
+  flex: none;
+  color: var(--mh-alert__icon-color);
+}
+
+[part='title'] {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 600;
+}
+
+/* In expansion mode the whole header is the toggle, so it gets button styling and the clickable affordance. */
+button[part='header'] {
+  box-sizing: border-box;
+  inline-size: 100%;
+  margin: 0;
+  border: none;
+
+  /* Keep the bottom corners rounded so the tint matches the alert even while expanded. */
+  border-end-start-radius: var(--mh-border-radius);
+  border-end-end-radius: var(--mh-border-radius);
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  text-align: start;
+  cursor: pointer;
+}
+
+/* Match the close button's hover and active tint so the toggle reads as clickable. */
+button[part='header']:hover {
+  background-color: color-mix(in srgb, var(--mh-alert__color) 12%, transparent);
+}
+
+button[part='header']:active {
+  background-color: color-mix(in srgb, var(--mh-alert__color) 20%, transparent);
+}
+
+button[part='header']:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--mh-border-width-m) var(--mh-alert__color);
+}
+
+[part='close'] {
+  flex: none;
+}
+
+[part='toggle'] {
+  flex: none;
+  color: var(--mh-alert__color);
+  cursor: pointer;
+}
+
+/* The collapsible region, animated via the grid-rows technique. */
+[part='region'] {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+}
+
+/* The inner wrapper collapses to zero height; its block padding animates away with it. Indented to line up under the title. */
+[part='content'] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-alert__spacing);
+  min-height: 0;
+  padding-inline: calc(
+      var(--mh-alert__icon-size) + var(--mh-alert__spacing) * 2
+    )
+    var(--mh-alert__spacing);
+  padding-block-end: var(--mh-alert__spacing);
+  overflow: hidden;
+}
+
+[part='description'] {
+  display: block;
+}
+
+[part='actions'] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: calc(var(--mh-alert__spacing) / 2);
+}
+
+/* Tint the close button to match the alert's text color. */
+[part='close'] {
+  --mh-icon-button__color-type: var(--mh-alert__color);
+  --mh-icon-button__color-type__hover: var(--mh-alert__color);
+  --mh-icon-button__color-type__active: var(--mh-alert__color);
+  --mh-icon-button__color-fill: transparent;
+  --mh-icon-button__color-fill__hover: color-mix(
+    in srgb,
+    var(--mh-alert__color) 12%,
+    transparent
+  );
+  --mh-icon-button__color-fill__active: color-mix(
+    in srgb,
+    var(--mh-alert__color) 20%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [part='region'] {
+    transition: grid-template-rows var(--mh-transition-normal)
+      var(--mh-transition-easing);
+  }
+
+  button[part='header'] {
+    transition: background-color var(--mh-transition-normal)
+      var(--mh-transition-easing);
+  }
+
+  [part='toggle'] {
+    transition: transform var(--mh-transition-normal)
+      var(--mh-transition-easing);
+  }
+}
+
+/* Collapse the region in expansion mode while it is not expanded. */
+:host([mode='expansion']:not([expanded])) [part='region'] {
+  grid-template-rows: minmax(0, 0fr);
+}
+
+:host([expanded]) [part='toggle'] {
+  transform: rotate(180deg);
+}
