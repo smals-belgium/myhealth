@@ -1,0 +1,69 @@
+:host {
+  /** The chip's height. Interactive chips keep a minimum 24px target for accessibility. */
+  --mh-chip__height: 2rem;
+  --mh-chip__color-type: var(--mh-color-neutral-type-louder);
+
+  display: inline-block;
+}
+
+[part='base'] {
+  display: inline-flex;
+  gap: 10px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--mh-chip__height);
+  margin: 0;
+  padding: 4px 10px;
+
+  font-family: inherit;
+  font-size: var(--mh-space-m);
+  font-weight: 500;
+  line-height: 1.25rem;
+  white-space: nowrap;
+  vertical-align: middle;
+
+  color: var(--mh-chip__color-type);
+  background-color: transparent;
+
+  border-radius: var(--mh-border-radius);
+  border-style: solid;
+  border-width: var(--mh-border-width-s);
+  border-color: transparent;
+
+  transition-property: background, border, box-shadow, color, opacity;
+  transition-duration: var(--mh-transition-normal);
+  transition-timing-function: var(--mh-transition-easing);
+}
+
+/* Leading icons and the selected checkmark inherit the chip's (black) text color. */
+[part='start']::slotted(*) {
+  display: inline-flex;
+}
+
+[part='checkmark'] {
+  flex: none;
+}
+
+/* Filter chips are the only interactive root element. */
+button[part='base'] {
+  appearance: none;
+  cursor: pointer;
+}
+
+button[part='base']:focus-visible {
+  outline: var(--mh-border-width-m) solid var(--mh-color-brand-border);
+  outline-offset: 2px;
+}
+
+button[part='base']:disabled {
+  cursor: not-allowed;
+}
+
+:host([disabled]) [part='base'] {
+  opacity: 0.5;
+}
+
+:host([disabled]) button[part='base'] {
+  cursor: not-allowed;
+}

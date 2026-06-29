@@ -1,0 +1,30 @@
+/* Input chips: always brand, the whole chip is clickable to request removal. */
+:host([kind='input']) [part='base'] {
+  color: var(--mh-color-neutral-type-louder);
+  background-color: var(--mh-color-brand-fill-quiet);
+  border-color: transparent;
+  padding-right: var(--mh-space-xs);
+  cursor: pointer;
+}
+
+:host([kind='input']) [part='base']:hover:not(:disabled) {
+  background-color: color-mix(
+    in srgb,
+    var(--mh-color-brand-fill-quiet),
+    black 8%
+  );
+}
+
+:host([kind='input']) [part='base']:disabled {
+  cursor: not-allowed;
+}
+
+/* The leading icon and the trailing remove icon both use the brand color. */
+:host([kind='input']) [part='start'],
+:host([kind='input']) [part='remove'] {
+  color: var(--mh-color-brand-type-loud);
+}
+
+:host([kind='input']) [part='remove'] {
+  flex: none;
+}

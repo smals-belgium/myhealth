@@ -1,5 +1,6 @@
 @import './color/brand.css';
 @import './color/danger.css';
-@import './color/warning.css';
-@import './color/success.css';
 @import './color/neutral.css';
+@import './color/success.css';
+@import './color/tertiary.css';
+@import './color/warning.css';

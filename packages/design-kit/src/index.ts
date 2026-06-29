@@ -1,6 +1,7 @@
 export * from './button';
 export * from './card';
 export * from './checkbox';
+export * from './chip';
 export * from './dialog';
 export * from './icon-button';
 export * from './divider';

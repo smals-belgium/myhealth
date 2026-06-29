@@ -1,0 +1,44 @@
+/* Filter chips: toggle between an unselected (white) and a selected (brand) state. */
+:host([kind='filter']) [part='base'] {
+  color: var(--mh-color-neutral-type-louder);
+  background-color: #ffffff; /* not an existing fill color */
+  border-color: var(--mh-color-neutral-border);
+}
+
+:host([kind='filter']) [part='base']:hover:not(:disabled) {
+  background-color: var(--mh-color-neutral-fill-quieter);
+}
+
+:host([kind='filter'][selected]) [part='base'] {
+  background-color: var(--mh-color-brand-fill-quiet);
+  border-color: var(--mh-color-brand-fill-quiet);
+}
+
+:host([kind='filter'][selected]) [part='base']:hover:not(:disabled) {
+  background-color: color-mix(
+    in srgb,
+    var(--mh-color-brand-fill-quiet),
+    black 8%
+  );
+}
+
+/* The leading checkmark shown when a filter chip is selected. It is always present
+   so it can transition in and out as the chip is selected/unselected. */
+:host([kind='filter']) [part='checkmark'] {
+  color: var(--mh-color-brand-type-loud);
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  transform: scale(0.6);
+  margin-inline-end: -10px; /* cancel the base gap while collapsed */
+  transition-property: max-width, opacity, transform, margin-inline-end;
+  transition-duration: var(--mh-transition-normal);
+  transition-timing-function: var(--mh-transition-easing);
+}
+
+:host([kind='filter'][selected]) [part='checkmark'] {
+  max-width: 2rem;
+  opacity: 1;
+  transform: scale(1);
+  margin-inline-end: 0;
+}

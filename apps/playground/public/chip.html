@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - chip</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/styles.css"
+    />
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+  </head>
+
+  <body>
+    <article>
+      <h2>Chip</h2>
+
+      <h3>Status chips</h3>
+      <mh-chip variant="brand">Brand</mh-chip>
+      <mh-chip variant="success">Success</mh-chip>
+      <mh-chip variant="neutral">Neutral</mh-chip>
+      <mh-chip variant="warning">Warning</mh-chip>
+      <mh-chip variant="danger">Danger</mh-chip>
+      <mh-chip variant="tertiary">Tertiary</mh-chip>
+
+      <h3>Status chips with icon</h3>
+      <mh-chip variant="success">
+        <mh-icon
+          name="check_circle"
+          slot="start"
+        ></mh-icon>
+        Completed
+      </mh-chip>
+      <mh-chip variant="warning">
+        <mh-icon
+          name="warning"
+          slot="start"
+        ></mh-icon>
+        Pending
+      </mh-chip>
+      <mh-chip variant="danger">
+        <mh-icon
+          name="emergency_home"
+          slot="start"
+        ></mh-icon>
+        Urgent
+      </mh-chip>
+
+      <h3>Filter chips</h3>
+      <mh-chip kind="filter">Unselected</mh-chip>
+      <mh-chip
+        kind="filter"
+        selected
+        >Selected</mh-chip
+      >
+      <mh-chip
+        kind="filter"
+        disabled
+        >Disabled</mh-chip
+      >
+      <mh-chip
+        kind="filter"
+        selected
+        disabled
+        >Selected disabled</mh-chip
+      >
+
+      <h3>Input chips</h3>
+      <mh-chip
+        kind="input"
+        value="amoxicillin"
+        >Amoxicillin</mh-chip
+      >
+      <mh-chip kind="input">
+        <mh-icon
+          name="person"
+          slot="start"
+        ></mh-icon>
+        Dr. Smith
+      </mh-chip>
+      <mh-chip
+        kind="input"
+        disabled
+        >Disabled</mh-chip
+      >
+
+      <script type="module">
+        document.addEventListener('mh-chip-selection-change', event => {
+          console.log('selection-change', event.target.value, event.selected);
+        });
+        document.addEventListener('mh-chip-remove', event => {
+          console.log('remove', event.value);
+          event.target.remove();
+        });
+      </script>
+    </article>
+  </body>
+</html>

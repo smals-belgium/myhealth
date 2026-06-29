@@ -1,0 +1,15 @@
+@layer mh-color {
+  :where(:root) {
+    --mh-color-tertiary-fill-louder: #665700;
+    --mh-color-tertiary-fill-loud: #998200;
+    --mh-color-tertiary-fill: #ccad00;
+    --mh-color-tertiary-fill-quiet: #ffe761;
+    --mh-color-tertiary-fill-quieter: #fffdf0;
+
+    --mh-color-tertiary-border-louder: #191600;
+    --mh-color-tertiary-border-loud: #665700;
+    --mh-color-tertiary-border: #ccad00;
+    --mh-color-tertiary-border-quiet: #ffe761;
+    --mh-color-tertiary-border-quieter: #fffdf0;
+  }
+}
