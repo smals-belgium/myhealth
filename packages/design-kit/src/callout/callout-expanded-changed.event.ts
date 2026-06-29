@@ -1,8 +1,8 @@
-export class AlertExpandedChangedEvent extends Event {
+export class CalloutExpandedChangedEvent extends Event {
   readonly expanded: boolean;
 
   constructor(expanded: boolean) {
-    super('mh-alert-expanded-changed', {
+    super('mh-callout-expanded-changed', {
       bubbles: true,
       cancelable: false,
       composed: true,
@@ -14,6 +14,6 @@ export class AlertExpandedChangedEvent extends Event {
 
 declare global {
   interface GlobalEventHandlersEventMap {
-    'mh-alert-expanded-changed': AlertExpandedChangedEvent;
+    'mh-callout-expanded-changed': CalloutExpandedChangedEvent;
   }
 }

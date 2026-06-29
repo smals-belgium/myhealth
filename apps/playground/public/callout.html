@@ -2,7 +2,7 @@
 <html lang="nl">
   <head>
     <meta charset="utf-8" />
-    <title>MyHealth Playground - alert</title>
+    <title>MyHealth Playground - callout</title>
     <base href="/" />
 
     <meta
@@ -26,12 +26,12 @@
   </head>
 
   <body>
-    <h2>Alert</h2>
+    <h2>Callout</h2>
 
     <!-- Color appearance -->
     <h3>Color appearance</h3>
     <div style="display: grid; gap: 1rem; max-width: 40rem">
-      <mh-alert
+      <mh-callout
         id="color-info"
         variant="info"
         open
@@ -42,53 +42,52 @@
         </span>
         <mh-button
           slot="actions"
-          alert-close="acknowledged"
+          callout-close="acknowledged"
           >Got it</mh-button
         >
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="color-success"
         variant="success"
         open
       >
         <span slot="title">Saved successfully</span>
         <span slot="description">Your changes have been stored.</span>
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="color-warning"
         variant="warning"
         open
       >
         <span slot="title">Check your input</span>
         <span slot="description">Some fields need your attention.</span>
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="color-error"
         variant="error"
-        politeness="assertive"
         open
       >
         <span slot="title">Something went wrong</span>
         <span slot="description">We could not complete your request.</span>
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="color-notification"
         variant="notification"
         open
       >
         <span slot="title">New notification</span>
         <span slot="description">You have a new message in your inbox.</span>
-      </mh-alert>
+      </mh-callout>
     </div>
 
     <!-- White appearance -->
     <h3>White appearance</h3>
     <div style="display: grid; gap: 1rem; max-width: 40rem">
-      <mh-alert
+      <mh-callout
         id="white-info"
         variant="info"
         appearance="white"
@@ -96,9 +95,9 @@
       >
         <span slot="title">Information</span>
         <span slot="description">White surface with a colored icon.</span>
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="white-success"
         variant="success"
         appearance="white"
@@ -106,9 +105,9 @@
       >
         <span slot="title">Saved successfully</span>
         <span slot="description">White surface with a colored icon.</span>
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="white-warning"
         variant="warning"
         appearance="white"
@@ -116,9 +115,9 @@
       >
         <span slot="title">Check your input</span>
         <span slot="description">White surface with a colored icon.</span>
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="white-error"
         variant="error"
         appearance="white"
@@ -126,9 +125,9 @@
       >
         <span slot="title">Something went wrong</span>
         <span slot="description">White surface with a colored icon.</span>
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="white-notification"
         variant="notification"
         appearance="white"
@@ -136,13 +135,13 @@
       >
         <span slot="title">New notification</span>
         <span slot="description">White surface with a colored icon.</span>
-      </mh-alert>
+      </mh-callout>
     </div>
 
     <!-- Expansion mode -->
     <h3>Expansion mode</h3>
     <div style="display: grid; gap: 1rem; max-width: 40rem">
-      <mh-alert
+      <mh-callout
         id="expansion-info"
         variant="info"
         mode="expansion"
@@ -150,16 +149,16 @@
       >
         <span slot="title">Information</span>
         <span slot="description">
-          Click the title or the chevron to expand and collapse this alert.
+          Click the title or the chevron to expand and collapse this callout.
         </span>
         <mh-button
           slot="actions"
-          alert-close="done"
+          callout-close="done"
           >Mark as read</mh-button
         >
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="expansion-success"
         variant="success"
         mode="expansion"
@@ -167,11 +166,11 @@
       >
         <span slot="title">Saved successfully</span>
         <span slot="description">
-          Click the title or the chevron to expand and collapse this alert.
+          Click the title or the chevron to expand and collapse this callout.
         </span>
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="expansion-warning"
         variant="warning"
         mode="expansion"
@@ -179,11 +178,11 @@
       >
         <span slot="title">Check your input</span>
         <span slot="description">
-          Click the title or the chevron to expand and collapse this alert.
+          Click the title or the chevron to expand and collapse this callout.
         </span>
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="expansion-error"
         variant="error"
         mode="expansion"
@@ -191,11 +190,11 @@
       >
         <span slot="title">Something went wrong</span>
         <span slot="description">
-          Click the title or the chevron to expand and collapse this alert.
+          Click the title or the chevron to expand and collapse this callout.
         </span>
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="expansion-notification"
         variant="notification"
         mode="expansion"
@@ -203,58 +202,62 @@
       >
         <span slot="title">New notification</span>
         <span slot="description">
-          Click the title or the chevron to expand and collapse this alert.
+          Click the title or the chevron to expand and collapse this callout.
         </span>
-      </mh-alert>
+      </mh-callout>
     </div>
 
     <!-- Open on demand -->
     <h3>Open on demand</h3>
     <div style="display: flex; flex-wrap: wrap; gap: 0.5rem">
-      <mh-button id="open-demo-color">Open color alert</mh-button>
-      <mh-button id="open-demo-white">Open white alert</mh-button>
-      <mh-button id="open-demo-expansion">Open expansion alert</mh-button>
+      <mh-button id="open-demo-color">Open color callout</mh-button>
+      <mh-button id="open-demo-white">Open white callout</mh-button>
+      <mh-button id="open-demo-expansion">Open expansion callout</mh-button>
     </div>
 
     <div style="display: grid; gap: 1rem; max-width: 40rem; margin-top: 1rem">
-      <mh-alert
+      <mh-callout
         id="demo-color"
         variant="success"
       >
         <span slot="title">Opened on demand</span>
-        <span slot="description">This color alert was opened by a button.</span>
+        <span slot="description"
+          >This color callout was opened by a button.</span
+        >
         <mh-button
           slot="actions"
-          alert-close="acknowledged"
+          callout-close="acknowledged"
           >Got it</mh-button
         >
-      </mh-alert>
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="demo-white"
         variant="warning"
         appearance="white"
       >
         <span slot="title">Opened on demand</span>
-        <span slot="description">This white alert was opened by a button.</span>
-      </mh-alert>
+        <span slot="description"
+          >This white callout was opened by a button.</span
+        >
+      </mh-callout>
 
-      <mh-alert
+      <mh-callout
         id="demo-expansion"
         variant="info"
         mode="expansion"
       >
         <span slot="title">Opened on demand</span>
         <span slot="description">
-          This expansion alert was opened by a button. Click the title to
+          This expansion callout was opened by a button. Click the title to
           collapse it.
         </span>
-      </mh-alert>
+      </mh-callout>
     </div>
 
     <script
       type="module"
-      src="/src/alert.ts"
+      src="/src/callout.ts"
     ></script>
   </body>
 </html>

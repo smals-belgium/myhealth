@@ -1,4 +1,4 @@
-export * from './alert';
+export * from './callout';
 export * from './button';
 export * from './card';
 export * from './checkbox';

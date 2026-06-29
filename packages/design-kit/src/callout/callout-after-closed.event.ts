@@ -1,8 +1,8 @@
-export class AlertAfterClosedEvent extends Event {
+export class CalloutAfterClosedEvent extends Event {
   readonly result?: string | boolean;
 
   constructor(result?: string | boolean) {
-    super('mh-alert-after-closed', {
+    super('mh-callout-after-closed', {
       bubbles: true,
       cancelable: false,
       composed: true,
@@ -14,6 +14,6 @@ export class AlertAfterClosedEvent extends Event {
 
 declare global {
   interface GlobalEventHandlersEventMap {
-    'mh-alert-after-closed': AlertAfterClosedEvent;
+    'mh-callout-after-closed': CalloutAfterClosedEvent;
   }
 }
