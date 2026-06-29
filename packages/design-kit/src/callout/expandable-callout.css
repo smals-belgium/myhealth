@@ -1,0 +1,80 @@
+/* The disclosure wraps the whole callout; stack the summary and region. */
+details {
+  display: flex;
+  flex-direction: column;
+}
+
+/* The summary is the toggle, so it gets the clickable affordance and removes the native marker. */
+summary[part='header'] {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+
+  /* Keep the bottom corners rounded so the tint matches the callout even while expanded. */
+  border-end-start-radius: var(--mh-border-radius);
+  border-end-end-radius: var(--mh-border-radius);
+}
+
+summary[part='header']::-webkit-details-marker {
+  display: none;
+}
+
+summary[part='header']:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--mh-callout__color) 12%,
+    transparent
+  );
+}
+
+summary[part='header']:active {
+  background-color: color-mix(
+    in srgb,
+    var(--mh-callout__color) 20%,
+    transparent
+  );
+}
+
+summary[part='header']:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--mh-border-width-m) var(--mh-callout__color);
+}
+
+[part='toggle'] {
+  flex: none;
+  color: var(--mh-callout__color);
+}
+
+:host([expanded]) [part='toggle'] {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Allow block-size to animate to/from auto. */
+  :host {
+    interpolate-size: allow-keywords;
+  }
+
+  summary[part='header'] {
+    transition: background-color var(--mh-transition-normal)
+      var(--mh-transition-easing);
+  }
+
+  [part='toggle'] {
+    transition: transform var(--mh-transition-normal)
+      var(--mh-transition-easing);
+  }
+
+  /* Animate the collapsible content; content-visibility is animated discretely so it stays visible while collapsing. */
+  details::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size var(--mh-transition-normal) var(--mh-transition-easing),
+      content-visibility var(--mh-transition-normal) allow-discrete;
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+  }
+}

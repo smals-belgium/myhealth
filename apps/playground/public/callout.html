@@ -138,13 +138,13 @@
       </mh-callout>
     </div>
 
-    <!-- Expansion mode -->
-    <h3>Expansion mode</h3>
+    <!-- Expandable callout -->
+    <h3>Expandable callout</h3>
     <div style="display: grid; gap: 1rem; max-width: 40rem">
-      <mh-callout
+      <mh-expandable-callout
         id="expansion-info"
         variant="info"
-        mode="expansion"
+        expanded
         open
       >
         <span slot="title">Information</span>
@@ -156,55 +156,51 @@
           callout-close="done"
           >Mark as read</mh-button
         >
-      </mh-callout>
+      </mh-expandable-callout>
 
-      <mh-callout
+      <mh-expandable-callout
         id="expansion-success"
         variant="success"
-        mode="expansion"
         open
       >
         <span slot="title">Saved successfully</span>
         <span slot="description">
           Click the title or the chevron to expand and collapse this callout.
         </span>
-      </mh-callout>
+      </mh-expandable-callout>
 
-      <mh-callout
+      <mh-expandable-callout
         id="expansion-warning"
         variant="warning"
-        mode="expansion"
         open
       >
         <span slot="title">Check your input</span>
         <span slot="description">
           Click the title or the chevron to expand and collapse this callout.
         </span>
-      </mh-callout>
+      </mh-expandable-callout>
 
-      <mh-callout
+      <mh-expandable-callout
         id="expansion-error"
         variant="error"
-        mode="expansion"
         open
       >
         <span slot="title">Something went wrong</span>
         <span slot="description">
           Click the title or the chevron to expand and collapse this callout.
         </span>
-      </mh-callout>
+      </mh-expandable-callout>
 
-      <mh-callout
+      <mh-expandable-callout
         id="expansion-notification"
         variant="notification"
-        mode="expansion"
         open
       >
         <span slot="title">New notification</span>
         <span slot="description">
           Click the title or the chevron to expand and collapse this callout.
         </span>
-      </mh-callout>
+      </mh-expandable-callout>
     </div>
 
     <!-- Open on demand -->
@@ -242,17 +238,16 @@
         >
       </mh-callout>
 
-      <mh-callout
+      <mh-expandable-callout
         id="demo-expansion"
         variant="info"
-        mode="expansion"
       >
         <span slot="title">Opened on demand</span>
         <span slot="description">
-          This expansion callout was opened by a button. Click the title to
+          This expandable callout was opened by a button. Click the title to
           collapse it.
         </span>
-      </mh-callout>
+      </mh-expandable-callout>
     </div>
 
     <script

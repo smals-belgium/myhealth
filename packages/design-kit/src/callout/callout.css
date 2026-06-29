@@ -39,63 +39,11 @@
   font-weight: 600;
 }
 
-/* In expansion mode the whole header is the toggle, so it gets button styling and the clickable affordance. */
-button[part='header'] {
-  box-sizing: border-box;
-  inline-size: 100%;
-  margin: 0;
-  border: none;
-
-  /* Keep the bottom corners rounded so the tint matches the callout even while expanded. */
-  border-end-start-radius: var(--mh-border-radius);
-  border-end-end-radius: var(--mh-border-radius);
-  background: none;
-  color: inherit;
-  font: inherit;
-  font-weight: 600;
-  text-align: start;
-  cursor: pointer;
-}
-
-/* Match the close button's hover and active tint so the toggle reads as clickable. */
-button[part='header']:hover {
-  background-color: color-mix(
-    in srgb,
-    var(--mh-callout__color) 12%,
-    transparent
-  );
-}
-
-button[part='header']:active {
-  background-color: color-mix(
-    in srgb,
-    var(--mh-callout__color) 20%,
-    transparent
-  );
-}
-
-button[part='header']:focus-visible {
-  outline: none;
-  box-shadow: inset 0 0 0 var(--mh-border-width-m) var(--mh-callout__color);
-}
-
 [part='close'] {
   flex: none;
 }
 
-[part='toggle'] {
-  flex: none;
-  color: var(--mh-callout__color);
-  cursor: pointer;
-}
-
-/* The collapsible region, animated via the grid-rows technique. */
-[part='region'] {
-  display: grid;
-  grid-template-rows: minmax(0, 1fr);
-}
-
-/* The inner wrapper collapses to zero height; its block padding animates away with it. Indented to line up under the title. */
+/* The inner wrapper holds the description and actions. Indented to line up under the title. */
 [part='content'] {
   display: flex;
   flex-direction: column;
@@ -137,30 +85,4 @@ button[part='header']:focus-visible {
     var(--mh-callout__color) 20%,
     transparent
   );
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  [part='region'] {
-    transition: grid-template-rows var(--mh-transition-normal)
-      var(--mh-transition-easing);
-  }
-
-  button[part='header'] {
-    transition: background-color var(--mh-transition-normal)
-      var(--mh-transition-easing);
-  }
-
-  [part='toggle'] {
-    transition: transform var(--mh-transition-normal)
-      var(--mh-transition-easing);
-  }
-}
-
-/* Collapse the region in expansion mode while it is not expanded. */
-:host([mode='expansion']:not([expanded])) [part='region'] {
-  grid-template-rows: minmax(0, 0fr);
-}
-
-:host([expanded]) [part='toggle'] {
-  transform: rotate(180deg);
 }

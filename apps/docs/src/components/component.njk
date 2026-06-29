@@ -66,6 +66,11 @@ permalink: "components/{{ component.slug }}/index.html"
               <span slot="title">Callout title</span>
               <span slot="description">This is a callout preview in the docs canvas.</span>
             </mh-callout>
+          {% elseif element.tag === 'mh-expandable-callout' %}
+            <mh-expandable-callout id="{{ previewId }}" open expanded>
+              <span slot="title">Expandable callout title</span>
+              <span slot="description">This is an expandable callout preview in the docs canvas.</span>
+            </mh-expandable-callout>
           {% else %}
             <{{ element.tag }} id="{{ previewId }}">{{ element.tag | replace('mh-', '') }}</{{ element.tag }}>
           {% endif %}

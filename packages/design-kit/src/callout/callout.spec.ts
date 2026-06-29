@@ -5,12 +5,11 @@ import { assertAccessibility, part, slot } from '../core/testing';
 
 import './callout';
 import type { CalloutAfterClosedEvent } from './callout-after-closed.event.js';
-import type { CalloutExpandedChangedEvent } from './callout-expanded-changed.event.js';
 import type { Callout } from './callout.js';
 
 describe('callout', () => {
   describe('accessibility', () => {
-    it('passes accessibility tests in normal mode', async () => {
+    it('passes accessibility tests', async () => {
       const el = await fixture<Callout>(html`
         <mh-callout>
           <span slot="title">Title</span>
@@ -21,18 +20,6 @@ describe('callout', () => {
           >
             Dismiss
           </button>
-        </mh-callout>
-      `);
-      el.open();
-
-      await assertAccessibility(el);
-    });
-
-    it('passes accessibility tests in expansion mode', async () => {
-      const el = await fixture<Callout>(html`
-        <mh-callout mode="expansion">
-          <span slot="title">Title</span>
-          <span slot="description">Description</span>
         </mh-callout>
       `);
       el.open();
@@ -176,52 +163,6 @@ describe('callout', () => {
 
       expect(event.result).toBe('ok');
       expect(el.isOpen).toBe(false);
-    });
-  });
-
-  describe('expansion mode', () => {
-    it('renders a chevron toggle instead of a close button', async () => {
-      const el = await fixture<Callout>(html`
-        <mh-callout mode="expansion">
-          <span slot="title">Title</span>
-        </mh-callout>
-      `);
-
-      expect(part('toggle', el)).not.toBeNull();
-      expect(part('close', el)).toBeNull();
-    });
-
-    it('hides the collapsible region when collapsed', async () => {
-      const el = await fixture<Callout>(html`
-        <mh-callout mode="expansion">
-          <span slot="title">Title</span>
-        </mh-callout>
-      `);
-
-      expect(part('region', el)?.hasAttribute('inert')).toBe(true);
-    });
-
-    it('toggles expanded when the title is activated and emits an event', async () => {
-      const el = await fixture<Callout>(html`
-        <mh-callout mode="expansion">
-          <span slot="title">Title</span>
-        </mh-callout>
-      `);
-
-      setTimeout(() =>
-        part('title', el)?.dispatchEvent(
-          new MouseEvent('click', { bubbles: true }),
-        ),
-      );
-      const event = (await oneEvent(
-        el,
-        'mh-callout-expanded-changed',
-      )) as CalloutExpandedChangedEvent;
-
-      expect(event.expanded).toBe(true);
-      expect(el.expanded).toBe(true);
-      await el.updateComplete;
-      expect(part('region', el)?.hasAttribute('inert')).toBe(false);
     });
   });
 });
