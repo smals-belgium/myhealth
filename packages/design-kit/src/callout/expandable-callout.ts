@@ -8,7 +8,9 @@ import expandable from './expandable-callout.css?inline';
 /**
  * @summary Expandable callouts are inline banners that disclose their content on demand. Built on the native
  *  `<details>` element, they show a fixed icon for their variant, a title, and a chevron; activating the header
- *  expands or collapses the description and optional actions.
+ *  expands or collapses the description and optional actions. The content region is announced to screen readers
+ *  as a status message (polite) for info/success/notification variants, or as an alert (assertive) for
+ *  error/warning variants.
  * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/expandable-callout
  * @status stable
  * @since 1.0
@@ -28,7 +30,7 @@ import expandable from './expandable-callout.css?inline';
  * @csspart header - The `<summary>` toggle that wraps the icon, title, and chevron.
  * @csspart title - The container for the `title` slot.
  * @csspart toggle - The chevron icon shown at the end of the header.
- * @csspart region - The collapsible region that wraps the description and actions.
+ * @csspart region - The collapsible region that wraps the description and actions. Has role="status" or role="alert" based on variant.
  * @csspart content - The inner wrapper that holds the description and actions.
  * @csspart description - The container for the `description` slot.
  * @csspart actions - The container that wraps the `actions` slot.
@@ -76,7 +78,11 @@ export class ExpandableCallout extends CalloutBase {
 
         <div
           part="region"
+          role=${this.getContentRole()}
           aria-labelledby="title"
+          aria-live=${this.getContentRole() === 'alert'
+            ? 'assertive'
+            : 'polite'}
           @click=${this.onCloseTrigger}
         >
           <div part="content">

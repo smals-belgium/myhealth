@@ -35,14 +35,30 @@ export abstract class CalloutBase extends LitElement {
 
   #result?: string | boolean;
 
+  /** Stores the element that had focus before the callout opened, for restoration on close. */
+  #triggerElement: Element | null = null;
+
   /** Whether the callout is currently open. */
   get isOpen() {
     return this.hasAttribute('open');
   }
 
+  /**
+   * Returns the ARIA role for the content region based on variant.
+   * Error and warning are assertive (role="alert"), others are polite (role="status").
+   */
+  protected getContentRole(): 'status' | 'alert' {
+    return this.variant === 'error' || this.variant === 'warning'
+      ? 'alert'
+      : 'status';
+  }
+
   /** Opens the callout and emits `mh-callout-after-opened`. */
   open() {
     if (this.isOpen) return;
+
+    // Store the currently focused element for restoration on close (K7: Focus restoration)
+    this.#triggerElement = document.activeElement;
 
     this.toggleAttribute('open', true);
     this.dispatchEvent(new CalloutAfterOpenedEvent());
@@ -56,6 +72,16 @@ export abstract class CalloutBase extends LitElement {
     this.toggleAttribute('open', false);
     this.dispatchEvent(new CalloutAfterClosedEvent(this.#result));
     this.#resetResult();
+
+    // Restore focus to the element that triggered the callout (K7: Focus restoration)
+    if (
+      this.#triggerElement &&
+      this.#triggerElement instanceof HTMLElement &&
+      document.contains(this.#triggerElement)
+    )
+      this.#triggerElement.focus();
+
+    this.#triggerElement = null;
   }
 
   /** Resets the pending close result back to its empty default. */

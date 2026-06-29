@@ -7,7 +7,9 @@ import { CalloutBase } from './base';
 
 /**
  * @summary Callouts are inline banners that communicate a contextual status or message. They show a fixed icon for
- *  their variant, a title, an optional description, optional actions, and a close button.
+ *  their variant, a title, an optional description, optional actions, and a close button. The content region is
+ *  announced to screen readers as a status message (polite) for info/success/notification variants, or as an alert
+ *  (assertive) for error/warning variants.
  * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/callout
  * @status stable
  * @since 1.0
@@ -27,7 +29,7 @@ import { CalloutBase } from './base';
  * @csspart header - The top row that wraps the icon, title, and close button.
  * @csspart title - The container for the `title` slot.
  * @csspart close - The close (`X`) icon button.
- * @csspart region - The region that wraps the description and actions.
+ * @csspart region - The region that wraps the description and actions. Has role="status" or role="alert" based on variant.
  * @csspart content - The inner wrapper that holds the description and actions.
  * @csspart description - The container for the `description` slot.
  * @csspart actions - The container that wraps the `actions` slot.
@@ -60,7 +62,9 @@ export class Callout extends CalloutBase {
 
       <div
         part="region"
+        role=${this.getContentRole()}
         aria-labelledby="title"
+        aria-live=${this.getContentRole() === 'alert' ? 'assertive' : 'polite'}
         @click=${this.onCloseTrigger}
       >
         <div part="content">

@@ -120,4 +120,57 @@ describe('expandable-callout', () => {
       expect(el.isOpen).toBe(false);
     });
   });
+
+  describe('accessibility: ARIA roles and live regions', () => {
+    it('sets role="alert" and aria-live="assertive" for error variant', async () => {
+      const el = await fixture<ExpandableCallout>(
+        html`<mh-expandable-callout
+          variant="error"
+          expanded
+        ></mh-expandable-callout>`,
+      );
+      el.open();
+
+      const region = part('region', el);
+      expect(region?.getAttribute('role')).toBe('alert');
+      expect(region?.getAttribute('aria-live')).toBe('assertive');
+    });
+
+    it('sets role="status" and aria-live="polite" for info variant', async () => {
+      const el = await fixture<ExpandableCallout>(
+        html`<mh-expandable-callout
+          variant="info"
+          expanded
+        ></mh-expandable-callout>`,
+      );
+      el.open();
+
+      const region = part('region', el);
+      expect(region?.getAttribute('role')).toBe('status');
+      expect(region?.getAttribute('aria-live')).toBe('polite');
+    });
+  });
+
+  describe('accessibility: focus restoration', () => {
+    it('restores focus to the triggering element on close', async () => {
+      const button = document.createElement('button');
+      button.textContent = 'Open callout';
+      document.body.appendChild(button);
+
+      const el = await fixture<ExpandableCallout>(
+        html`<mh-expandable-callout expanded></mh-expandable-callout>`,
+      );
+
+      button.focus();
+      expect(document.activeElement).toBe(button);
+
+      el.open();
+      el.close();
+
+      // Focus should return to the button
+      expect(document.activeElement).toBe(button);
+
+      document.body.removeChild(button);
+    });
+  });
 });

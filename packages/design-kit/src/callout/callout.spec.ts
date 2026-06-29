@@ -165,4 +165,99 @@ describe('callout', () => {
       expect(el.isOpen).toBe(false);
     });
   });
+
+  describe('accessibility: ARIA roles and live regions', () => {
+    it('sets role="alert" and aria-live="assertive" for error variant', async () => {
+      const el = await fixture<Callout>(
+        html`<mh-callout variant="error"></mh-callout>`,
+      );
+      el.open();
+
+      const region = part('region', el);
+      expect(region?.getAttribute('role')).toBe('alert');
+      expect(region?.getAttribute('aria-live')).toBe('assertive');
+    });
+
+    it('sets role="alert" and aria-live="assertive" for warning variant', async () => {
+      const el = await fixture<Callout>(
+        html`<mh-callout variant="warning"></mh-callout>`,
+      );
+      el.open();
+
+      const region = part('region', el);
+      expect(region?.getAttribute('role')).toBe('alert');
+      expect(region?.getAttribute('aria-live')).toBe('assertive');
+    });
+
+    it('sets role="status" and aria-live="polite" for info variant', async () => {
+      const el = await fixture<Callout>(
+        html`<mh-callout variant="info"></mh-callout>`,
+      );
+      el.open();
+
+      const region = part('region', el);
+      expect(region?.getAttribute('role')).toBe('status');
+      expect(region?.getAttribute('aria-live')).toBe('polite');
+    });
+
+    it('sets role="status" and aria-live="polite" for success variant', async () => {
+      const el = await fixture<Callout>(
+        html`<mh-callout variant="success"></mh-callout>`,
+      );
+      el.open();
+
+      const region = part('region', el);
+      expect(region?.getAttribute('role')).toBe('status');
+      expect(region?.getAttribute('aria-live')).toBe('polite');
+    });
+
+    it('sets role="status" and aria-live="polite" for notification variant', async () => {
+      const el = await fixture<Callout>(
+        html`<mh-callout variant="notification"></mh-callout>`,
+      );
+      el.open();
+
+      const region = part('region', el);
+      expect(region?.getAttribute('role')).toBe('status');
+      expect(region?.getAttribute('aria-live')).toBe('polite');
+    });
+  });
+
+  describe('accessibility: focus restoration', () => {
+    it('restores focus to the triggering element on close', async () => {
+      const button = document.createElement('button');
+      button.textContent = 'Open callout';
+      document.body.appendChild(button);
+
+      const el = await fixture<Callout>(html`<mh-callout></mh-callout>`);
+
+      button.focus();
+      expect(document.activeElement).toBe(button);
+
+      el.open();
+      el.close();
+
+      // Focus should return to the button
+      expect(document.activeElement).toBe(button);
+
+      document.body.removeChild(button);
+    });
+
+    it('does not attempt to restore focus if trigger element was removed', async () => {
+      const button = document.createElement('button');
+      button.textContent = 'Open callout';
+      document.body.appendChild(button);
+
+      const el = await fixture<Callout>(html`<mh-callout></mh-callout>`);
+
+      button.focus();
+      el.open();
+
+      // Remove the button before closing
+      document.body.removeChild(button);
+
+      // Should not throw when closing
+      expect(() => el.close()).not.toThrow();
+    });
+  });
 });
