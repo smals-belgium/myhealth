@@ -62,6 +62,7 @@ export const importPluginConfig = [
             group: 'external',
             position: 'after',
           })),
+          pathGroupsExcludedImportTypes: ['builtin', 'object'],
         },
       ],
     },

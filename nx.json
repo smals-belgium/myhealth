@@ -72,6 +72,9 @@
     "test": {
       "dependsOn": ["^build"]
     },
+    "typecheck": {
+      "dependsOn": ["^build"]
+    },
     "@nx/angular:package": {
       "cache": true,
       "dependsOn": ["^build"],

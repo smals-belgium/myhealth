@@ -33,17 +33,27 @@ export default defineConfig(() => ({
       transformMixedEsModules: true,
     },
     lib: {
-      // Could also be a dictionary or array of multiple entry points.
-      entry: 'src/index.ts',
-      name: '@myhealth/design-kit',
-      fileName: 'index',
+      entry: {
+        'button/index': 'src/button/index.ts',
+        'card/index': 'src/card/index.ts',
+        'checkbox/index': 'src/checkbox/index.ts',
+        'dialog/index': 'src/dialog/index.ts',
+        'divider/index': 'src/divider/index.ts',
+        'icon/index': 'src/icon/index.ts',
+        'icon-button/index': 'src/icon-button/index.ts',
+        'radio/index': 'src/radio/index.ts',
+        'skeleton/index': 'src/skeleton/index.ts',
+        'snackbar/index': 'src/snackbar/index.ts',
+        'spinner/index': 'src/spinner/index.ts',
+        'text-input/index': 'src/text-input/index.ts',
+      },
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
       formats: ['es' as const],
     },
     rolldownOptions: {
       // External packages that should not be bundled into your library.
-      external: [],
+      external: [/^lit/, /^@lit\//, /^@lit-labs\//],
     },
   },
   test: {

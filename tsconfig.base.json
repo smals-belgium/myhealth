@@ -19,8 +19,10 @@
     "target": "es2022",
     "customConditions": ["@myhealth/source"],
     "paths": {
-      "@myhealth/design-kit": ["packages/design-kit/src/index.ts"],
-      "@myhealth/vitals-ng": ["./packages/vitals-ng/src/index.ts"]
+      "@myhealth/design-kit": ["packages/design-kit"],
+      "@myhealth/design-kit/button/*": ["packages/design-kit/dist/button/*"],
+      "@myhealth/vitals-ng": ["./packages/vitals-ng/src/index.ts"],
+      "@myhealth/vitals-ng/button": ["./packages/vitals-ng/button/src/index.ts"]
     }
   }
 }

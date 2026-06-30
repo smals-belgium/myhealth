@@ -6,10 +6,6 @@
     "declarationMap": true,
     "inlineSources": true,
     "sourceMap": true,
-    "paths": {
-      "@myhealth/design-kit": ["./packages/design-kit"],
-      "@myhealth/vitals-ng": ["./packages/vitals-ng/src/index.ts"]
-    },
     "types": []
   },
   "include": ["src/**/*.ts"],

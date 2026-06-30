@@ -22,29 +22,10 @@ export default [
     },
   },
   {
-    files: ['**/*.ts'],
+    files: ['**/index.ts'],
     rules: {
-      '@angular-eslint/directive-selector': [
-        'error',
-        {
-          type: 'attribute',
-          prefix: 'mh',
-          style: 'camelCase',
-        },
-      ],
-      '@angular-eslint/component-selector': [
-        'error',
-        {
-          type: 'element',
-          prefix: 'mh',
-          style: 'kebab-case',
-        },
-      ],
+      // allow Lit component imports from entry points only
+      'import/no-unassigned-import': 'off',
     },
-  },
-  {
-    files: ['**/*.html'],
-    // Override or add rules here
-    rules: {},
   },
 ];

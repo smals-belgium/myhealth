@@ -1,0 +1,29 @@
+Angular version: {{ version }}
+
+<mh-a
+  appearance="link"
+  target="_blank"
+  href="https://github.com/smals-belgium/myhealth"
+>
+  Source code
+</mh-a>
+
+<form #form="ngForm">
+  <fieldset>TBD</fieldset>
+
+  <footer>
+    <mh-button
+      type="submit"
+      [disabled]="!form.valid"
+    >
+      Submit
+    </mh-button>
+
+    <mh-button
+      type="reset"
+      appearance="outlined"
+    >
+      Reset
+    </mh-button>
+  </footer>
+</form>

@@ -8,7 +8,10 @@
     "emitDeclarationOnly": true,
     "module": "esnext",
     "moduleResolution": "bundler",
-    "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo"
+    "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
+    "paths": {
+      "@myhealth/design-kit": ["./packages/design-kit/src/index.ts"]
+    }
   },
   "exclude": [
     "out-tsc",

@@ -5,6 +5,7 @@
   "prefix": "app",
   "sourceRoot": "apps/playground-ng/src",
   "tags": ["type:app", "scope:playground"],
+  "implicitDependencies": ["@myhealth/design-kit"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
@@ -47,6 +48,7 @@
     },
     "serve": {
       "continuous": true,
+      "dependsOn": ["^bundle"],
       "executor": "@angular/build:dev-server",
       "defaultConfiguration": "development",
       "configurations": {
@@ -63,6 +65,7 @@
     },
     "serve-static": {
       "continuous": true,
+      "dependsOn": ["^bundle"],
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "playground-ng:build",

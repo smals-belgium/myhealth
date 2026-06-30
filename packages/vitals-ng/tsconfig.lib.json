@@ -11,7 +11,7 @@
     },
     "types": []
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "button/src/**/*.ts"],
   "exclude": [
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
@@ -25,7 +25,15 @@
     "src/**/*.spec.js",
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
-    "src/test-setup.ts"
+    "src/test-setup.ts",
+    "button/src/**/*.spec.ts",
+    "button/src/**/*.test.ts",
+    "button/src/**/*.test.tsx",
+    "button/src/**/*.spec.tsx",
+    "button/src/**/*.test.js",
+    "button/src/**/*.spec.js",
+    "button/src/**/*.test.jsx",
+    "button/src/**/*.spec.jsx"
   ],
   "references": [
     {
