@@ -27,6 +27,19 @@
       "@myhealth/vitals-ng/radio": ["./packages/vitals-ng/radio/src/index.ts"],
       "@myhealth/vitals-ng/checkbox": [
         "./packages/vitals-ng/checkbox/src/index.ts"
+      ],
+      "@myhealth/vitals-ng/divider": [
+        "./packages/vitals-ng/divider/src/index.ts"
+      ],
+      "@myhealth/vitals-ng/spinner": [
+        "./packages/vitals-ng/spinner/src/index.ts"
+      ],
+      "@myhealth/vitals-ng/skeleton": [
+        "./packages/vitals-ng/skeleton/src/index.ts"
+      ],
+      "@myhealth/vitals-ng/icon": ["./packages/vitals-ng/icon/src/index.ts"],
+      "@myhealth/vitals-ng/icon-button": [
+        "./packages/vitals-ng/icon-button/src/index.ts"
       ]
     }
   }
