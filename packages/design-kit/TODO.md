@@ -49,7 +49,7 @@ Core primitives required in both shared MAGS contexts and Portal feature flows.
 - [x] [@angular/material/card](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53126-1280)
 - [x] [@angular/material/divider](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=52837-541)
 - [x] [Skeleton](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54711-816)
-- [ ] [Alert](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53395-807)
+- [x] [Alert](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53395-807)
 
 ### Phase 2 — Additional Portal Components
 

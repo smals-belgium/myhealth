@@ -1,0 +1,88 @@
+:host {
+  --mh-callout__spacing: var(--mh-space-s);
+  --mh-callout__box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
+  --mh-callout__icon-size: 1.75rem;
+
+  /* Hidden until opened. */
+  display: none;
+}
+
+:host([open]) {
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--mh-callout__box-shadow);
+  border-radius: var(--mh-border-radius);
+  background-color: var(--mh-callout__background);
+  color: var(--mh-callout__color);
+
+  /* Clip the header's hover/active tint to the rounded corners. */
+  overflow: hidden;
+}
+
+/* The top row: icon, title, and trailing control, vertically centered so they line up. */
+[part='header'] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--mh-callout__spacing);
+  padding: var(--mh-callout__spacing);
+}
+
+[part='icon'] {
+  flex: none;
+  color: var(--mh-callout__icon-color);
+}
+
+[part='title'] {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 600;
+}
+
+[part='close'] {
+  flex: none;
+}
+
+/* The inner wrapper holds the description and actions. Indented to line up under the title. */
+[part='content'] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-callout__spacing);
+  min-height: 0;
+  padding-inline: calc(
+      var(--mh-callout__icon-size) + var(--mh-callout__spacing) * 2
+    )
+    var(--mh-callout__spacing);
+  padding-block-end: var(--mh-callout__spacing);
+  overflow: hidden;
+}
+
+[part='description'] {
+  display: block;
+}
+
+[part='actions'] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: calc(var(--mh-callout__spacing) / 2);
+}
+
+/* Tint the close button to match the callout's text color. */
+[part='close'] {
+  --mh-icon-button__color-type: var(--mh-callout__color);
+  --mh-icon-button__color-type__hover: var(--mh-callout__color);
+  --mh-icon-button__color-type__active: var(--mh-callout__color);
+  --mh-icon-button__color-fill: transparent;
+  --mh-icon-button__color-fill__hover: color-mix(
+    in srgb,
+    var(--mh-callout__color) 12%,
+    transparent
+  );
+  --mh-icon-button__color-fill__active: color-mix(
+    in srgb,
+    var(--mh-callout__color) 20%,
+    transparent
+  );
+}
