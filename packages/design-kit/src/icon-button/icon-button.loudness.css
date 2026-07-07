@@ -21,3 +21,15 @@
   --mh-icon-button__color-fill__active: var(--mh-color-brand-fill-louder);
   --mh-icon-button__color-fill__disabled: var(--mh-color-neutral-fill);
 }
+
+:host([loudness='quiet']) {
+  --mh-icon-button__color-type: var(--mh-color-brand-type);
+  --mh-icon-button__color-type__hover: var(--mh-color-brand-type);
+  --mh-icon-button__color-type__active: var(--mh-color-brand-type);
+  --mh-icon-button__color-type__disabled: var(--mh-color-neutral-type);
+
+  --mh-icon-button__color-fill: transparent;
+  --mh-icon-button__color-fill__hover: rgba(0, 0, 0, 8%);
+  --mh-icon-button__color-fill__active: rgba(0, 0, 0, 16%);
+  --mh-icon-button__color-fill__disabled: transparent;
+}

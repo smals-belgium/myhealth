@@ -1,0 +1,42 @@
+:host {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--mh-font-size);
+  color: var(--mh-color-neutral-type-louder);
+}
+
+[part='head'] {
+  display: table-header-group;
+}
+
+[part='body'] {
+  display: table-row-group;
+}
+
+[part='header-row'] {
+  display: table-row;
+  font-weight: 600;
+}
+
+slot[name='header']::slotted(mh-table-cell:first-of-type) {
+  border-top-left-radius: var(--mh-border-radius-l);
+}
+
+slot[name='header']::slotted(mh-table-cell:last-of-type) {
+  border-top-right-radius: var(--mh-border-radius-l);
+}
+
+/* Cancel left radius on first slotted cell when the control cell occupies the top-left corner */
+:host([selectable]) slot[name='header']::slotted(mh-table-cell:first-of-type),
+:host([has-expandable-rows])
+  slot[name='header']::slotted(mh-table-cell:first-of-type) {
+  border-top-left-radius: 0;
+}
+
+[part='select-all-cell'] {
+  width: 1px;
+  white-space: nowrap;
+  padding: 0 var(--mh-space-s);
+  border-top-left-radius: var(--mh-border-radius-l);
+}

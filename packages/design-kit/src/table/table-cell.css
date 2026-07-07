@@ -1,0 +1,16 @@
+:host {
+  display: table-cell;
+  padding: var(--mh-space-m);
+  font-size: var(--mh-font-size);
+  color: var(--mh-color-neutral-type-louder);
+  vertical-align: middle;
+  border-bottom: 1px solid var(--mh-color-neutral-border-quieter);
+}
+
+:host([header]) {
+  font-weight: 600;
+  background-color: var(--mh-color-brand-fill-quieter);
+  padding: var(--mh-space-l) var(--mh-space-l) var(--mh-space-l)
+    var(--mh-space-m);
+  border-bottom: none;
+}
