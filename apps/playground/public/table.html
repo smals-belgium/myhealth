@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - table</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/styles.css"
+    />
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+
+    <style>
+      body {
+        padding: 2rem;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      h2 {
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Table</h1>
+
+    <!-- 1. Basic table -->
+    <section>
+      <h2>Basic table</h2>
+      <mh-table>
+        <mh-table-cell
+          slot="header"
+          header
+          >Name</mh-table-cell
+        >
+        <mh-table-cell
+          slot="header"
+          header
+          >Status</mh-table-cell
+        >
+        <mh-table-cell
+          slot="header"
+          header
+          >Role</mh-table-cell
+        >
+
+        <mh-table-row value="1">
+          <mh-table-cell>Alice Dupont</mh-table-cell>
+          <mh-table-cell>Active</mh-table-cell>
+          <mh-table-cell>Admin</mh-table-cell>
+        </mh-table-row>
+
+        <mh-table-row value="2">
+          <mh-table-cell>Bob Martin</mh-table-cell>
+          <mh-table-cell>Inactive</mh-table-cell>
+          <mh-table-cell>User</mh-table-cell>
+        </mh-table-row>
+
+        <mh-table-row value="3">
+          <mh-table-cell>Carol Peeters</mh-table-cell>
+          <mh-table-cell>Active</mh-table-cell>
+          <mh-table-cell>Editor</mh-table-cell>
+        </mh-table-row>
+      </mh-table>
+    </section>
+
+    <!-- 2. Selectable table -->
+    <section>
+      <h2>Selectable table</h2>
+      <mh-table
+        selectable
+        id="selectable-table"
+      >
+        <mh-table-cell
+          slot="header"
+          header
+          >Name</mh-table-cell
+        >
+        <mh-table-cell
+          slot="header"
+          header
+          >Status</mh-table-cell
+        >
+
+        <mh-table-row value="alice">
+          <mh-table-cell>Alice Dupont</mh-table-cell>
+          <mh-table-cell>Active</mh-table-cell>
+        </mh-table-row>
+
+        <mh-table-row value="bob">
+          <mh-table-cell>Bob Martin</mh-table-cell>
+          <mh-table-cell>Active</mh-table-cell>
+        </mh-table-row>
+
+        <mh-table-row
+          value="carol"
+          disabled
+        >
+          <mh-table-cell>Carol Peeters (disabled)</mh-table-cell>
+          <mh-table-cell>Inactive</mh-table-cell>
+        </mh-table-row>
+      </mh-table>
+
+      <div
+        id="selection-output"
+        aria-live="polite"
+      >
+        Selected: none
+      </div>
+    </section>
+
+    <!-- 3. Expandable table -->
+    <section>
+      <h2>Expandable table</h2>
+      <mh-table>
+        <mh-table-cell
+          slot="header"
+          header
+          >Name</mh-table-cell
+        >
+        <mh-table-cell
+          slot="header"
+          header
+          >Department</mh-table-cell
+        >
+
+        <mh-table-row
+          value="1"
+          expandable
+        >
+          <mh-table-cell>Alice Dupont</mh-table-cell>
+          <mh-table-cell>Cardiology</mh-table-cell>
+          <div slot="expansion">
+            <strong>Details:</strong> Alice has been with the department since
+            2019. Primary contact for cardiac imaging workflows.
+          </div>
+        </mh-table-row>
+
+        <mh-table-row
+          value="2"
+          expandable
+        >
+          <mh-table-cell>Bob Martin</mh-table-cell>
+          <mh-table-cell>Neurology</mh-table-cell>
+          <div slot="expansion">
+            <strong>Details:</strong> Bob joined in 2021 and specialises in EEG
+            data analysis and reporting.
+          </div>
+        </mh-table-row>
+
+        <mh-table-row value="3">
+          <mh-table-cell>Carol Peeters</mh-table-cell>
+          <mh-table-cell>Radiology</mh-table-cell>
+        </mh-table-row>
+      </mh-table>
+    </section>
+
+    <!-- 4. Combined: selectable + expandable -->
+    <section>
+      <h2>Combined — selectable &amp; expandable</h2>
+      <mh-table
+        selectable
+        caption="Patient appointments"
+      >
+        <mh-table-cell
+          slot="header"
+          header
+          >Patient</mh-table-cell
+        >
+        <mh-table-cell
+          slot="header"
+          header
+          >Date</mh-table-cell
+        >
+        <mh-table-cell
+          slot="header"
+          header
+          >Physician</mh-table-cell
+        >
+
+        <mh-table-row
+          value="appt-1"
+          expandable
+        >
+          <mh-table-cell>Alice Dupont</mh-table-cell>
+          <mh-table-cell>12 Jan 2026</mh-table-cell>
+          <mh-table-cell>Dr. Lecomte</mh-table-cell>
+          <div slot="expansion">
+            <p>Appointment type: Follow-up consultation</p>
+            <p>Notes: Blood pressure monitoring, medication review.</p>
+          </div>
+        </mh-table-row>
+
+        <mh-table-row
+          value="appt-2"
+          expandable
+          selected
+        >
+          <mh-table-cell>Bob Martin</mh-table-cell>
+          <mh-table-cell>15 Jan 2026</mh-table-cell>
+          <mh-table-cell>Dr. Vandenberghe</mh-table-cell>
+          <div slot="expansion">
+            <p>Appointment type: Initial consultation</p>
+            <p>Notes: MRI results review, new treatment plan.</p>
+          </div>
+        </mh-table-row>
+
+        <mh-table-row
+          value="appt-3"
+          disabled
+        >
+          <mh-table-cell>Carol Peeters (disabled)</mh-table-cell>
+          <mh-table-cell>20 Jan 2026</mh-table-cell>
+          <mh-table-cell>Dr. Lecomte</mh-table-cell>
+        </mh-table-row>
+      </mh-table>
+    </section>
+
+    <script type="module">
+      const table = document.getElementById('selectable-table');
+      const output = document.getElementById('selection-output');
+
+      table.addEventListener('mh-table-selection-change', e => {
+        const { selected } = e;
+        output.textContent =
+          selected.length > 0
+            ? `Selected: ${selected.join(', ')}`
+            : 'Selected: none';
+      });
+    </script>
+  </body>
+</html>

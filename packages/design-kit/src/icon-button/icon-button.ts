@@ -10,7 +10,7 @@ import styles from './icon-button.css?inline';
 import loudness from './icon-button.loudness.css?inline';
 
 export type IconButtonAppearance = 'round' | 'square';
-export type IconButtonLoudness = Extract<Loudness, 'normal' | 'loud'>;
+export type IconButtonLoudness = Extract<Loudness, 'normal' | 'loud' | 'quiet'>;
 
 /**
  * @summary Icon buttons are used to trigger actions with a single icon and no visible label.

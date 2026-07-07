@@ -12,7 +12,7 @@ import type {
 } from './icon-button';
 
 const appearances: IconButtonAppearance[] = ['round', 'square'];
-const loudnesses: IconButtonLoudness[] = ['normal', 'loud'];
+const loudnesses: IconButtonLoudness[] = ['normal', 'loud', 'quiet'];
 
 describe('icon-button', () => {
   const getButton = (el: Element) => el.shadowRoot?.querySelector('button');

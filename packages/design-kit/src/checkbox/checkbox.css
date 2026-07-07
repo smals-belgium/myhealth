@@ -17,7 +17,6 @@ label {
 }
 
 input {
-  --touch-target-size: 3rem;
   --outer-size: 1.375rem;
   --inner-size: 1rem;
   --state-layer-spread: 0.5rem;
@@ -32,8 +31,8 @@ input {
   justify-content: center;
   margin: 0;
   flex-shrink: 0;
-  width: var(--touch-target-size);
-  height: var(--touch-target-size);
+  width: var(--mh-target-size-min);
+  height: var(--mh-target-size-min);
   border: none;
   border-radius: 50%;
   background: transparent;

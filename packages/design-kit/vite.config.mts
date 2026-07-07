@@ -50,6 +50,7 @@ export default defineConfig(() => ({
         'slide-toggle/index': 'src/slide-toggle/index.ts',
         'snackbar/index': 'src/snackbar/index.ts',
         'spinner/index': 'src/spinner/index.ts',
+        'table/index': 'src/table/index.ts',
         'testing/index': 'src/testing/index.ts',
         'text-input/index': 'src/text-input/index.ts',
         'tooltip/index': 'src/tooltip/index.ts',
