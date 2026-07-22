@@ -1,4 +1,4 @@
-import '@myhealth/design-kit/table';
+import '@smals-belgium-shared/vitals/table';
 
 import { Table } from './table';
 

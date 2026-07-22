@@ -1,10 +1,13 @@
 import { LitElement, html, nothing, unsafeCSS } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
+
+import { LocalizeController } from '../core/i18n';
 
 import { RowExpandChangeEvent } from './row-expand-change.event';
 import styles from './table-row.css?inline';
 
 let instanceId = 0;
+/** Returns a unique, stable `id` value used to link the expand button (`aria-controls`) to the expansion region. */
 const nextExpansionId = (): string => {
   const id = instanceId;
   instanceId += 1;
@@ -37,7 +40,12 @@ const nextExpansionId = (): string => {
 export class TableRow extends LitElement {
   static override readonly styles = unsafeCSS(styles);
 
+  private readonly localize = new LocalizeController(this);
+
   readonly #expansionId = nextExpansionId();
+
+  /** Number of data cells, used to size the expansion cell for assistive tech. */
+  @state() private columnCount = 1;
 
   /** Identifier used in `SelectionChangeEvent` emitted by the parent `mh-table`. */
   @property({ reflect: true }) value = '';
@@ -64,17 +72,54 @@ export class TableRow extends LitElement {
   @property({ type: Boolean, reflect: true, attribute: 'show-control' })
   showControl = false;
 
+  /** Handles the checkbox `change` event; toggles `selected` and re-emits a `change` event on the row. */
   #onCheckboxChange(event: Event) {
     event.stopPropagation();
     this.selected = !this.selected;
     this.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
+  /** Toggles the row's `expanded` state and emits `RowExpandChangeEvent`. */
   #onExpandClick() {
     this.expanded = !this.expanded;
     this.dispatchEvent(new RowExpandChangeEvent(this.expanded));
   }
 
+  /** Counts slotted `mh-table-cell` elements so the expansion cell's `aria-colspan` can span all data columns. */
+  #onDefaultSlotChange(event: Event) {
+    const slot = event.target as HTMLSlotElement;
+    this.columnCount = Math.max(
+      1,
+      slot
+        .assignedElements()
+        .filter(el => el.tagName.toLowerCase() === 'mh-table-cell').length,
+    );
+  }
+
+  /**
+   * Handles row-body clicks:
+   * - Selectable (with or without expandable): toggles row selection.
+   * - Expandable only: toggles row expansion.
+   * - Neither: no-op.
+   * Clicks originating inside the control-cell are ignored so they don't
+   * double-trigger alongside the checkbox/expand-button own handlers.
+   */
+  #onRowClick(event: Event) {
+    const inControlCell = event
+      .composedPath()
+      .some(
+        el =>
+          el instanceof Element && el.getAttribute('part') === 'control-cell',
+      );
+    if (inControlCell) return;
+    if (this.selectable) {
+      if (this.disabled) return;
+      this.selected = !this.selected;
+      this.dispatchEvent(new Event('change', { bubbles: true }));
+    } else if (this.expandable) this.#onExpandClick();
+  }
+
+  /** Renders the leading control cell containing the selection checkbox and/or the expand/collapse button. */
   #renderControlCell() {
     return html`<div
       part="control-cell"
@@ -85,7 +130,7 @@ export class TableRow extends LitElement {
             part="checkbox"
             .checked=${this.selected}
             .disabled=${this.disabled}
-            aria-label="Select row"
+            aria-label=${this.localize.term('selectRow')}
             @change=${this.#onCheckboxChange}
           ></mh-checkbox>`
         : nothing}
@@ -96,7 +141,9 @@ export class TableRow extends LitElement {
             loudness="quiet"
             aria-expanded=${this.expanded ? 'true' : 'false'}
             aria-controls=${this.#expansionId}
-            label=${this.expanded ? 'Collapse row' : 'Expand row'}
+            label=${this.expanded
+              ? this.localize.term('collapseRow')
+              : this.localize.term('expandRow')}
             @click=${this.#onExpandClick}
           ></mh-icon-button>`
         : nothing}
@@ -109,9 +156,10 @@ export class TableRow extends LitElement {
       <div
         part="row"
         role="row"
+        @click=${this.#onRowClick}
       >
         ${hasControl ? this.#renderControlCell() : nothing}
-        <slot></slot>
+        <slot @slotchange=${this.#onDefaultSlotChange}></slot>
       </div>
       ${this.expandable
         ? html`<div
@@ -123,6 +171,7 @@ export class TableRow extends LitElement {
             <div
               part="expansion-cell"
               role="cell"
+              aria-colspan=${this.columnCount + (hasControl ? 1 : 0)}
             >
               <slot name="expansion"></slot>
             </div>
