@@ -89,7 +89,7 @@ export class Table extends LitElement {
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['expandable'],
+      attributeFilter: ['expandable', 'selected', 'disabled'],
     });
   }
 
@@ -171,20 +171,24 @@ export class Table extends LitElement {
             part="header-row"
             role="row"
           >
-            ${this.selectable || this.hasExpandableRows
-              ? html`<mh-table-cell
-                  header
-                  part="select-all-cell"
-                >
-                  ${this.selectable
-                    ? html`<mh-checkbox
-                        part="select-all"
-                        aria-label=${this.localize.term('selectAllRows')}
-                        @change=${this.#onSelectAll}
-                      ></mh-checkbox>`
-                    : nothing}
-                </mh-table-cell>`
-              : nothing}
+            ${
+              this.selectable || this.hasExpandableRows
+                ? html`<mh-table-cell
+                    header
+                    part="select-all-cell"
+                  >
+                    ${
+                    this.selectable
+                      ? html`<mh-checkbox
+                          part="select-all"
+                          aria-label=${this.localize.term('selectAllRows')}
+                          @change=${this.#onSelectAll}
+                        ></mh-checkbox>`
+                      : nothing
+                  }
+                  </mh-table-cell>`
+                : nothing
+            }
             <slot name="header"></slot>
           </div>
         </div>

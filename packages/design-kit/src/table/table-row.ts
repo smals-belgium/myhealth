@@ -125,28 +125,34 @@ export class TableRow extends LitElement {
       part="control-cell"
       role="cell"
     >
-      ${this.selectable
-        ? html`<mh-checkbox
-            part="checkbox"
-            .checked=${this.selected}
-            .disabled=${this.disabled}
-            aria-label=${this.localize.term('selectRow')}
-            @change=${this.#onCheckboxChange}
-          ></mh-checkbox>`
-        : nothing}
-      ${this.expandable
-        ? html`<mh-icon-button
-            part="expand-button"
-            name="keyboard_arrow_down"
-            loudness="quiet"
-            aria-expanded=${this.expanded ? 'true' : 'false'}
-            aria-controls=${this.#expansionId}
-            label=${this.expanded
-              ? this.localize.term('collapseRow')
-              : this.localize.term('expandRow')}
-            @click=${this.#onExpandClick}
-          ></mh-icon-button>`
-        : nothing}
+      ${
+        this.selectable
+          ? html`<mh-checkbox
+              part="checkbox"
+              .checked=${this.selected}
+              .disabled=${this.disabled}
+              aria-label=${this.localize.term('selectRow')}
+              @change=${this.#onCheckboxChange}
+            ></mh-checkbox>`
+          : nothing
+      }
+      ${
+        this.expandable
+          ? html`<mh-icon-button
+              part="expand-button"
+              name="keyboard_arrow_down"
+              loudness="quiet"
+              aria-expanded=${this.expanded ? 'true' : 'false'}
+              aria-controls=${this.#expansionId}
+              label=${
+              this.expanded
+                ? this.localize.term('collapseRow')
+                : this.localize.term('expandRow')
+            }
+              @click=${this.#onExpandClick}
+            ></mh-icon-button>`
+          : nothing
+      }
     </div>`;
   }
 
@@ -161,22 +167,24 @@ export class TableRow extends LitElement {
         ${hasControl ? this.#renderControlCell() : nothing}
         <slot @slotchange=${this.#onDefaultSlotChange}></slot>
       </div>
-      ${this.expandable
-        ? html`<div
-            part="expansion-row"
-            role="row"
-            id=${this.#expansionId}
-            ?hidden=${!this.expanded}
-          >
-            <div
-              part="expansion-cell"
-              role="cell"
-              aria-colspan=${this.columnCount + (hasControl ? 1 : 0)}
+      ${
+        this.expandable
+          ? html`<div
+              part="expansion-row"
+              role="row"
+              id=${this.#expansionId}
+              ?hidden=${!this.expanded}
             >
-              <slot name="expansion"></slot>
-            </div>
-          </div>`
-        : nothing}
+              <div
+                part="expansion-cell"
+                role="cell"
+                aria-colspan=${this.columnCount + (hasControl ? 1 : 0)}
+              >
+                <slot name="expansion"></slot>
+              </div>
+            </div>`
+          : nothing
+      }
     `;
   }
 }
