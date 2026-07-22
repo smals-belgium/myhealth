@@ -75,7 +75,8 @@
       ],
       "@smals-belgium-shared/vitals-ng/cdk/overlay": [
         "./packages/vitals-ng/src/cdk/overlay/index.ts"
-      ]
+      ],
+      "@myhealth/vitals-ng/table": ["./packages/vitals-ng/src/table/index.ts"]
     },
     "noUncheckedSideEffectImports": false,
     "types": ["*"],
