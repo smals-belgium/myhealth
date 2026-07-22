@@ -4,11 +4,24 @@
 
 [part='row'] {
   display: table-row;
-  background-color: #ffffff;
+  /* No design-token for a plain white surface exists; use the literal. */
+  background-color: #fff;
 }
 
-[part='row']:hover {
+:host([selectable]:not([disabled])) [part='row'],
+:host([expandable]) [part='row'] {
+  cursor: pointer;
+}
+
+:host([selectable]:not([disabled])) [part='row']:hover,
+:host([expandable]) [part='row']:hover {
   background-color: var(--mh-color-neutral-fill-quieter);
+}
+
+/* Expanded row already uses --mh-color-neutral-fill-quieter; use the next
+   darker tone on hover so the hover state remains visible. */
+:host([expanded]) [part='row']:hover {
+  background-color: var(--mh-color-neutral-fill-quiet);
 }
 
 :host([expanded]) [part='row'],
@@ -18,6 +31,9 @@
 
 [part='expansion-row'] {
   display: block;
+  /* Prevent the full-width expansion-cell from widening column 0 in the
+     CSS table's column-grid calculation. */
+  contain: inline-size;
 }
 
 [part='expansion-row'][hidden] {
@@ -36,10 +52,24 @@
 [part='checkbox'] {
   height: var(--mh-target-size-min);
   width: var(--mh-target-size-min);
+  vertical-align: middle;
+}
+
+[part='expand-button'] {
+  vertical-align: middle;
 }
 
 [part='expansion-cell'] {
   display: block;
+  /* Escape column 0's width constraint by overflowing visually (in-flow, so
+     the row still pushes subsequent rows down). z-index ensures it paints
+     above later rows. box-sizing keeps padding inside the declared width.
+     100cqw resolves against the mh-table container, giving the full table
+     width without any JS measurement. */
+  position: relative;
+  z-index: 1;
+  width: 100cqw;
+  box-sizing: border-box;
   padding: var(--mh-space-m);
   border-bottom: 1px solid var(--mh-color-neutral-border-quieter);
   background-color: var(--mh-color-neutral-fill-quieter);

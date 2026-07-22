@@ -19,7 +19,8 @@
   padding: 0;
   border: none;
   border-radius: var(--mh-border-radius);
-  background-color: var(--mh-color-neutral-type-quieter);
+  /* No design-token for a plain white surface exists; use the literal. */
+  background-color: #fff;
   box-shadow: var(--mh-dialog__box-shadow);
   color: inherit;
   overflow: hidden;

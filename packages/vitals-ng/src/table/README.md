@@ -9,7 +9,7 @@ import { TABLE } from '@myhealth/vitals-ng/table';
 
 @NgModule({
   imports: [TABLE],
-})
+})3
 export class AppModule {}
 ```
 

@@ -1,9 +1,18 @@
 :host {
+  /* The host is a plain block so it can act as a container query container
+     (a `display: table` box cannot — `container-type` is ignored on it).
+     Expansion cells size to the full table width via 100cqw against this
+     container, with no JS or ResizeObserver. */
+  display: block;
+  container-type: inline-size;
+  font-size: var(--mh-font-size);
+  color: var(--mh-color-neutral-type-louder);
+}
+
+[part='table'] {
   display: table;
   width: 100%;
   border-collapse: collapse;
-  font-size: var(--mh-font-size);
-  color: var(--mh-color-neutral-type-louder);
 }
 
 [part='head'] {
