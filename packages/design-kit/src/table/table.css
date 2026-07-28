@@ -28,18 +28,21 @@
   font-weight: 600;
 }
 
-slot[name='header']::slotted(mh-table-cell:first-of-type) {
+slot[name='header']::slotted(mh-table-header-cell:first-of-type) {
   border-top-left-radius: var(--mh-border-radius-l);
 }
 
-slot[name='header']::slotted(mh-table-cell:last-of-type) {
+slot[name='header']::slotted(mh-table-header-cell:last-of-type) {
   border-top-right-radius: var(--mh-border-radius-l);
 }
 
 /* Cancel left radius on first slotted cell when the control cell occupies the top-left corner */
-:host([selectable]) slot[name='header']::slotted(mh-table-cell:first-of-type),
+:host([selection-mode='multi'])
+  slot[name='header']::slotted(mh-table-header-cell:first-of-type),
+:host([selection-mode='single'])
+  slot[name='header']::slotted(mh-table-header-cell:first-of-type),
 :host([has-expandable-rows])
-  slot[name='header']::slotted(mh-table-cell:first-of-type) {
+  slot[name='header']::slotted(mh-table-header-cell:first-of-type) {
   border-top-left-radius: 0;
 }
 

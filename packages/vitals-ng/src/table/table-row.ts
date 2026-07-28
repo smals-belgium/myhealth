@@ -6,11 +6,13 @@ import { Directive, input, output } from '@angular/core';
  * Exposes the row's public properties as Angular inputs and supports two-way
  * binding for `selected` (`[(selected)]`) and `expanded` (`[(expanded)]`).
  *
+ * The row automatically becomes expandable when content is projected into its
+ * `expansion` slot — there is no `expandable` input to set.
+ *
  * @example
  * ```html
  * <mh-table-row
  *   [value]="'1'"
- *   [expandable]="true"
  *   [(expanded)]="isExpanded"
  *   [(selected)]="isSelected"
  * >
@@ -23,7 +25,6 @@ import { Directive, input, output } from '@angular/core';
   selector: 'mh-table-row',
   host: {
     '[attr.value]': 'value() || null',
-    '[attr.expandable]': 'expandable() ? "" : null',
     '[attr.expanded]': 'expanded() ? "" : null',
     '[attr.selected]': 'selected() ? "" : null',
     '[attr.disabled]': 'disabled() ? "" : null',
@@ -35,9 +36,6 @@ import { Directive, input, output } from '@angular/core';
 export class TableRow {
   /** Identifier reported in the parent table's selection change event. */
   readonly value = input('');
-
-  /** When set, shows a chevron button to expand/collapse additional row content. */
-  readonly expandable = input(false);
 
   /** Whether the row expansion region is visible. Supports two-way binding. */
   readonly expanded = input(false);

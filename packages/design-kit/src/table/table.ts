@@ -5,16 +5,25 @@ import type { Checkbox } from '../checkbox';
 import { LocalizeController } from '../core/i18n';
 
 import { SelectionChangeEvent } from './selection-change.event';
+import type { SelectionMode } from './selection-mode';
 import type { TableRow } from './table-row';
 import styles from './table.css?inline';
+
+let instanceId = 0;
+/** Returns a unique, stable `name` shared by every row's radio button in `single` selection mode, so they form one mutually-exclusive group. */
+const nextSelectionGroupName = (): string => {
+  const id = instanceId;
+  instanceId += 1;
+  return `mh-table-selection-${String(id)}`;
+};
 
 /**
  * @summary A data table with optional row selection and row expansion.
  * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/table
- * @status stable
+ * @status experimental
  * @since 1.0
  *
- * @slot header - Column header cells (`mh-table-cell` elements with the `header` attribute).
+ * @slot header - Column header cells (`mh-table-header-cell` elements).
  * @slot - Body rows (`mh-table-row` elements).
  *
  * @event {SelectionChangeEvent} mh-table-selection-change - Fired when row selection changes.
@@ -27,6 +36,7 @@ import styles from './table.css?inline';
  * @csspart body - The table body group (`display: table-row-group`).
  *
  * @dependency mh-checkbox
+ * @dependency mh-table-header-cell
  */
 @customElement('mh-table')
 export class Table extends LitElement {
@@ -39,16 +49,38 @@ export class Table extends LitElement {
 
   @state() private hasExpandableRows = false;
 
+  readonly #selectionGroupName = nextSelectionGroupName();
+
   #observer!: MutationObserver;
 
-  /** Handles `change` events bubbling from body rows; refreshes the select-all checkbox state and emits `SelectionChangeEvent`. */
-  #onRowChange = () => {
+  /**
+   * Handles `change` events bubbling from body rows. In `single` selection
+   * mode, enforces exclusivity by deselecting every other row whenever a row
+   * becomes selected — this covers both a direct radio click (already
+   * exclusive at the DOM level via the shared radio group) and a click
+   * anywhere else on the row (which selects the row directly, bypassing the
+   * radio group). Also refreshes the select-all checkbox state and emits
+   * `SelectionChangeEvent`.
+   */
+  #onRowChange = (event: Event) => {
+    if (this.selectionMode === 'single') {
+      const changedRow = event.target as TableRow;
+      if (changedRow.selected)
+        for (const row of this.#getBodyRows())
+          if (row !== changedRow) row.selected = false;
+    }
     this.#updateSelectAll();
     this.dispatchEvent(new SelectionChangeEvent(this.selected));
   };
 
-  /** When set, all body rows show a selection checkbox and a select-all checkbox appears in the header. */
-  @property({ type: Boolean, reflect: true }) selectable = false;
+  /**
+   * Controls row selection:
+   * - `none` (default) — rows cannot be selected.
+   * - `single` — at most one row can be selected, via a radio button per row.
+   * - `multi` — any number of rows can be selected, via a checkbox per row and a select-all checkbox in the header.
+   */
+  @property({ reflect: true, attribute: 'selection-mode' })
+  selectionMode: SelectionMode = 'none';
 
   /** Accessible label for the table, exposed as `aria-label` (there is no visible caption). */
   @property() caption = '';
@@ -71,7 +103,7 @@ export class Table extends LitElement {
     this.setAttribute('role', 'table');
     if (this.caption) this.internals.ariaLabel = this.caption;
 
-    this.#propagateSelectable();
+    this.#propagateSelectionMode();
     this.#updateExpandableState();
     this.#observeMutations();
 
@@ -81,7 +113,7 @@ export class Table extends LitElement {
   /** Creates and starts the `MutationObserver` that re-syncs state when body rows are added, removed, or their `expandable` attribute changes. */
   #observeMutations() {
     this.#observer = new MutationObserver(() => {
-      this.#propagateSelectable();
+      this.#propagateSelectionMode();
       this.#updateSelectAll();
       this.#updateExpandableState();
     });
@@ -100,10 +132,10 @@ export class Table extends LitElement {
     this.removeEventListener('change', this.#onRowChange);
   }
 
-  /** Re-propagates `selectable` to body rows and keeps `aria-label` in sync when `caption` or `selectable` changes. */
+  /** Re-propagates `selectionMode` to body rows and keeps `aria-label` in sync when `caption` or `selectionMode` changes. */
   override updated(changed: PropertyValueMap<this>) {
-    if (changed.has('selectable')) {
-      this.#propagateSelectable();
+    if (changed.has('selectionMode')) {
+      this.#propagateSelectionMode();
       this.#propagateShowControl();
     }
     if (changed.has('caption')) this.internals.ariaLabel = this.caption || null;
@@ -119,7 +151,7 @@ export class Table extends LitElement {
 
   /** Writes the `show-control` flag to every body row so each row renders an aligned leading cell even when it is not itself selectable or expandable. */
   #propagateShowControl() {
-    const showControl = this.selectable || this.hasExpandableRows;
+    const showControl = this.selectionMode !== 'none' || this.hasExpandableRows;
     for (const row of this.#getBodyRows()) row.showControl = showControl;
   }
 
@@ -128,14 +160,17 @@ export class Table extends LitElement {
     return Array.from(this.querySelectorAll<TableRow>('mh-table-row'));
   }
 
-  /** Copies the table's `selectable` property down to every body row. */
-  #propagateSelectable() {
-    for (const row of this.#getBodyRows()) row.selectable = this.selectable;
+  /** Copies the table's `selectionMode` and shared radio group name down to every body row. */
+  #propagateSelectionMode() {
+    for (const row of this.#getBodyRows()) {
+      row.selectionMode = this.selectionMode;
+      row.selectionGroup = this.#selectionGroupName;
+    }
   }
 
   /** Syncs the select-all checkbox to reflect whether all, some, or no enabled rows are currently selected. */
   #updateSelectAll() {
-    if (!this.selectable) return;
+    if (this.selectionMode !== 'multi') return;
     const cb = this.selectAllCheckbox;
     if (!cb) return;
     const enabled = this.#getBodyRows().filter(row => !row.disabled);
@@ -172,21 +207,18 @@ export class Table extends LitElement {
             role="row"
           >
             ${
-              this.selectable || this.hasExpandableRows
-                ? html`<mh-table-cell
-                    header
-                    part="select-all-cell"
-                  >
+              this.selectionMode !== 'none' || this.hasExpandableRows
+                ? html`<mh-table-header-cell part="select-all-cell">
                     ${
-                    this.selectable
-                      ? html`<mh-checkbox
-                          part="select-all"
-                          aria-label=${this.localize.term('selectAllRows')}
-                          @change=${this.#onSelectAll}
-                        ></mh-checkbox>`
-                      : nothing
-                  }
-                  </mh-table-cell>`
+                      this.selectionMode === 'multi'
+                        ? html`<mh-checkbox
+                            part="select-all"
+                            aria-label=${this.localize.term('selectAllRows')}
+                            @change=${this.#onSelectAll}
+                          ></mh-checkbox>`
+                        : nothing
+                    }
+                  </mh-table-header-cell>`
                 : nothing
             }
             <slot name="header"></slot>

@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
-import { BUTTON } from '@myhealth/vitals-ng/button';
-import { TABLE } from '@myhealth/vitals-ng/table';
+import type { SelectionMode } from '@smals-belgium-shared/vitals/table';
+import { BUTTON } from '@smals-belgium-shared/vitals-ng/button';
+import { TABLE } from '@smals-belgium-shared/vitals-ng/table';
 
 interface Person {
   id: string;
@@ -18,39 +19,29 @@ interface Person {
     <h2>Table</h2>
 
     <label>
-      <input
-        type="checkbox"
-        [checked]="selectable()"
-        (change)="selectable.set($any($event.target).checked)"
-      />
-      selectable
+      selection mode
+      <select
+        [value]="selectionMode()"
+        (change)="selectionMode.set($any($event.target).value)"
+      >
+        <option value="none">none</option>
+        <option value="single">single</option>
+        <option value="multi">multi</option>
+      </select>
     </label>
 
     <mh-table
-      [selectable]="selectable()"
+      [selectionMode]="selectionMode()"
       [caption]="'Team members'"
       (selectionChange)="onSelectionChange($event)"
     >
-      <mh-table-cell
-        slot="header"
-        [header]="true"
-        >Name</mh-table-cell
-      >
-      <mh-table-cell
-        slot="header"
-        [header]="true"
-        >Email</mh-table-cell
-      >
-      <mh-table-cell
-        slot="header"
-        [header]="true"
-        >Role</mh-table-cell
-      >
+      <mh-table-header-cell slot="header">Name</mh-table-header-cell>
+      <mh-table-header-cell slot="header">Email</mh-table-header-cell>
+      <mh-table-header-cell slot="header">Role</mh-table-header-cell>
 
       @for (person of people; track person.id) {
         <mh-table-row
           [value]="person.id"
-          [expandable]="true"
           [disabled]="person.disabled ?? false"
           [(selected)]="selectedRows[person.id]"
           [(expanded)]="expandedRows[person.id]"
@@ -95,7 +86,7 @@ interface Person {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent {
-  readonly selectable = signal(true);
+  readonly selectionMode = signal<SelectionMode>('multi');
   readonly log = signal<string[]>([]);
 
   readonly people: Person[] = [

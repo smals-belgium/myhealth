@@ -20,7 +20,7 @@ describe('table-cell', () => {
   });
 
   describe('role', () => {
-    it('has role "cell" by default', async () => {
+    it('has role "cell"', async () => {
       const wrapper = await fixture(
         html`<div role="table">
           <div role="row"><mh-table-cell>Cell</mh-table-cell></div>
@@ -28,30 +28,6 @@ describe('table-cell', () => {
       );
       const el = wrapper.querySelector<TableCell>('mh-table-cell')!;
       expect(el.internals.role).toBe('cell');
-    });
-
-    it('has role "columnheader" when header attribute is set', async () => {
-      const wrapper = await fixture(
-        html`<div role="table">
-          <div role="row"><mh-table-cell header>Header</mh-table-cell></div>
-        </div>`,
-      );
-      const el = wrapper.querySelector<TableCell>('mh-table-cell')!;
-      expect(el.internals.role).toBe('columnheader');
-    });
-
-    it('updates role when header property changes', async () => {
-      const wrapper = await fixture(
-        html`<div role="table">
-          <div role="row"><mh-table-cell>Cell</mh-table-cell></div>
-        </div>`,
-      );
-      const el = wrapper.querySelector<TableCell>('mh-table-cell')!;
-      expect(el.internals.role).toBe('cell');
-
-      el.header = true;
-      await el.updateComplete;
-      expect(el.internals.role).toBe('columnheader');
     });
   });
 
@@ -64,16 +40,6 @@ describe('table-cell', () => {
       );
       const el = wrapper.querySelector<TableCell>('mh-table-cell')!;
       expect(el.shadowRoot?.querySelector('slot')).not.toBeNull();
-    });
-
-    it('reflects the header attribute', async () => {
-      const wrapper = await fixture(
-        html`<div role="table">
-          <div role="row"><mh-table-cell header>Header</mh-table-cell></div>
-        </div>`,
-      );
-      const el = wrapper.querySelector<TableCell>('mh-table-cell')!;
-      expect(el.hasAttribute('header')).toBe(true);
     });
 
     it('part helper returns null for non-existent parts', () => {
