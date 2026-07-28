@@ -19,6 +19,7 @@
   padding: 0;
   border: none;
   border-radius: var(--mh-border-radius);
+
   /* No design-token for a plain white surface exists; use the literal. */
   background-color: #fff;
   box-shadow: var(--mh-dialog__box-shadow);

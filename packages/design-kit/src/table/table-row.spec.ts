@@ -26,15 +26,45 @@ describe('table-row', () => {
   });
 
   describe('expansion', () => {
+    it('is expandable when the expansion slot has content', async () => {
+      const wrapper = await fixture(
+        html`<div role="table">
+          <div role="rowgroup">
+            <mh-table-row value="1">
+              <mh-table-cell>Cell</mh-table-cell>
+              <div slot="expansion">Details</div>
+            </mh-table-row>
+          </div>
+        </div>`,
+      );
+      const row = wrapper.querySelector<TableRow>('mh-table-row')!;
+      expect(row.expandable).toBe(true);
+      expect(row.hasAttribute('expandable')).toBe(true);
+    });
+
+    it('is not expandable when the expansion slot is empty', async () => {
+      const wrapper = await fixture(
+        html`<div role="table">
+          <div role="rowgroup">
+            <mh-table-row value="1"
+              ><mh-table-cell>Cell</mh-table-cell></mh-table-row
+            >
+          </div>
+        </div>`,
+      );
+      const row = wrapper.querySelector<TableRow>('mh-table-row')!;
+      expect(row.expandable).toBe(false);
+      expect(row.hasAttribute('expandable')).toBe(false);
+    });
+
     it('is not expanded by default', async () => {
       const wrapper = await fixture(
         html`<div role="table">
           <div role="rowgroup">
-            <mh-table-row
-              expandable
-              value="1"
-              ><mh-table-cell>Cell</mh-table-cell></mh-table-row
-            >
+            <mh-table-row value="1">
+              <mh-table-cell>Cell</mh-table-cell>
+              <div slot="expansion">Details</div>
+            </mh-table-row>
           </div>
         </div>`,
       );
@@ -46,11 +76,10 @@ describe('table-row', () => {
       const wrapper = await fixture(
         html`<div role="table">
           <div role="rowgroup">
-            <mh-table-row
-              expandable
-              value="1"
-              ><mh-table-cell>Cell</mh-table-cell></mh-table-row
-            >
+            <mh-table-row value="1">
+              <mh-table-cell>Cell</mh-table-cell>
+              <div slot="expansion">Details</div>
+            </mh-table-row>
           </div>
         </div>`,
       );
@@ -68,11 +97,12 @@ describe('table-row', () => {
         html`<div role="table">
           <div role="rowgroup">
             <mh-table-row
-              expandable
               expanded
               value="1"
-              ><mh-table-cell>Cell</mh-table-cell></mh-table-row
             >
+              <mh-table-cell>Cell</mh-table-cell>
+              <div slot="expansion">Details</div>
+            </mh-table-row>
           </div>
         </div>`,
       );
@@ -89,11 +119,10 @@ describe('table-row', () => {
       const wrapper = await fixture(
         html`<div role="table">
           <div role="rowgroup">
-            <mh-table-row
-              expandable
-              value="1"
-              ><mh-table-cell>Cell</mh-table-cell></mh-table-row
-            >
+            <mh-table-row value="1">
+              <mh-table-cell>Cell</mh-table-cell>
+              <div slot="expansion">Details</div>
+            </mh-table-row>
           </div>
         </div>`,
       );
@@ -112,12 +141,53 @@ describe('table-row', () => {
       expect(expandedValue).toBe(true);
     });
 
-    it('renders expansion-row when expandable', async () => {
+    it('shows the expansion-row when expanded and expandable', async () => {
       const wrapper = await fixture(
         html`<div role="table">
           <div role="rowgroup">
             <mh-table-row
-              expandable
+              expanded
+              value="1"
+            >
+              <mh-table-cell>Cell</mh-table-cell>
+              <div slot="expansion">Details</div>
+            </mh-table-row>
+          </div>
+        </div>`,
+      );
+      const row = wrapper.querySelector<TableRow>('mh-table-row')!;
+      expect(
+        row.shadowRoot
+          ?.querySelector('[part="expansion-row"]')
+          ?.hasAttribute('hidden'),
+      ).toBe(false);
+    });
+
+    it('keeps the expansion-row hidden when not expanded', async () => {
+      const wrapper = await fixture(
+        html`<div role="table">
+          <div role="rowgroup">
+            <mh-table-row value="1">
+              <mh-table-cell>Cell</mh-table-cell>
+              <div slot="expansion">Details</div>
+            </mh-table-row>
+          </div>
+        </div>`,
+      );
+      const row = wrapper.querySelector<TableRow>('mh-table-row')!;
+      expect(
+        row.shadowRoot
+          ?.querySelector('[part="expansion-row"]')
+          ?.hasAttribute('hidden'),
+      ).toBe(true);
+    });
+
+    it('keeps the expansion-row hidden when there is no expansion content, even if expanded', async () => {
+      const wrapper = await fixture(
+        html`<div role="table">
+          <div role="rowgroup">
+            <mh-table-row
+              expanded
               value="1"
               ><mh-table-cell>Cell</mh-table-cell></mh-table-row
             >
@@ -126,34 +196,20 @@ describe('table-row', () => {
       );
       const row = wrapper.querySelector<TableRow>('mh-table-row')!;
       expect(
-        row.shadowRoot?.querySelector('[part="expansion-row"]'),
-      ).not.toBeNull();
-    });
-
-    it('does not render expansion-row when not expandable', async () => {
-      const wrapper = await fixture(
-        html`<div role="table">
-          <div role="rowgroup">
-            <mh-table-row value="1"
-              ><mh-table-cell>Cell</mh-table-cell></mh-table-row
-            >
-          </div>
-        </div>`,
-      );
-      const row = wrapper.querySelector<TableRow>('mh-table-row')!;
-      expect(
-        row.shadowRoot?.querySelector('[part="expansion-row"]'),
-      ).toBeNull();
+        row.shadowRoot
+          ?.querySelector('[part="expansion-row"]')
+          ?.hasAttribute('hidden'),
+      ).toBe(true);
     });
   });
 
   describe('selection', () => {
-    it('shows checkbox when selectable', async () => {
+    it('shows checkbox in multi selection mode', async () => {
       const wrapper = await fixture(
         html`<div role="table">
           <div role="rowgroup">
             <mh-table-row
-              selectable
+              selection-mode="multi"
               value="1"
               ><mh-table-cell>Cell</mh-table-cell></mh-table-row
             >
@@ -164,7 +220,24 @@ describe('table-row', () => {
       expect(row.shadowRoot?.querySelector('mh-checkbox')).not.toBeNull();
     });
 
-    it('does not show checkbox when not selectable', async () => {
+    it('shows radio in single selection mode', async () => {
+      const wrapper = await fixture(
+        html`<div role="table">
+          <div role="rowgroup">
+            <mh-table-row
+              selection-mode="single"
+              value="1"
+              ><mh-table-cell>Cell</mh-table-cell></mh-table-row
+            >
+          </div>
+        </div>`,
+      );
+      const row = wrapper.querySelector<TableRow>('mh-table-row')!;
+      expect(row.shadowRoot?.querySelector('mh-radio')).not.toBeNull();
+      expect(row.shadowRoot?.querySelector('mh-checkbox')).toBeNull();
+    });
+
+    it('does not show checkbox or radio when selectionMode is none', async () => {
       const wrapper = await fixture(
         html`<div role="table">
           <div role="rowgroup">
@@ -176,6 +249,7 @@ describe('table-row', () => {
       );
       const row = wrapper.querySelector<TableRow>('mh-table-row')!;
       expect(row.shadowRoot?.querySelector('mh-checkbox')).toBeNull();
+      expect(row.shadowRoot?.querySelector('mh-radio')).toBeNull();
     });
 
     it('reflects the selected property as an attribute', async () => {
@@ -183,7 +257,7 @@ describe('table-row', () => {
         html`<div role="table">
           <div role="rowgroup">
             <mh-table-row
-              selectable
+              selection-mode="multi"
               value="1"
               ><mh-table-cell>Cell</mh-table-cell></mh-table-row
             >
@@ -194,6 +268,30 @@ describe('table-row', () => {
       row.selected = true;
       await row.updateComplete;
       expect(row.hasAttribute('selected')).toBe(true);
+    });
+
+    it('selects the row on click in single selection mode, but does not toggle it off', async () => {
+      const wrapper = await fixture(
+        html`<div role="table">
+          <div role="rowgroup">
+            <mh-table-row
+              selection-mode="single"
+              value="1"
+              ><mh-table-cell>Cell</mh-table-cell></mh-table-row
+            >
+          </div>
+        </div>`,
+      );
+      const row = wrapper.querySelector<TableRow>('mh-table-row')!;
+      const rowPart = row.shadowRoot!.querySelector('[part="row"]')!;
+
+      rowPart.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      await row.updateComplete;
+      expect(row.selected).toBe(true);
+
+      rowPart.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      await row.updateComplete;
+      expect(row.selected).toBe(true);
     });
   });
 
@@ -226,12 +324,30 @@ describe('table-row', () => {
       expect(row.shadowRoot?.querySelector('[part="control-cell"]')).toBeNull();
     });
 
-    it('renders a control-cell when selectable', async () => {
+    it('renders a control-cell when selectionMode is multi', async () => {
       const wrapper = await fixture(
         html`<div role="table">
           <div role="rowgroup">
             <mh-table-row
-              selectable
+              selection-mode="multi"
+              value="1"
+              ><mh-table-cell>Cell</mh-table-cell></mh-table-row
+            >
+          </div>
+        </div>`,
+      );
+      const row = wrapper.querySelector<TableRow>('mh-table-row')!;
+      expect(
+        row.shadowRoot?.querySelector('[part="control-cell"]'),
+      ).not.toBeNull();
+    });
+
+    it('renders a control-cell when selectionMode is single', async () => {
+      const wrapper = await fixture(
+        html`<div role="table">
+          <div role="rowgroup">
+            <mh-table-row
+              selection-mode="single"
               value="1"
               ><mh-table-cell>Cell</mh-table-cell></mh-table-row
             >
@@ -248,11 +364,10 @@ describe('table-row', () => {
       const wrapper = await fixture(
         html`<div role="table">
           <div role="rowgroup">
-            <mh-table-row
-              expandable
-              value="1"
-              ><mh-table-cell>Cell</mh-table-cell></mh-table-row
-            >
+            <mh-table-row value="1">
+              <mh-table-cell>Cell</mh-table-cell>
+              <div slot="expansion">Details</div>
+            </mh-table-row>
           </div>
         </div>`,
       );

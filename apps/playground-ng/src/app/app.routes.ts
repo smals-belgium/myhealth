@@ -17,7 +17,7 @@ import { SkeletonSandbox } from './skeleton-ng.sandbox';
 import { SlideToggleSandbox } from './slide-toggle-ng.sandbox';
 import { SnackbarSandbox } from './snackbar-ng.sandbox';
 import { SpinnerSandbox } from './spinner-ng.sandbox';
-import { TableComponent } from './table.component';
+import { TableComponent } from './table-ng.sandbox';
 import { TextInputSandbox } from './text-input-ng.sandbox';
 import { TooltipSandbox } from './tooltip-ng.sandbox';
 

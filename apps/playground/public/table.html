@@ -52,21 +52,9 @@
     <section>
       <h2>Basic table</h2>
       <mh-table>
-        <mh-table-cell
-          slot="header"
-          header
-          >Name</mh-table-cell
-        >
-        <mh-table-cell
-          slot="header"
-          header
-          >Status</mh-table-cell
-        >
-        <mh-table-cell
-          slot="header"
-          header
-          >Role</mh-table-cell
-        >
+        <mh-table-header-cell slot="header">Name</mh-table-header-cell>
+        <mh-table-header-cell slot="header">Status</mh-table-header-cell>
+        <mh-table-header-cell slot="header">Role</mh-table-header-cell>
 
         <mh-table-row value="1">
           <mh-table-cell>Alice Dupont</mh-table-cell>
@@ -88,23 +76,15 @@
       </mh-table>
     </section>
 
-    <!-- 2. Selectable table -->
+    <!-- 2. Multi-select table (checkboxes + select-all) -->
     <section>
-      <h2>Selectable table</h2>
+      <h2>Multi-select table</h2>
       <mh-table
-        selectable
+        selection-mode="multi"
         id="selectable-table"
       >
-        <mh-table-cell
-          slot="header"
-          header
-          >Name</mh-table-cell
-        >
-        <mh-table-cell
-          slot="header"
-          header
-          >Status</mh-table-cell
-        >
+        <mh-table-header-cell slot="header">Name</mh-table-header-cell>
+        <mh-table-header-cell slot="header">Status</mh-table-header-cell>
 
         <mh-table-row value="alice">
           <mh-table-cell>Alice Dupont</mh-table-cell>
@@ -133,25 +113,41 @@
       </div>
     </section>
 
-    <!-- 3. Expandable table -->
+    <!-- 3. Single-select table (radio buttons, no select-all) -->
+    <section>
+      <h2>Single-select table</h2>
+      <mh-table selection-mode="single">
+        <mh-table-header-cell slot="header">Name</mh-table-header-cell>
+        <mh-table-header-cell slot="header">Status</mh-table-header-cell>
+
+        <mh-table-row value="alice">
+          <mh-table-cell>Alice Dupont</mh-table-cell>
+          <mh-table-cell>Active</mh-table-cell>
+        </mh-table-row>
+
+        <mh-table-row value="bob">
+          <mh-table-cell>Bob Martin</mh-table-cell>
+          <mh-table-cell>Active</mh-table-cell>
+        </mh-table-row>
+
+        <mh-table-row
+          value="carol"
+          disabled
+        >
+          <mh-table-cell>Carol Peeters (disabled)</mh-table-cell>
+          <mh-table-cell>Inactive</mh-table-cell>
+        </mh-table-row>
+      </mh-table>
+    </section>
+
+    <!-- 4. Expandable table -->
     <section>
       <h2>Expandable table</h2>
       <mh-table>
-        <mh-table-cell
-          slot="header"
-          header
-          >Name</mh-table-cell
-        >
-        <mh-table-cell
-          slot="header"
-          header
-          >Department</mh-table-cell
-        >
+        <mh-table-header-cell slot="header">Name</mh-table-header-cell>
+        <mh-table-header-cell slot="header">Department</mh-table-header-cell>
 
-        <mh-table-row
-          value="1"
-          expandable
-        >
+        <mh-table-row value="1">
           <mh-table-cell>Alice Dupont</mh-table-cell>
           <mh-table-cell>Cardiology</mh-table-cell>
           <div slot="expansion">
@@ -160,10 +156,7 @@
           </div>
         </mh-table-row>
 
-        <mh-table-row
-          value="2"
-          expandable
-        >
+        <mh-table-row value="2">
           <mh-table-cell>Bob Martin</mh-table-cell>
           <mh-table-cell>Neurology</mh-table-cell>
           <div slot="expansion">
@@ -179,33 +172,18 @@
       </mh-table>
     </section>
 
-    <!-- 4. Combined: selectable + expandable -->
+    <!-- 5. Combined: multi-select + expandable -->
     <section>
-      <h2>Combined — selectable &amp; expandable</h2>
+      <h2>Combined — multi-select &amp; expandable</h2>
       <mh-table
-        selectable
+        selection-mode="multi"
         caption="Patient appointments"
       >
-        <mh-table-cell
-          slot="header"
-          header
-          >Patient</mh-table-cell
-        >
-        <mh-table-cell
-          slot="header"
-          header
-          >Date</mh-table-cell
-        >
-        <mh-table-cell
-          slot="header"
-          header
-          >Physician</mh-table-cell
-        >
+        <mh-table-header-cell slot="header">Patient</mh-table-header-cell>
+        <mh-table-header-cell slot="header">Date</mh-table-header-cell>
+        <mh-table-header-cell slot="header">Physician</mh-table-header-cell>
 
-        <mh-table-row
-          value="appt-1"
-          expandable
-        >
+        <mh-table-row value="appt-1">
           <mh-table-cell>Alice Dupont</mh-table-cell>
           <mh-table-cell>12 Jan 2026</mh-table-cell>
           <mh-table-cell>Dr. Lecomte</mh-table-cell>
@@ -217,7 +195,6 @@
 
         <mh-table-row
           value="appt-2"
-          expandable
           selected
         >
           <mh-table-cell>Bob Martin</mh-table-cell>

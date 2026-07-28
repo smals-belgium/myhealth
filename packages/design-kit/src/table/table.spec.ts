@@ -5,6 +5,7 @@ import { assertAccessibility } from '../core/testing';
 
 import './table';
 import './table-cell';
+import './table-header-cell';
 import './table-row';
 import type { SelectionChangeEvent } from './selection-change.event';
 import type { Table } from './table';
@@ -16,7 +17,7 @@ describe('table', () => {
       await assertAccessibility(
         await fixture(html`
           <mh-table>
-            <mh-table-cell slot="header">Name</mh-table-cell>
+            <mh-table-header-cell slot="header">Name</mh-table-header-cell>
             <mh-table-row value="1"
               ><mh-table-cell>Alice</mh-table-cell></mh-table-row
             >
@@ -26,11 +27,11 @@ describe('table', () => {
     });
   });
 
-  describe('selectable', () => {
-    it('propagates selectable to child rows', async () => {
+  describe('selectionMode', () => {
+    it('propagates selectionMode to child rows', async () => {
       const el = await fixture<Table>(html`
-        <mh-table selectable>
-          <mh-table-cell slot="header">Name</mh-table-cell>
+        <mh-table selection-mode="multi">
+          <mh-table-header-cell slot="header">Name</mh-table-header-cell>
           <mh-table-row value="1"
             ><mh-table-cell>Alice</mh-table-cell></mh-table-row
           >
@@ -38,29 +39,29 @@ describe('table', () => {
       `);
       await el.updateComplete;
       const row = el.querySelector<TableRow>('mh-table-row')!;
-      expect(row.selectable).toBe(true);
+      expect(row.selectionMode).toBe('multi');
     });
 
-    it('propagates selectable=false when attribute is removed', async () => {
+    it('propagates selectionMode="none" when the attribute is removed', async () => {
       const el = await fixture<Table>(html`
-        <mh-table selectable>
-          <mh-table-cell slot="header">Name</mh-table-cell>
+        <mh-table selection-mode="multi">
+          <mh-table-header-cell slot="header">Name</mh-table-header-cell>
           <mh-table-row value="1"
             ><mh-table-cell>Alice</mh-table-cell></mh-table-row
           >
         </mh-table>
       `);
       await el.updateComplete;
-      el.selectable = false;
+      el.selectionMode = 'none';
       await el.updateComplete;
       const row = el.querySelector<TableRow>('mh-table-row')!;
-      expect(row.selectable).toBe(false);
+      expect(row.selectionMode).toBe('none');
     });
 
     it('emits mh-table-selection-change when a row dispatches change', async () => {
       const el = await fixture<Table>(html`
-        <mh-table selectable>
-          <mh-table-cell slot="header">Name</mh-table-cell>
+        <mh-table selection-mode="multi">
+          <mh-table-header-cell slot="header">Name</mh-table-header-cell>
           <mh-table-row value="row-1"
             ><mh-table-cell>Alice</mh-table-cell></mh-table-row
           >
@@ -82,13 +83,64 @@ describe('table', () => {
       expect(eventFired).toBe(true);
       expect(selectedValues).toContain('row-1');
     });
+
+    it('gives every row the same selectionGroup name in single mode', async () => {
+      const el = await fixture<Table>(html`
+        <mh-table selection-mode="single">
+          <mh-table-header-cell slot="header">Name</mh-table-header-cell>
+          <mh-table-row value="a"
+            ><mh-table-cell>Alice</mh-table-cell></mh-table-row
+          >
+          <mh-table-row value="b"
+            ><mh-table-cell>Bob</mh-table-cell></mh-table-row
+          >
+        </mh-table>
+      `);
+      await el.updateComplete;
+      const [rowA, rowB] = el.querySelectorAll<TableRow>('mh-table-row');
+      expect(rowA.selectionGroup).not.toBe('');
+      expect(rowA.selectionGroup).toBe(rowB.selectionGroup);
+    });
+
+    it('selecting a row deselects the previously selected row in single mode', async () => {
+      const el = await fixture<Table>(html`
+        <mh-table selection-mode="single">
+          <mh-table-header-cell slot="header">Name</mh-table-header-cell>
+          <mh-table-row value="a"
+            ><mh-table-cell>Alice</mh-table-cell></mh-table-row
+          >
+          <mh-table-row value="b"
+            ><mh-table-cell>Bob</mh-table-cell></mh-table-row
+          >
+        </mh-table>
+      `);
+      await el.updateComplete;
+      const [rowA, rowB] = el.querySelectorAll<TableRow>('mh-table-row');
+
+      rowA.shadowRoot
+        ?.querySelector('[part="row"]')
+        ?.dispatchEvent(
+          new MouseEvent('click', { bubbles: true, composed: true }),
+        );
+      await el.updateComplete;
+      expect(el.selected).toEqual(['a']);
+
+      rowB.shadowRoot
+        ?.querySelector('[part="row"]')
+        ?.dispatchEvent(
+          new MouseEvent('click', { bubbles: true, composed: true }),
+        );
+      await el.updateComplete;
+      expect(rowA.selected).toBe(false);
+      expect(el.selected).toEqual(['b']);
+    });
   });
 
   describe('selected getter', () => {
     it('returns values of selected rows', async () => {
       const el = await fixture<Table>(html`
-        <mh-table selectable>
-          <mh-table-cell slot="header">Name</mh-table-cell>
+        <mh-table selection-mode="multi">
+          <mh-table-header-cell slot="header">Name</mh-table-header-cell>
           <mh-table-row
             value="a"
             selected
@@ -105,8 +157,8 @@ describe('table', () => {
 
     it('excludes rows with empty value', async () => {
       const el = await fixture<Table>(html`
-        <mh-table selectable>
-          <mh-table-cell slot="header">Name</mh-table-cell>
+        <mh-table selection-mode="multi">
+          <mh-table-header-cell slot="header">Name</mh-table-header-cell>
           <mh-table-row selected
             ><mh-table-cell>No value</mh-table-cell></mh-table-row
           >
@@ -121,7 +173,7 @@ describe('table', () => {
     it('sets aria-label via internals when caption is provided', async () => {
       const el = await fixture<Table>(html`
         <mh-table caption="Patient list">
-          <mh-table-cell slot="header">Name</mh-table-cell>
+          <mh-table-header-cell slot="header">Name</mh-table-header-cell>
           <mh-table-row value="1"
             ><mh-table-cell>Alice</mh-table-cell></mh-table-row
           >
@@ -136,7 +188,7 @@ describe('table', () => {
     it('renders head and body parts', async () => {
       const el = await fixture<Table>(html`
         <mh-table>
-          <mh-table-cell slot="header">Name</mh-table-cell>
+          <mh-table-header-cell slot="header">Name</mh-table-header-cell>
           <mh-table-row value="1"
             ><mh-table-cell>Alice</mh-table-cell></mh-table-row
           >
@@ -146,10 +198,10 @@ describe('table', () => {
       expect(el.shadowRoot?.querySelector('[part="body"]')).not.toBeNull();
     });
 
-    it('renders select-all checkbox when selectable', async () => {
+    it('renders select-all checkbox in multi selection mode', async () => {
       const el = await fixture<Table>(html`
-        <mh-table selectable>
-          <mh-table-cell slot="header">Name</mh-table-cell>
+        <mh-table selection-mode="multi">
+          <mh-table-header-cell slot="header">Name</mh-table-header-cell>
           <mh-table-row value="1"
             ><mh-table-cell>Alice</mh-table-cell></mh-table-row
           >
@@ -160,10 +212,22 @@ describe('table', () => {
       ).not.toBeNull();
     });
 
-    it('does not render select-all checkbox when not selectable', async () => {
+    it('does not render select-all checkbox in none selection mode', async () => {
       const el = await fixture<Table>(html`
         <mh-table>
-          <mh-table-cell slot="header">Name</mh-table-cell>
+          <mh-table-header-cell slot="header">Name</mh-table-header-cell>
+          <mh-table-row value="1"
+            ><mh-table-cell>Alice</mh-table-cell></mh-table-row
+          >
+        </mh-table>
+      `);
+      expect(el.shadowRoot?.querySelector('[part="select-all"]')).toBeNull();
+    });
+
+    it('does not render select-all checkbox in single selection mode', async () => {
+      const el = await fixture<Table>(html`
+        <mh-table selection-mode="single">
+          <mh-table-header-cell slot="header">Name</mh-table-header-cell>
           <mh-table-row value="1"
             ><mh-table-cell>Alice</mh-table-cell></mh-table-row
           >

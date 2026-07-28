@@ -17,19 +17,16 @@ Or with standalone components:
 
 ```typescript
 import { TABLE } from '@myhealth/vitals-ng/table';
+import type { SelectionMode } from '@smals-belgium-shared/vitals/table';
 
 @Component({
   imports: [TABLE],
   template: `
     <mh-table
-      [selectable]="selectable"
+      [selectionMode]="selectionMode"
       (selectionChange)="onSelectionChange($event)"
     >
-      <mh-table-cell
-        slot="header"
-        header
-        >Name</mh-table-cell
-      >
+      <mh-table-header-cell slot="header">Name</mh-table-header-cell>
       <mh-table-row
         value="1"
         [(selected)]="aliceSelected"
@@ -40,7 +37,7 @@ import { TABLE } from '@myhealth/vitals-ng/table';
   `,
 })
 export class MyComponent {
-  selectable = true;
+  selectionMode: SelectionMode = 'multi';
   aliceSelected = false;
 
   onSelectionChange(selected: string[]) {
@@ -53,10 +50,10 @@ export class MyComponent {
 
 ### Inputs
 
-| Input        | Type      | Default | Description                                               |
-| ------------ | --------- | ------- | --------------------------------------------------------- |
-| `selectable` | `boolean` | `false` | Enables row selection with checkboxes and select-all.     |
-| `caption`    | `string`  | `''`    | Accessible label for the table (exposed as `aria-label`). |
+| Input           | Type            | Default  | Description                                                                                                                                           |
+| --------------- | --------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `selectionMode` | `SelectionMode` | `'none'` | `'none'` disables selection. `'single'` allows one selected row via a radio button per row (no select-all). `'multi'` adds checkboxes and select-all. |
+| `caption`       | `string`        | `''`     | Accessible label for the table (exposed as `aria-label`).                                                                                             |
 
 ### Outputs
 
@@ -66,15 +63,16 @@ export class MyComponent {
 
 ## `mh-table-row`
 
+Automatically becomes expandable when content is projected into its `expansion` slot — there is no `expandable` input to set.
+
 ### Inputs
 
-| Input        | Type      | Default | Description                                                  |
-| ------------ | --------- | ------- | ------------------------------------------------------------ |
-| `value`      | `string`  | `''`    | Identifier reported in the table's selection change event.   |
-| `expandable` | `boolean` | `false` | Shows a chevron button to expand/collapse extra row content. |
-| `expanded`   | `boolean` | `false` | Whether the expansion region is visible. Two-way bindable.   |
-| `selected`   | `boolean` | `false` | Whether this row's checkbox is checked. Two-way bindable.    |
-| `disabled`   | `boolean` | `false` | Shows the checkbox but makes it non-interactive.             |
+| Input      | Type      | Default | Description                                                     |
+| ---------- | --------- | ------- | --------------------------------------------------------------- |
+| `value`    | `string`  | `''`    | Identifier reported in the table's selection change event.      |
+| `expanded` | `boolean` | `false` | Whether the expansion region is visible. Two-way bindable.      |
+| `selected` | `boolean` | `false` | Whether this row's checkbox/radio is checked. Two-way bindable. |
+| `disabled` | `boolean` | `false` | Shows the checkbox/radio but makes it non-interactive.          |
 
 ### Outputs
 
@@ -85,8 +83,8 @@ export class MyComponent {
 
 ## `mh-table-cell`
 
-### Inputs
+Renders a single body cell (`role="cell"`). Has no inputs.
 
-| Input    | Type      | Default | Description                                           |
-| -------- | --------- | ------- | ----------------------------------------------------- |
-| `header` | `boolean` | `false` | Renders the cell as a column header (`columnheader`). |
+## `mh-table-header-cell`
+
+Renders a column header cell (`role="columnheader"`). Slot it into the `header` slot of `mh-table`. Has no inputs.

@@ -4,16 +4,19 @@
 
 [part='row'] {
   display: table-row;
+
   /* No design-token for a plain white surface exists; use the literal. */
   background-color: #fff;
 }
 
-:host([selectable]:not([disabled])) [part='row'],
+:host([selection-mode='multi']:not([disabled])) [part='row'],
+:host([selection-mode='single']:not([disabled])) [part='row'],
 :host([expandable]) [part='row'] {
   cursor: pointer;
 }
 
-:host([selectable]:not([disabled])) [part='row']:hover,
+:host([selection-mode='multi']:not([disabled])) [part='row']:hover,
+:host([selection-mode='single']:not([disabled])) [part='row']:hover,
 :host([expandable]) [part='row']:hover {
   background-color: var(--mh-color-neutral-fill-quieter);
 }
@@ -31,6 +34,7 @@
 
 [part='expansion-row'] {
   display: block;
+
   /* Prevent the full-width expansion-cell from widening column 0 in the
      CSS table's column-grid calculation. */
   contain: inline-size;
@@ -55,12 +59,27 @@
   vertical-align: middle;
 }
 
+[part='radio'] {
+  vertical-align: middle;
+}
+
 [part='expand-button'] {
   vertical-align: middle;
+
+  --mh-icon-button__color-type: var(--mh-color-brand-type);
+  --mh-icon-button__color-type__hover: var(--mh-color-brand-type);
+  --mh-icon-button__color-type__active: var(--mh-color-brand-type);
+
+  --mh-icon-button__color-fill: transparent;
+  --mh-icon-button__color-fill__hover: rgb(0 0 0 / 8%);
+  --mh-icon-button__color-fill__active: rgb(0 0 0 / 16%);
+
+  transition: transform var(--mh-transition-normal) var(--mh-transition-easing);
 }
 
 [part='expansion-cell'] {
   display: block;
+
   /* Escape column 0's width constraint by overflowing visually (in-flow, so
      the row still pushes subsequent rows down). z-index ensures it paints
      above later rows. box-sizing keeps padding inside the declared width.
@@ -75,18 +94,16 @@
   background-color: var(--mh-color-neutral-fill-quieter);
 }
 
-:host([expanded]) [part='control-cell'] {
-  border-bottom: none;
-}
+:host([expanded]) {
+  [part='control-cell'] {
+    border-bottom: none;
+  }
 
-:host([expanded]) ::slotted(mh-table-cell) {
-  border-bottom: none;
-}
+  ::slotted(mh-table-cell) {
+    border-bottom: none;
+  }
 
-[part='expand-button'] {
-  transition: transform var(--mh-transition-normal) var(--mh-transition-easing);
-}
-
-:host([expanded]) [part='expand-button'] {
-  transform: rotate(180deg);
+  [part='expand-button'] {
+    transform: rotate(180deg);
+  }
 }
