@@ -23,6 +23,8 @@ import { RouterModule } from '@angular/router';
         <li><a routerLink="/slide-toggle">slide-toggle</a></li>
         <li><a routerLink="/snackbar">snackbar</a></li>
         <li><a routerLink="/spinner">spinner</a></li>
+        <li><a routerLink="/table">tabs</a></li>
+        <li><a routerLink="/tabs">tabs</a></li>
         <li><a routerLink="/text-input">text-input</a></li>
         <li><a routerLink="/tooltip">tooltip</a></li>
       </ul>

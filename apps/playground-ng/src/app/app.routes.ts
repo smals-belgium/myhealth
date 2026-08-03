@@ -18,6 +18,7 @@ import { SlideToggleSandbox } from './slide-toggle-ng.sandbox';
 import { SnackbarSandbox } from './snackbar-ng.sandbox';
 import { SpinnerSandbox } from './spinner-ng.sandbox';
 import { TableComponent } from './table-ng.sandbox';
+import { TabsSandbox } from './tabs-ng.sandbox';
 import { TextInputSandbox } from './text-input-ng.sandbox';
 import { TooltipSandbox } from './tooltip-ng.sandbox';
 
@@ -94,6 +95,10 @@ export const appRoutes: Route[] = [
   {
     path: 'table',
     component: TableComponent,
+  },
+  {
+    path: 'tabs',
+    component: TabsSandbox,
   },
   {
     path: 'text-input',

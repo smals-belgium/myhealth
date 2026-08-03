@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - tabs</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/styles.css"
+    />
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+      h2 {
+        margin: 0 0 0.25rem;
+      }
+      h3 {
+        margin: 0 0 1rem;
+        font-size: 1rem;
+        color: #666;
+      }
+      mh-tab-group {
+        max-width: 32rem;
+      }
+      .tab-label {
+        display: inline-flex;
+        gap: 0.375rem;
+      }
+      #eventLog {
+        margin: 0;
+        padding: 0.75rem 1rem;
+        background: #f4f4f4;
+        border-radius: 0.25rem;
+        font-size: 0.85rem;
+        min-height: 1.2em;
+      }
+      .row {
+        display: flex;
+        gap: 0.5rem;
+      }
+    </style>
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+    <script
+      type="module"
+      src="/src/tabs.ts"
+    ></script>
+  </head>
+
+  <body>
+    <h2>Tabs</h2>
+
+    <section data-spec="basic">
+      <h3>Basic</h3>
+      <mh-tab-group>
+        <mh-tab label="Account">
+          <p>Manage your account details here.</p>
+        </mh-tab>
+        <mh-tab label="Notifications">
+          <p>Manage your notification preferences here.</p>
+        </mh-tab>
+        <mh-tab label="Privacy">
+          <p>Manage your privacy settings here.</p>
+        </mh-tab>
+      </mh-tab-group>
+    </section>
+
+    <section data-spec="disabled">
+      <h3>Disabled tab</h3>
+      <mh-tab-group>
+        <mh-tab label="Overview">
+          <p>Overview content.</p>
+        </mh-tab>
+        <mh-tab
+          label="Archived"
+          disabled
+        >
+          <p>Archived content (unreachable while disabled).</p>
+        </mh-tab>
+        <mh-tab label="Settings">
+          <p>Settings content.</p>
+        </mh-tab>
+      </mh-tab-group>
+    </section>
+
+    <section data-spec="rich-labels">
+      <h3>Rich labels</h3>
+      <mh-tab-group>
+        <mh-tab label="Home">
+          <span
+            slot="tab-label"
+            class="tab-label"
+          >
+            <mh-icon
+              name="home"
+              size="s"
+            ></mh-icon>
+            Home
+          </span>
+          <p>Home content.</p>
+        </mh-tab>
+        <mh-tab label="Settings">
+          <span
+            slot="tab-label"
+            class="tab-label"
+          >
+            <mh-icon
+              name="settings"
+              size="s"
+            ></mh-icon>
+            Settings
+          </span>
+          <p>Settings content.</p>
+        </mh-tab>
+      </mh-tab-group>
+    </section>
+
+    <section data-spec="programmatic">
+      <h3>Programmatic selection</h3>
+      <div class="row">
+        <mh-button id="selectFirst">Select first</mh-button>
+        <mh-button id="selectLast">Select last</mh-button>
+      </div>
+      <mh-tab-group id="programmaticGroup">
+        <mh-tab label="One">
+          <p>Panel one.</p>
+        </mh-tab>
+        <mh-tab label="Two">
+          <p>Panel two.</p>
+        </mh-tab>
+        <mh-tab label="Three">
+          <p>Panel three.</p>
+        </mh-tab>
+      </mh-tab-group>
+      <p id="eventLog">No selection change yet.</p>
+    </section>
+
+    <section data-spec="link-tabs">
+      <h3>Link tabs</h3>
+      <mh-tab-group id="linkGroup">
+        <mh-tab-link
+          label="Overview"
+          href="/tabs.html"
+        ></mh-tab-link>
+        <mh-tab-link
+          label="Docs"
+          href="/tabs.html"
+          target="_blank"
+        ></mh-tab-link>
+        <mh-tab-link
+          label="Disabled"
+          href="/tabs.html"
+          disabled
+        ></mh-tab-link>
+      </mh-tab-group>
+      <p id="linkEventLog">No navigation yet.</p>
+    </section>
+  </body>
+</html>

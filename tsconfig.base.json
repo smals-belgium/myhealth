@@ -58,6 +58,9 @@
       "@smals-belgium-shared/vitals-ng/spinner": [
         "./packages/vitals-ng/src/spinner/index.ts"
       ],
+      "@smals-belgium-shared/vitals-ng/tabs": [
+        "./packages/vitals-ng/src/tabs/index.ts"
+      ],
       "@smals-belgium-shared/vitals-ng/text-input": [
         "./packages/vitals-ng/src/text-input/index.ts"
       ],

@@ -1,0 +1,12 @@
+:host {
+  display: contents;
+}
+
+[part='panel'][hidden] {
+  display: none;
+}
+
+[part='panel']:focus-visible {
+  outline: var(--mh-border-width-m) solid var(--mh-color-brand-border);
+  outline-offset: -2px;
+}

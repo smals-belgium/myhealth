@@ -51,6 +51,7 @@ export default defineConfig(() => ({
         'snackbar/index': 'src/snackbar/index.ts',
         'spinner/index': 'src/spinner/index.ts',
         'table/index': 'src/table/index.ts',
+        'tabs/index': 'src/tabs/index.ts',
         'testing/index': 'src/testing/index.ts',
         'text-input/index': 'src/text-input/index.ts',
         'tooltip/index': 'src/tooltip/index.ts',
