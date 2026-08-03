@@ -14,5 +14,6 @@ export * from './slide-toggle';
 export * from './snackbar';
 export * from './spinner';
 export * from './table';
+export * from './tabs';
 export * from './text-input';
 export * from './tooltip';

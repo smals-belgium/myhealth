@@ -10,62 +10,54 @@ const STATUS_TIMEOUT = 1500;
 
 /** @param {HTMLElement} target */
 function buildSnippet(target) {
-  const tag = target.tagName.toLowerCase();
-  const section = target.closest('.element-section');
+  const tag = target.tagName.toLowerCase(),
+    section = target.closest('.element-section');
   if (!section) return;
 
-  const inputs = section.querySelectorAll('.property-input');
-  const attrs = [];
+  const inputs = section.querySelectorAll('.property-input'),
+    attrs = [];
 
   for (const input of inputs) {
-    const prop = input.dataset.property;
-    const kind = input.dataset.kind;
-    const defaultValue = input.dataset.defaultValue ?? '';
+    const prop = input.dataset.property,
+      { kind } = input.dataset,
+      defaultValue = input.dataset.defaultValue ?? '';
 
     let value;
     if (kind === 'boolean') {
       value = input.checked;
-      if (!value) continue; // omit false booleans
+      if (!value) continue; // Omit false booleans
       attrs.push(prop);
       continue;
-    } else {
-      value = input.value;
-    }
+    } else value = input.value;
 
     if (!value || value === defaultValue) continue;
     attrs.push(`${prop}="${value}"`);
   }
 
-  const attrStr = attrs.length ? ' ' + attrs.join(' ') : '';
-
-  // Determine slot content from the current preview
-  const inner = target.textContent?.trim() || '';
-  const snippet = inner
-    ? `<${tag}${attrStr}>${inner}</${tag}>`
-    : `<${tag}${attrStr}></${tag}>`;
-
-  const codeEl = section.querySelector('.snippet-code');
-  if (codeEl) {
-    codeEl.textContent = snippet;
-  }
+  const attrStr = attrs.length ? ` ${attrs.join(' ')}` : '',
+    // Determine slot content from the current preview
+    inner = target.textContent?.trim() || '',
+    snippet = inner
+      ? `<${tag}${attrStr}>${inner}</${tag}>`
+      : `<${tag}${attrStr}></${tag}>`,
+    codeEl = section.querySelector('.snippet-code');
+  if (codeEl) codeEl.textContent = snippet;
 }
 
 /** @param {HTMLElement} input */
 function applyProperty(input) {
-  const targetId = input.dataset.target;
-  const prop = input.dataset.property;
-  const kind = input.dataset.kind;
+  const targetId = input.dataset.target,
+    prop = input.dataset.property,
+    { kind } = input.dataset;
   if (!targetId || !prop) return;
 
   const target = document.getElementById(targetId);
   if (!target) return;
 
-  if (kind === 'boolean') {
-    target[prop] = input.checked;
-  } else if (kind === 'number') {
-    target[prop] = Number(input.value);
-  } else {
-    const value = input.value;
+  if (kind === 'boolean') target[prop] = input.checked;
+  else if (kind === 'number') target[prop] = Number(input.value);
+  else {
+    const { value } = input;
     target[prop] = value || undefined;
   }
 
@@ -85,18 +77,15 @@ function announceChange(prop, value) {
 
 // Bind all controls
 document.addEventListener('change', e => {
-  if (e.target.classList?.contains('property-input')) {
-    applyProperty(e.target);
-  }
+  if (e.target.classList?.contains('property-input')) applyProperty(e.target);
 });
 
 document.addEventListener('input', e => {
   if (
     e.target.classList?.contains('property-input') &&
     (e.target.dataset.kind === 'text' || e.target.dataset.kind === 'number')
-  ) {
+  )
     applyProperty(e.target);
-  }
 });
 
 // Open the dialog preview from its explicit trigger button in docs canvas.

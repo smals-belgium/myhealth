@@ -1,0 +1,59 @@
+:host {
+  --mh-tab-group__color-indicator: var(--mh-color-brand-type);
+
+  display: block;
+}
+
+[part='tablist'] {
+  display: flex;
+  border-block-end: var(--mh-border-width-s) solid
+    var(--mh-color-neutral-border-quieter);
+  overflow-x: auto;
+}
+
+[part='tab'] {
+  appearance: none;
+  flex: none;
+  padding: var(--mh-space-s) var(--mh-space-m);
+  border: none;
+
+  /* reserve space so height is constant regardless of selection state */
+  border-block-end: var(--mh-border-width-m) solid transparent;
+  background: none;
+  font: inherit;
+  font-weight: 500;
+  color: var(--mh-color-neutral-type-louder);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--mh-transition-normal);
+  transition-timing-function: var(--mh-transition-easing);
+}
+
+[part='tab'][aria-selected='true'] {
+  color: var(--mh-tab-group__color-indicator);
+  border-block-end-color: var(--mh-tab-group__color-indicator);
+}
+
+[part='tab']:hover:not(:disabled, [aria-disabled='true']),
+[part='tab']:focus-visible {
+  background-color: var(--mh-color-neutral-fill-quieter);
+}
+
+[part='tab']:active:not(:disabled, [aria-disabled='true']) {
+  background-color: var(--mh-color-neutral-fill-quiet);
+}
+
+[part='tab']:focus-visible {
+  outline: var(--mh-border-width-m) solid var(--mh-color-brand-border);
+  outline-offset: -2px;
+}
+
+/* :disabled only ever matches <button> (mh-tab); <a> (mh-tab-link) has no native disabled state. */
+[part='tab']:disabled,
+[part='tab'][aria-disabled='true'] {
+  color: var(--mh-color-neutral-type);
+  cursor: not-allowed;
+}
