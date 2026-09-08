@@ -1,12 +1,13 @@
-import { LitElement, PropertyValueMap, html } from 'lit';
+import { LitElement, html } from 'lit';
 import { customElement, property, query, queryAll } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Size } from '../core';
 import { cssStateReflect } from '../core/css';
-import { getInternals } from '../core/internals';
+import { formValueController } from '../form-control';
 import { renderFormField } from '../form-control/form-field';
 
+import { disabledController } from './disabled.controller';
 import { textInputStyles } from './text-input.styles';
 
 /** HTMLInputElement['type'] is `string`, so we narrow it down. */
@@ -84,7 +85,6 @@ export type InputMode =
 export class TextInput extends LitElement {
   static override readonly styles = textInputStyles;
   static formAssociated = true;
-  readonly internals = getInternals(this);
 
   @query('[part="input"]') el?: HTMLInputElement;
   @queryAll('slot') slots?: NodeListOf<HTMLSlotElement>;
@@ -140,22 +140,13 @@ export class TextInput extends LitElement {
   override connectedCallback() {
     super.connectedCallback();
     this.addController(cssStateReflect(this, ['disabled', 'required']));
+    this.addController(disabledController(this));
+    this.addController(formValueController(this));
     this.#defaultValue ??= this.value;
   }
 
   formResetCallback() {
     this.value = this.#defaultValue ?? null;
-  }
-
-  override updated(changed: PropertyValueMap<this>) {
-    if (changed.has('value')) this.internals.setFormValue(this.value ?? null);
-
-    // Propagate disabled state to all slotted elements that can be disabled
-    if (changed.has('disabled') && this.slots)
-      Array.from(this.slots)
-        .flatMap(slot => slot.assignedElements({ flatten: true }))
-        .filter(el => 'disabled' in el)
-        .forEach(el => (el.disabled = this.disabled));
   }
 
   #onInput = () => (this.value = this.el?.value);

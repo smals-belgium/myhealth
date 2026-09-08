@@ -3,12 +3,13 @@ import { html } from 'lit';
 
 import {
   assertAccessibility,
+  getInternalsMock,
   part,
   polyfillAttachInternals,
   polyfillPopover,
 } from '../core/testing';
 
-import type { Option } from './option';
+import { getAllOptions } from './option.selectors';
 import './option';
 import type { Select } from './select';
 import './select';
@@ -37,8 +38,6 @@ describe('select', () => {
   const getSelectedLabel = (el: Select) =>
     part<HTMLElement>('selected-label', el);
   const getListbox = (el: Select) => part<HTMLElement>('listbox', el);
-  const getOptions = (el: Select) =>
-    Array.from(el.querySelectorAll<Option>('mh-option'));
 
   describe('accessibility', () => {
     it('passes accessibility tests', async () => {
@@ -157,6 +156,7 @@ describe('select', () => {
       const el = await fixture<Select>(
         html`<mh-select name="h">Label</mh-select>`,
       );
+      await el.updateComplete;
       expect(el.value).toBeUndefined();
     });
 
@@ -172,6 +172,7 @@ describe('select', () => {
           >
         </mh-select>`,
       );
+      await el.updateComplete;
       expect(el.value).toBe('b');
     });
 
@@ -197,7 +198,7 @@ describe('select', () => {
           <mh-option value="b">B</mh-option>
         </mh-select>`,
       );
-      const [optionA, optionB] = getOptions(el);
+      const [optionA, optionB] = getAllOptions(el);
 
       el.value = 'b';
       await el.updateComplete;
@@ -218,7 +219,7 @@ describe('select', () => {
           <mh-option value="b">B</mh-option>
         </mh-select>`,
       );
-      const [optionA, optionB] = getOptions(el);
+      const [optionA, optionB] = getAllOptions(el);
       expect(optionA?.hasAttribute('selected')).toBe(true);
 
       el.value = 'b';
@@ -239,7 +240,7 @@ describe('select', () => {
           >
         </mh-select>`,
       );
-      const [optionA] = getOptions(el);
+      const [optionA] = getAllOptions(el);
 
       el.value = null;
       await el.updateComplete;
@@ -289,7 +290,7 @@ describe('select', () => {
           <mh-option value="b">B</mh-option>
         </mh-select>`,
       );
-      const setFormValue = vi.spyOn(el.internals, 'setFormValue');
+      const { setFormValue } = getInternalsMock(el);
 
       el.value = 'b';
       await el.updateComplete;
@@ -635,10 +636,12 @@ describe('select', () => {
           <mh-option value="b">B</mh-option>
         </mh-select>`,
       );
-      const [, optionB] = getOptions(el);
+      const [, optionB] = getAllOptions(el);
       const changeHandler = vi.fn();
       el.addEventListener('change', changeHandler);
 
+      // This knows too much about the implementation, but JSDOM don't support no state selectors
+      vi.spyOn(el, 'querySelector').mockReturnValueOnce(optionB);
       optionB?.dispatchEvent(
         new MouseEvent('mouseup', { bubbles: true, composed: true }),
       );
@@ -662,6 +665,7 @@ describe('select', () => {
       const changeHandler = vi.fn();
       el.addEventListener('change', changeHandler);
 
+      vi.spyOn(el, 'querySelector').mockReturnValueOnce(getAllOptions(el)[0]);
       getListbox(el)?.dispatchEvent(
         new MouseEvent('mouseup', { bubbles: true, composed: true }),
       );
@@ -677,7 +681,7 @@ describe('select', () => {
       const el = await fixture<Select>(
         html`<mh-select name="as">Label</mh-select>`,
       );
-      expect(el.internals.role).toBe('combobox');
+      expect(getInternalsMock(el).role).toBe('combobox');
     });
 
     describe('form reset', () => {
@@ -734,7 +738,7 @@ describe('select', () => {
         el.value = 'b';
         await el.updateComplete;
 
-        const setFormValue = vi.spyOn(el.internals, 'setFormValue');
+        const { setFormValue } = getInternalsMock(el);
         el.formResetCallback();
         await el.updateComplete;
 

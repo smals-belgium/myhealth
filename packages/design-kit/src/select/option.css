@@ -14,7 +14,7 @@
   border-radius: var(--mh-option__size-border-radius);
 }
 
-:host(:hover) {
+:host(:state(active)) {
   background-color: var(--mh-option__color-fill__hover);
 }
 

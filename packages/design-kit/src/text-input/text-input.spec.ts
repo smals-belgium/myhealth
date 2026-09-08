@@ -3,6 +3,7 @@ import { html } from 'lit';
 
 import {
   assertAccessibility,
+  getInternalsMock,
   part,
   polyfillAttachInternals,
 } from '../core/testing';
@@ -159,7 +160,7 @@ describe('text-input', () => {
           >Label</mh-text-input
         >`,
       );
-      const setFormValue = vi.spyOn(el.internals, 'setFormValue');
+      const { setFormValue } = getInternalsMock(el);
       el.value = 'updated';
       await el.updateComplete;
 
@@ -421,7 +422,7 @@ describe('text-input', () => {
         html`<mh-text-input name="ah">Label</mh-text-input>`,
       );
       const input = getInput(el);
-      const setFormValue = vi.spyOn(el.internals, 'setFormValue');
+      const { setFormValue } = getInternalsMock(el);
       if (input) {
         input.value = 'typed text';
         input.dispatchEvent(new Event('change'));
@@ -473,7 +474,7 @@ describe('text-input', () => {
         el.value = 'modified';
         await el.updateComplete;
 
-        const setFormValue = vi.spyOn(el.internals, 'setFormValue');
+        const { setFormValue } = getInternalsMock(el);
         el.formResetCallback();
         await el.updateComplete;
 
@@ -487,7 +488,7 @@ describe('text-input', () => {
         el.value = 'modified';
         await el.updateComplete;
 
-        const setFormValue = vi.spyOn(el.internals, 'setFormValue');
+        const { setFormValue } = getInternalsMock(el);
         el.formResetCallback();
         await el.updateComplete;
 

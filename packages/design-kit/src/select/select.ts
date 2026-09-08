@@ -1,17 +1,20 @@
-import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
-import { customElement, property, query, queryAll } from 'lit/decorators.js';
+import { LitElement, html } from 'lit';
+import { customElement, property, query } from 'lit/decorators.js';
 
 import type { Size } from '../core';
-import { cssStateReflect, cssStates } from '../core/css';
-import { childEventDirective } from '../core/directive';
 import { getInternals } from '../core/internals';
 import { openCloseBehaviour } from '../core/open-close.behaviour';
-import size from '../form-control/form-control.size.css?inline';
 import { renderFormField } from '../form-control/form-field';
-import formField from '../form-control/form-field.css?inline';
 
-import type { Option } from './option';
-import styles from './select.css?inline';
+import { onOptionEvent } from './option-event.directive';
+import {
+  getOptionIndex,
+  getSelectedLabel,
+  getSelectedOption,
+} from './option.selectors';
+import { activateAt, commitActiveValue } from './select.actions';
+import { selectControllers } from './select.controller';
+import { selectStyles } from './select.styles';
 
 export type SelectSize = Extract<Size, 's' | 'm'>;
 
@@ -70,15 +73,12 @@ export type SelectSize = Extract<Size, 's' | 'm'>;
  */
 @customElement('mh-select')
 export class Select extends LitElement {
-  static override readonly styles = [formField, styles, size].map(unsafeCSS);
+  static override readonly styles = selectStyles;
   static formAssociated = true;
-  readonly internals = getInternals(this);
-  readonly #states = cssStates<'placeholder-shown'>(this);
 
   @query('[part="toggle-button"]') el?: HTMLInputElement;
   @query('[part="label"]') label?: HTMLElement;
   @query('[part="listbox"]') listbox?: HTMLElement;
-  @queryAll('slot') slots?: NodeListOf<HTMLSlotElement>;
 
   @property() override title = '';
 
@@ -103,23 +103,6 @@ export class Select extends LitElement {
   // TBD
   multiple = false;
 
-  #getOption = (selector: string) =>
-    this.querySelector<Option>(`mh-option${selector}`);
-
-  get #selectedOption() {
-    return this.#getOption('[selected]');
-  }
-
-  #selectOption(value?: string | null) {
-    this.#selectedOption?.removeAttribute('selected');
-    if (value)
-      this.#getOption(`[value="${value}"]`)?.setAttribute('selected', '');
-  }
-
-  get #selectedLabel() {
-    return this.#selectedOption?.innerText ?? this.placeholder ?? '';
-  }
-
   #openClose = openCloseBehaviour(this);
 
   /** Programmatically open or close the select's listbox. */
@@ -132,33 +115,18 @@ export class Select extends LitElement {
   override readonly focus = () => this.el?.focus();
   override readonly blur = () => this.el?.blur();
 
-  override connectedCallback() {
-    super.connectedCallback();
-    this.addController(cssStateReflect(this, ['disabled', 'open', 'required']));
-    this.#states.set('placeholder-shown', !this.value);
-    this.internals.role = 'combobox';
+  constructor() {
+    super();
+    selectControllers(this);
+    getInternals(this).role = 'combobox';
   }
 
   formResetCallback() {
     this.value = this.#defaultValue ?? null;
   }
 
-  override update(changed: PropertyValueMap<this>) {
-    if (changed.has('value')) this.#selectOption(this.value);
-    super.update(changed);
-  }
-
-  override updated(changed: PropertyValueMap<this>) {
-    if (changed.has('value')) {
-      this.internals.setFormValue(this.value ?? null);
-      this.#states.set('placeholder-shown', !this.value);
-    }
-
-    if (changed.has('open')) this.listbox?.togglePopover(this.open);
-  }
-
   #handleDefaultSlotChange() {
-    this.value = this.#selectedOption?.value;
+    this.value = getSelectedOption(this)?.value;
     this.#defaultValue ??= this.value;
 
     const textNodes = Array.from(this.childNodes).filter(
@@ -176,14 +144,10 @@ export class Select extends LitElement {
     }
   }
 
-  #onOptionClick = childEventDirective({
-    name: 'mh-option',
-    onEvent: ({ value }) => {
-      this.value = value;
-      this.open = false;
-      this.dispatchEvent(new Event('change', { bubbles: true }));
-    },
-  });
+  #activateHoveredOption = onOptionEvent(option =>
+    activateAt(this, getOptionIndex(this, option)),
+  );
+  #commitActiveOption = onOptionEvent(() => commitActiveValue(this));
 
   #renderToggleButton = () => html`
     <button
@@ -197,7 +161,7 @@ export class Select extends LitElement {
         part="start"
       ></slot>
 
-      <span part="selected-label">${this.#selectedLabel}</span>
+      <span part="selected-label">${getSelectedLabel(this)}</span>
 
       <slot
         name="end"
@@ -218,7 +182,8 @@ export class Select extends LitElement {
       aria-multiselectable=${this.multiple ? 'true' : 'false'}
       aria-labelledby="label"
       tabindex="-1"
-      @mouseup=${this.#onOptionClick}
+      @mousemove=${this.#activateHoveredOption}
+      @mouseup=${this.#commitActiveOption}
       @toggle=${this.#openClose.onToggle}
     >
       <slot @slotchange=${this.#handleDefaultSlotChange}></slot>

@@ -52,7 +52,7 @@
 
   &:focus {
     border-color: var(--mh-select__color-border-input__focus);
-    box-shadow: 0 0 0 1px var(--mh-select__color-border-input__focus);
+    outline: 1px solid var(--mh-select__color-border-input__focus);
   }
 
   :host(:state(user-invalid)) {
@@ -64,7 +64,7 @@
   }
 
   :host(:state(user-invalid)) &:focus {
-    box-shadow: 0 0 0 1px var(--mh-select__color-border-input__invalid);
+    outline: 1px solid var(--mh-select__color-border-input__invalid);
   }
 
   &:disabled,
