@@ -13,7 +13,7 @@ const tsRules = {};
 
 export const jsTsTestConfig = [
   {
-    files: ['**/*.spec.{ts,tsx,js,jsx}'],
+    files: ['**/*.spec.{ts,tsx,js,jsx}', '**/*.mock.{ts,tsx,js,jsx}'],
     languageOptions: {
       globals: {
         ...globals.vitest,

@@ -22,6 +22,7 @@
     "vitest.config.ts",
     "vitest.config.mts",
     "src/**/*.spec.ts",
-    "src/**/*.mock.ts"
+    "src/**/*.mock.ts",
+    "src/core/testing/index.ts"
   ]
 }

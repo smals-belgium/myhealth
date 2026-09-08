@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS } from 'lit';
+import { LitElement, PropertyValues, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit/static-html.js';
 
@@ -36,6 +36,14 @@ export class Option extends LitElement {
     super.connectedCallback();
     this.addController(cssStateReflect(this, ['disabled', 'selected']));
     this.setAttribute('role', 'option');
+  }
+
+  protected override update(changes: PropertyValues): void {
+    super.update(changes);
+
+    if (changes.has('selected') || changes.has('disabled'))
+      if (this.disabled) this.removeAttribute('tabindex');
+      else this.setAttribute('tabindex', this.selected ? '0' : '-1');
   }
 
   override render() {

@@ -45,7 +45,7 @@ export class Anchor extends ButtonBase {
   @property({ type: Boolean, reflect: true }) disabled = false;
 
   /** An anchor tag doesn't normally have a disabled state, so we simulate it. */
-  #handleClick(event: Event) {
+  #onClick(event: Event) {
     if (this.disabled) {
       event.preventDefault();
       event.stopImmediatePropagation();
@@ -63,7 +63,7 @@ export class Anchor extends ButtonBase {
         rel=${ifDefined(this.rel)}
         aria-disabled=${this.disabled}
         tabindex=${this.disabled ? '-1' : '0'}
-        @click=${this.#handleClick}
+        @click=${this.#onClick}
       >
         <slot
           name="start"
