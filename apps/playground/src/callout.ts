@@ -1,4 +1,4 @@
-import type { ExpandableCallout } from '@myhealth/design-kit';
+import type { ExpandableCallout } from '@smals-belgium-shared/vitals';
 
 const expandable = (id: string) =>
   document.querySelector<ExpandableCallout>(`#${id}`);

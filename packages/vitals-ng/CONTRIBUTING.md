@@ -23,7 +23,7 @@ Pay attention to mirror all Lit component attributes as Angular inputs.
 ```ts
 import { Directive, input } from '@angular/core';
 
-import type { MyComponentVariant } from '@myhealth/design-kit/my-component';
+import type { MyComponentVariant } from '@smals-belgium-shared/vitals/my-component';
 
 @Directive({
   selector: 'mh-my-component',
@@ -63,7 +63,7 @@ export class MyComponent {
 In its simplest form it will look like this:
 
 ```ts
-import '@myhealth/design-kit/my-component';
+import '@smals-belgium-shared/vitals/my-component';
 
 import { MyComponent } from './my-component';
 
@@ -75,7 +75,7 @@ export const MY_COMPONENT = [MyComponent];
 But let's imagine a form component with some custom validator directives:
 
 ```ts
-import '@myhealth/design-kit/my-form-component';
+import '@smals-belgium-shared/vitals/my-form-component';
 
 import { MyFormComponent } from './my-form-component';
 import { MyValidator } from './my-validator';

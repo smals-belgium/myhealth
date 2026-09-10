@@ -1,4 +1,4 @@
-# vitals-ng
+# Vitals-ng
 
 Angular wrapper components for the Lit Vitals web component library.
 

@@ -5,4 +5,5 @@ The monorepo is managed as an [Nx Workspace](https://nx.dev/).
 
 ## Packages
 
-- [design-kit](./packages/design-kit/README.md)
+- [vitals](./packages/vitals/README.md): native web UI components implementing MyHealth design system
+- [vitals-ng](./packages/vitals-ng/README.md): Angular wrappers for the native web components

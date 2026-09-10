@@ -1,4 +1,4 @@
-import type { Tooltip } from '@myhealth/design-kit';
+import type { Tooltip } from '@smals-belgium-shared/vitals';
 
 const DEMO_SHOW_DELAY = 1000;
 

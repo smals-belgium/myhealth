@@ -1,11 +1,11 @@
 ---
-applyTo: 'packages/design-kit/**'
-description: 'CSS custom property naming convention for design-kit components.'
+applyTo: 'packages/vitals/**'
+description: 'CSS custom property naming convention for vitals components.'
 ---
 
 # CSS Custom Property Naming Convention
 
-All CSS custom properties exposed by `packages/design-kit` components follow this pattern:
+All CSS custom properties exposed by `packages/vitals` components follow this pattern:
 
 ```
 --mh-<component>__<category>[-<qualifier>]-[<target>][__<state>]

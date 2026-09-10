@@ -1,5 +1,5 @@
-import('@myhealth/design-kit').catch((error: unknown) =>
-  console.error('Failed to load design-kit', error),
+import('@smals-belgium-shared/vitals').catch((error: unknown) =>
+  console.error('Failed to load vitals', error),
 );
 
 document.addEventListener('mh-error', event => {

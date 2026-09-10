@@ -1,4 +1,4 @@
-import type { TabGroup } from '@myhealth/design-kit';
+import type { TabGroup } from '@smals-belgium-shared/vitals';
 
 const programmaticGroup =
   document.querySelector<TabGroup>('#programmaticGroup');
