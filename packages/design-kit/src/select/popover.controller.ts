@@ -1,8 +1,7 @@
 import { propUpdatedEffect } from '../core/controller';
+import { activateAt, getActiveIndex } from '../form-control/option';
 
-import { getActiveIndex } from './option.selectors';
 import { Select } from './select';
-import { activateAt } from './select.actions';
 
 /**
  * When the select `open` state changes, ensure the popover follows suit.

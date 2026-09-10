@@ -8,4 +8,6 @@ export const nl: Record<LabelKey, string> = {
   selectRow: 'Rij selecteren',
   expandRow: 'Rij uitvouwen',
   collapseRow: 'Rij samenvouwen',
+  previous: 'Vorige',
+  next: 'Volgende',
 };

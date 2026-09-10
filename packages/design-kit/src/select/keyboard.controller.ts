@@ -1,14 +1,15 @@
 /* eslint-disable no-param-reassign -- actually would make it less readable */
 import { propUpdateEffect } from '../core/controller';
-
 import {
+  activateAt,
+  commitActiveValue,
   getActiveIndex,
   getAllOptions,
   getOptionAt,
   numOptions,
-} from './option.selectors';
+} from '../form-control/option';
+
 import type { Select } from './select';
-import { activateAt, commitActiveValue } from './select.actions';
 
 const pageSize = 5;
 

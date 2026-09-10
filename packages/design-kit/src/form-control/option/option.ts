@@ -2,7 +2,7 @@ import { LitElement, PropertyValues, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { html } from 'lit/static-html.js';
 
-import { cssStateReflect } from '../core/css';
+import { cssStateReflect } from '../../core/css';
 
 import styles from './option.css?inline';
 
@@ -32,18 +32,26 @@ export class Option extends LitElement {
 
   @property({ type: Boolean }) selected = false;
 
+  /** Override to track changes. */
+  @property({ reflect: true }) override role = 'option';
+
   override connectedCallback() {
     super.connectedCallback();
     this.addController(cssStateReflect(this, ['disabled', 'selected']));
-    this.setAttribute('role', 'option');
   }
 
   protected override update(changes: PropertyValues): void {
     super.update(changes);
 
+    if (changes.has('selected'))
+      this.setAttribute('aria-selected', this.selected ? 'true' : 'false');
+
     if (changes.has('selected') || changes.has('disabled'))
       if (this.disabled) this.removeAttribute('tabindex');
       else this.setAttribute('tabindex', this.selected ? '0' : '-1');
+
+    if (changes.has('role') && this.role !== 'option')
+      ['tabindex', 'aria-selected'].forEach(attr => this.removeAttribute(attr));
   }
 
   override render() {

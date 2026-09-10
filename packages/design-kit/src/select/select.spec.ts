@@ -8,9 +8,9 @@ import {
   polyfillAttachInternals,
   polyfillPopover,
 } from '../core/testing';
+import { getAllOptions } from '../form-control/option';
 
-import { getAllOptions } from './option.selectors';
-import './option';
+import '../form-control/option/option';
 import type { Select } from './select';
 import './select';
 

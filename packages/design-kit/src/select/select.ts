@@ -5,14 +5,15 @@ import type { Size } from '../core';
 import { getInternals } from '../core/internals';
 import { openCloseBehaviour } from '../core/open-close.behaviour';
 import { renderFormField } from '../form-control/form-field';
-
-import { onOptionEvent } from './option-event.directive';
 import {
+  activateAt,
+  commitActiveValue,
   getOptionIndex,
   getSelectedLabel,
   getSelectedOption,
-} from './option.selectors';
-import { activateAt, commitActiveValue } from './select.actions';
+} from '../form-control/option';
+
+import { onOptionEvent } from './option-event.directive';
 import { selectControllers } from './select.controller';
 import { selectStyles } from './select.styles';
 
@@ -26,6 +27,7 @@ export type SelectSize = Extract<Size, 's' | 'm'>;
  * @since 1.0
  *
  * @dependency mh-icon
+ * @dependency mh-option
  *
  * @slot - Default slot contains a list of `mh-option`s. If it also contains plain text, this will be moved to the
  * label slot. If you need a more complex label, use the `label` slot instead.
