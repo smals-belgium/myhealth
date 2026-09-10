@@ -1,4 +1,4 @@
-# vitals-ng todo's
+# Vitals-ng todo's
 
 ## Core
 
@@ -9,7 +9,7 @@
 
 ## Tabs — Router integration (deferred)
 
-Context: `mh-tab-link` (`packages/design-kit/src/tabs/tab-link.ts`) only supports plain `href`/`target`/`rel`/
+Context: `mh-tab-link` (`packages/vitals/src/tabs/tab-link.ts`) only supports plain `href`/`target`/`rel`/
 `download` for now. Full Angular Router integration was descoped from the initial `mh-tab-link` feature and is
 tracked here for later.
 

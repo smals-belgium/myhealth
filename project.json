@@ -1,5 +1,5 @@
 {
-  "name": "@myhealth/source",
+  "name": "@smals-belgium-shared/myhealth",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "targets": {
     "local-registry": {

@@ -1,4 +1,4 @@
-import type { Snackbar } from '@myhealth/design-kit';
+import type { Snackbar } from '@smals-belgium-shared/vitals';
 
 const snackbar = (id: string) => document.querySelector<Snackbar>(`#${id}`);
 

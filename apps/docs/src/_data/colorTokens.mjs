@@ -19,7 +19,7 @@ export default function () {
   const colorDir = path.join(
     rootDir,
     'packages',
-    'design-kit',
+    'vitals',
     'src',
     'theme',
     'color',

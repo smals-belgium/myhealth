@@ -1,5 +1,5 @@
 {
-  "name": "@myhealth/source",
+  "name": "@smals-belgium-shared/myhealth",
   "version": "0.0.0",
   "license": "SEE LICENSE IN ./LICENSE.md",
   "scripts": {

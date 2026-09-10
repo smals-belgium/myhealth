@@ -1,4 +1,4 @@
-import type { Dialog } from '@myhealth/design-kit';
+import type { Dialog } from '@smals-belgium-shared/vitals';
 
 const dialog = (id: string) => document.querySelector<Dialog>(`#${id}`);
 

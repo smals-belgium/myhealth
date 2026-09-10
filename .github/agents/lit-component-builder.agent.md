@@ -1,6 +1,6 @@
 ---
 name: lit-component-builder
-description: "Build Lit design-kit components with Angular wrappers. USE WHEN: creating new web components, implementing component variations, generating Angular wrappers, building from component specs. This agent generates complete production-ready code following design-kit patterns, Lit best practices, and design system tokens."
+description: "Build Lit vitals components with Angular wrappers. USE WHEN: creating new web components, implementing component variations, generating Angular wrappers, building from component specs. This agent generates complete production-ready code following vitals patterns, Lit best practices, and design system tokens."
 ---
 
 # Lit Component Builder Agent
@@ -10,7 +10,7 @@ This agent specializes in building production-ready Lit web components for the M
 ## Expertise & Scope
 
 **What this agent does:**
-- Generates complete Lit design-kit components (`packages/design-kit/src/<component>/`) from functional descriptions
+- Generates complete Lit vitals components (`packages/vitals/src/<component>/`) from functional descriptions
 - Implements component variations (appearance, size, loudness, orientation) following MyHealth nomenclature
 - Uses design kit CSS tokens (`--mh-*`) for theming and responsive design
 - Creates unit tests (Vitest) for component behavior and accessibility
@@ -65,7 +65,7 @@ Before generating code, clarify:
 Creates the complete component structure:
 
 ```
-packages/design-kit/src/<component>/
+packages/vitals/src/<component>/
 ├── index.ts                          # Public exports + type augmentation
 ├── <component>.ts                    # Main component class (Lit LitElement)
 ├── <component>.css                   # Base styles
@@ -119,7 +119,7 @@ packages/vitals-ng/<component>/
 **Styling:**
 - Import CSS files with `css` tag and template literal
 - Use design kit tokens: `var(--mh-*)` for colors, spacing, typography
-- Follow appearance/size/loudness pattern matching design-kit components
+- Follow appearance/size/loudness pattern matching vitals components
 - Scoped styles in Shadow DOM
 
 **Events:**
@@ -169,7 +169,7 @@ packages/vitals-ng/<component>/
 ## Code Quality & Best Practices
 
 ✅ **Do:**
-- Match existing component patterns from design-kit (e.g., button, checkbox)
+- Match existing component patterns from vitals (e.g., button, checkbox)
 - Use design kit tokens for all colors, sizing, spacing
 - Write semantic HTML within Shadow DOM
 - Test component variants and interactions
@@ -183,7 +183,7 @@ packages/vitals-ng/<component>/
 - Skip accessibility attributes (ARIA, keyboard handlers)
 - Use light DOM when Shadow DOM is appropriate
 - Import external component libraries without justification
-- Create duplicate functionality that exists in design-kit
+- Create duplicate functionality that exists in vitals
 
 ## Design Decisions
 
@@ -208,13 +208,13 @@ Example clarification:
 5. Run tests via Nx to validate
 
 **Always:**
-- Run `nx run @myhealth/design-kit:test` to validate component tests
-- Check component builds with `nx run @myhealth/design-kit:build`
+- Run `nx run vitals:test` to validate component tests
+- Check component builds with `nx run vitals:build`
 - Verify Angular wrapper compilation with `nx run @myhealth/vitals-ng:build`
 
 ## Related Documentation
 
-- **Design Kit CONTRIBUTING.md**: [link](../../packages/design-kit/CONTRIBUTING.md)
-- **Design System Tokens**: [link](../../packages/design-kit/src/theme/)
+- **Design Kit CONTRIBUTING.md**: [link](../../packages/vitals/CONTRIBUTING.md)
+- **Design System Tokens**: [link](../../packages/vitals/src/theme/)
 - **Vitals-NG Angular Wrappers**: [link](../../packages/vitals-ng/README.md)
 - **Accessibility Standards**: [link](../../.github/instructions/a11y.instructions.md)

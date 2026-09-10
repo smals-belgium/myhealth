@@ -28,7 +28,7 @@
   },
   "references": [
     {
-      "path": "../design-kit/tsconfig.lib.json"
+      "path": "../vitals/tsconfig.lib.json"
     }
   ]
 }

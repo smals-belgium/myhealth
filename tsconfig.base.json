@@ -17,10 +17,8 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@myhealth/source"],
     "paths": {
-      "@myhealth/design-kit": ["packages/design-kit"],
-      "@smals-belgium-shared/vitals": ["packages/design-kit"],
+      "@smals-belgium-shared/vitals": ["packages/vitals"],
       "@smals-belgium-shared/vitals-ng": ["./packages/vitals-ng/src/index.ts"],
       "@smals-belgium-shared/vitals-ng/button": [
         "./packages/vitals-ng/src/button/index.ts"

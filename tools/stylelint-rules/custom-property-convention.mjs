@@ -1,5 +1,5 @@
 /**
- * Stylelint plugin: enforces the design-kit CSS custom property naming convention.
+ * Stylelint plugin: enforces the vitals CSS custom property naming convention.
  *
  * Convention: --mh-<component>__<category>[-<qualifier>]-[<target>][__<state>]
  *
@@ -18,14 +18,14 @@
  *   - Cross-component overrides: a component may declare --mh-<other>__ to override a
  *     child component's variables. These are valid and pass the convention check.
  *
- * @see packages/design-kit/CONTRIBUTING.md — CSS custom properties section
+ * @see packages/vitals/CONTRIBUTING.md — CSS custom properties section
  */
 
 import stylelint from 'stylelint';
 
 const { createPlugin, utils } = stylelint;
 
-const ruleName = 'design-kit/custom-property-convention';
+const ruleName = 'vitals/custom-property-convention';
 
 const messages = utils.ruleMessages(ruleName, {
   missingDoubleUnderscore: prop =>

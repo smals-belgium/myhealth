@@ -17,7 +17,7 @@ export default function () {
   const manifestPath = path.join(
     rootDir,
     'packages',
-    'design-kit',
+    'vitals',
     'custom-elements.json',
   );
 

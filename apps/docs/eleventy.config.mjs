@@ -12,18 +12,13 @@ export default function (config) {
   config.addFilter('formatDate', isoString =>
     dateFormatter.format(new Date(isoString)),
   );
-  const componentsDist = path.join(
-    workspaceRoot,
-    'packages',
-    'design-kit',
-    'dist',
-  );
+  const componentsDist = path.join(workspaceRoot, 'packages', 'vitals', 'dist');
 
-  config.addPassthroughCopy({ [componentsDist]: 'assets/design-kit' });
+  config.addPassthroughCopy({ [componentsDist]: 'assets/vitals' });
   config.addPassthroughCopy('src/styles');
   config.addPassthroughCopy('src/scripts');
 
-  // design-kit's dist build treats `lit` (and its sub-packages) as an
+  // vitals's dist build treats `lit` (and its sub-packages) as an
   // external dependency, so its bare `import 'lit'` specifiers only resolve
   // in a bundler-based consumer (Vite, Angular, ...). Docs is a plain static
   // site with no bundler, so we vendor lit's own package folders here and
@@ -39,9 +34,9 @@ export default function (config) {
     });
   }
 
-  // Rebuild the docs when the design-kit build output (including its custom
+  // Rebuild the docs when the vitals build output (including its custom
   // elements manifest and CSS) changes, so a running `serve` reflects
-  // design-kit edits.
+  // vitals edits.
   config.addWatchTarget(componentsDist);
 
   return {

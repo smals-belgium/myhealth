@@ -9,7 +9,7 @@ export default function () {
     '..',
     '..',
     'packages',
-    'design-kit',
+    'vitals',
     'package.json',
   );
   const { version } = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));

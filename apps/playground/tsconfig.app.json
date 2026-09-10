@@ -10,7 +10,7 @@
     "moduleResolution": "bundler",
     "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
     "paths": {
-      "@myhealth/design-kit": ["./packages/design-kit/src/index.ts"]
+      "@smals-belgium-shared/vitals": ["./packages/vitals/src/index.ts"]
     },
     "ignoreDeprecations": "6.0"
   },
@@ -26,7 +26,7 @@
   "include": ["src/**/*.ts"],
   "references": [
     {
-      "path": "../../packages/design-kit/tsconfig.lib.json"
+      "path": "../../packages/vitals/tsconfig.lib.json"
     }
   ]
 }
