@@ -14,12 +14,13 @@
   border-radius: var(--mh-option__size-border-radius);
 }
 
-:host(:state(active)) {
-  background-color: var(--mh-option__color-fill__hover);
+:host(:state(selected):not(:hover)) {
+  background-color: var(--mh-option__color-fill__selected);
 }
 
-:host(:state(selected)) {
-  background-color: var(--mh-option__color-fill__selected);
+:host(:hover),
+:host(:state(active)) {
+  background-color: var(--mh-option__color-fill__hover);
 }
 
 :host(:state(disabled)) {

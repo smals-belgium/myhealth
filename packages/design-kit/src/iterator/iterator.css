@@ -1,0 +1,57 @@
+:host {
+  --mh-iterator__color-fill: var(--mh-color-brand-fill-quieter);
+  --mh-iterator__color-fill__disabled: var(--mh-color-neutral-fill-quieter);
+  --mh-iterator__size-height: var(--mh-form-control-height);
+
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  align-items: center;
+  height: var(--mh-iterator__size-height);
+  background-color: var(--mh-iterator__color-fill);
+  border-radius: var(--mh-border-radius);
+  color-scheme: light;
+}
+
+mh-icon-button {
+  margin-inline: 0.25rem;
+
+  /* probably not necessary in the future when that shadow is removed from the button itself */
+  &::part(button) {
+    box-shadow: none;
+  }
+}
+
+[part='previous-button']::part(icon) {
+  --mh-icon__size-angle-rotate: 180deg;
+}
+
+[part='selection'] {
+  display: block;
+  flex: 1;
+
+  &::slotted(mh-option) {
+    display: flex;
+    justify-content: center;
+    height: 2.375rem;
+  }
+
+  &::slotted(mh-option:not([selected])) {
+    display: none;
+  }
+}
+
+:host(:state(disabled)) {
+  pointer-events: none;
+}
+
+:host(:state(disabled)),
+:host(:state(disabled)) ::slotted(mh-option) {
+  background-color: var(--mh-iterator__color-fill__disabled);
+}
+
+:host(:state(disabled)) mh-icon-button {
+  --mh-icon-button__color-fill__disabled: var(
+    --mh-iterator__color-fill__disabled
+  );
+}

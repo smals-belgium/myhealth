@@ -8,4 +8,6 @@ export const de: Record<LabelKey, string> = {
   selectRow: 'Zeile auswählen',
   expandRow: 'Zeile erweitern',
   collapseRow: 'Zeile einklappen',
+  previous: 'Vorherige',
+  next: 'Nächste',
 };

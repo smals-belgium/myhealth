@@ -73,6 +73,11 @@
       "import": "./dist/icon-button/index.js",
       "default": "./dist/icon-button/index.js"
     },
+    "./iterator": {
+      "types": "./dist/iterator/index.d.ts",
+      "import": "./dist/iterator/index.js",
+      "default": "./dist/iterator/index.js"
+    },
     "./radio": {
       "types": "./dist/radio/index.d.ts",
       "import": "./dist/radio/index.js",

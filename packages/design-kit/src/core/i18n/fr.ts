@@ -8,4 +8,6 @@ export const fr: Record<LabelKey, string> = {
   selectRow: 'Sélectionner la ligne',
   expandRow: 'Développer la ligne',
   collapseRow: 'Réduire la ligne',
+  previous: 'Précédent',
+  next: 'Prochain',
 };

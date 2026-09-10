@@ -5,4 +5,6 @@ export type LabelKey =
   | 'selectAllRows'
   | 'selectRow'
   | 'expandRow'
-  | 'collapseRow';
+  | 'collapseRow'
+  | 'previous'
+  | 'next';

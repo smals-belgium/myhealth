@@ -1,6 +1,5 @@
 import { childEventDirective } from '../core/directive';
-
-import type { Option } from './option';
+import type { Option } from '../form-control/option';
 
 export const onOptionEvent = (on: (option: Option) => void) =>
   childEventDirective({

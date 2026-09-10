@@ -8,4 +8,6 @@ export const en: Record<LabelKey, string> = {
   selectRow: 'Select row',
   expandRow: 'Expand row',
   collapseRow: 'Collapse row',
+  previous: 'Previous',
+  next: 'Next',
 };

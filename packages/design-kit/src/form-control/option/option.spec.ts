@@ -1,7 +1,7 @@
 import { fixture } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility, defaultSlot, slot } from '../core/testing';
+import { assertAccessibility, defaultSlot, slot } from '../../core/testing';
 
 import './option';
 import type { Option } from './option';
