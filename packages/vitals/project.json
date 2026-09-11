@@ -5,6 +5,8 @@
   "targets": {
     "generate-icon-name": {
       "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["{projectRoot}/src/icon/svg/*.svg"],
       "outputs": ["{projectRoot}/src/icon/icon-name.ts"],
       "options": {
         "command": "node tools/generate-icon-name.mjs",
